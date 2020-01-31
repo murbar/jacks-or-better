@@ -9,7 +9,8 @@ export default createGlobalStyle`
   }
   body {
     margin: 0;
-    background: ${p => p.theme.colors.offWhite};
+    background-image: ${p => p.theme.bgGradient};
+    background-attachment: fixed;
     color: ${p => p.theme.colors.offBlack};
     font-family: ${p => p.theme.fontFamily};
     font-size: 1.8rem;
