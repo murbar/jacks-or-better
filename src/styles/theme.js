@@ -1,10 +1,10 @@
 import { media } from './helpers';
 
 const colors = {
-  offWhite: '#efefef',
-  offBlack: '#222',
-  green: '#3cc473',
-  red: '#bf0000'
+  offWhite: 'hsl(0, 0%, 94%)',
+  offBlack: 'hsl(0, 0%, 13%)',
+  green: 'hsl(144, 54%, 50%)',
+  red: 'hsl(0, 100%, 38%)'
 };
 
 const theme = {
