@@ -17,7 +17,7 @@ function buildDeck(size = 1) {
   const deck = [];
   for (let i = 0; i < size; i++) {
     for (let s of SUITS) {
-      for (let v = 1; v < 14; v++) {
+      for (let v = 2; v < 15; v++) {
         deck.push(`${v}${s}`);
       }
     }
