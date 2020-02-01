@@ -16,6 +16,6 @@ export const media = Object.keys(sizes).reduce((acc, label) => {
   return acc;
 }, {});
 
-export const addAlpha = (hsl, alpha) => {
+export const addHslAlpha = (hsl, alpha) => {
   return `${hsl.slice(0, -1)}, ${alpha})`;
 };
