@@ -12,7 +12,7 @@ const faces = {
   '13': 'K'
 };
 
-const suitMap = {
+const suitImageMap = {
   H: <HeartsSVG />,
   D: <DiamondsSVG />,
   S: <SpadesSVG />,
@@ -23,7 +23,6 @@ const Styles = styled.div`
   position: relative;
   width: 8rem;
   height: 12rem;
-  margin: 1rem;
   padding: 1rem 0.75rem;
   font-family: Montserrat;
   line-height: 1;
@@ -33,23 +32,29 @@ const Styles = styled.div`
   border: 1px solid #ccc;
   background: white;
   svg {
-    --w: 2.5rem;
-    width: var(--w);
-    height: auto;
+    --w: 3rem;
+    width: auto;
+    height: var(--w);
     position: absolute;
     top: calc(50% - (var(--w) / 2));
     right: calc(50% - (var(--w) / 2));
+  }
+  span:nth-last-of-type(2) {
+    position: absolute;
+    bottom: 1rem;
+    right: 0.75rem;
   }
 `;
 
 function Card({ value }) {
   let ordinal = value.slice(0, -1);
-  ordinal = faces[ordinal] ? faces[ordinal] : ordinal;
+  ordinal = ordinal in faces ? faces[ordinal] : ordinal;
   const suit = value.slice(-1);
   return (
     <Styles suit={suit}>
-      {ordinal}
-      {suitMap[suit]}
+      <span>{ordinal}</span>
+      {suitImageMap[suit]}
+      <span>{ordinal}</span>
     </Styles>
   );
 }

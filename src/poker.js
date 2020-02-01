@@ -13,11 +13,13 @@ function shuffled(array) {
   return copy;
 }
 
-function buildDeck() {
+function buildDeck(size = 1) {
   const deck = [];
-  for (let s of SUITS) {
-    for (let v = 1; v < 14; v++) {
-      deck.push(`${v}${s}`);
+  for (let i = 0; i < size; i++) {
+    for (let s of SUITS) {
+      for (let v = 1; v < 14; v++) {
+        deck.push(`${v}${s}`);
+      }
     }
   }
   return deck;
