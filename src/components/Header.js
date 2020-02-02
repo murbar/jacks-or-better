@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Styles = styled.header``;
+const Styles = styled.header`
+  color: #eee;
+`;
 
 export default function Header() {
   return (
