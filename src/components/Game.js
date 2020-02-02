@@ -5,6 +5,7 @@ import { newDeck, takeCards, scoreHand } from 'poker';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 // import useDebugLogging from 'hooks/useDebugLogging';
 import useHotKeys from 'hooks/useHotKeys';
+import { fxBet, fxBetMax, fxCardTurn, fxCardTap, fxGameOver, fxWin } from 'soundFx';
 
 const REVEAL_DELAY_MS = 100;
 const DEFAULT_STATUS = 'Good Luck!';
@@ -48,7 +49,7 @@ function Game() {
   const [gameState, setGameState] = React.useState(initGameState());
   const [bet, setBet] = React.useState(gameState.defaultBet);
   const [statusMessage, setStatusMessage] = React.useState(DEFAULT_STATUS);
-  const maxBet = 5 * gameState.defaultBet;
+  const MAX_BET = 5 * gameState.defaultBet;
 
   // useDebugLogging(gameState, 'GAME');
 
@@ -58,12 +59,27 @@ function Game() {
     setGameState(newState);
   };
 
+  const playSoundFx = React.useCallback(
+    callback => {
+      if (playerState.soundFx) {
+        callback();
+      }
+    },
+    [playerState.soundFx]
+  );
+
   const incrementBet = () => {
     if (bet === maxBet) {
       setBet(gameState.defaultBet);
     } else {
       setBet(prev => prev + gameState.defaultBet);
     }
+    playSoundFx(fxBet);
+  };
+
+  const maxBet = () => {
+    setBet(MAX_BET);
+    playSoundFx(fxBetMax);
   };
 
   const toggleHeld = index => {
@@ -72,6 +88,7 @@ function Game() {
         prev.held[index] = !prev.held[index];
         return { ...prev, held: prev.held };
       });
+      playSoundFx(fxCardTap);
     }
   };
 
@@ -107,6 +124,7 @@ function Game() {
     const showOneAndWait = () => {
       if (hidden.length) {
         setTimeout(() => {
+          playSoundFx(fxCardTurn);
           toggleShowCard(hidden.pop());
           showOneAndWait();
         }, REVEAL_DELAY_MS);
@@ -115,7 +133,7 @@ function Game() {
       }
     };
     showOneAndWait();
-  }, [gameState.hidden, toggleShowCard]);
+  }, [gameState.hidden, playSoundFx, toggleShowCard]);
 
   // reveal face-down cards after the deal and after the draw
   React.useEffect(() => {
@@ -131,15 +149,21 @@ function Game() {
       setStatusMessage(winnings ? `${winningHand}! You win $${winnings}` : 'Game Over');
       setGameState(prev => ({ ...prev, didScore: true }));
       incrementBank(winnings);
+      if (winnings) {
+        playSoundFx(fxWin);
+      } else {
+        playSoundFx(fxGameOver);
+      }
     }
   }, [
-    bet,
     gameState.hand,
     gameState.didDraw,
-    setGameState,
     gameState.busy,
     gameState.didScore,
-    incrementBank
+    bet,
+    setGameState,
+    incrementBank,
+    playSoundFx
   ]);
 
   const play = () => {
@@ -188,10 +212,7 @@ function Game() {
         <button onClick={incrementBet} disabled={gameState.didDeal || gameState.busy}>
           Bet
         </button>
-        <button
-          onClick={() => setBet(maxBet)}
-          disabled={gameState.didDeal || gameState.busy}
-        >
+        <button onClick={maxBet} disabled={gameState.didDeal || gameState.busy}>
           Bet Max
         </button>
         <button onClick={play} disabled={gameState.busy}>
