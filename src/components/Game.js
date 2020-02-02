@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Hand from 'components/Hand';
+import Button from 'components/Button';
 import { newDeck, takeCards, scoreHand } from 'poker';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 // import useDebugLogging from 'hooks/useDebugLogging';
@@ -210,20 +211,20 @@ function Game() {
       <Hand gameState={gameState} toggleHeld={toggleHeld} />
       <div>{statusMessage}</div>
       <div>
-        <button onClick={incrementBet} disabled={gameState.didDeal || gameState.busy}>
+        <Button onClick={incrementBet} disabled={gameState.didDeal || gameState.busy}>
           Bet
-        </button>
-        <button onClick={maxBet} disabled={gameState.didDeal || gameState.busy}>
+        </Button>
+        <Button onClick={maxBet} disabled={gameState.didDeal || gameState.busy}>
           Bet Max
-        </button>
-        <button onClick={play} disabled={gameState.busy}>
+        </Button>
+        <Button onClick={play} disabled={gameState.busy}>
           {gameState.didDeal ? 'Draw' : 'Deal'}
-        </button>
+        </Button>
       </div>
 
-      <button onClick={resetHand} disabled={gameState.busy}>
+      <Button onClick={resetHand} disabled={gameState.busy}>
         DEBUG RESET
-      </button>
+      </Button>
     </Styles>
   );
 }
