@@ -70,7 +70,7 @@ function Game() {
   );
 
   const incrementBet = () => {
-    if (bet === maxBet) {
+    if (bet === MAX_BET) {
       setBet(gameState.defaultBet);
     } else {
       setBet(prev => prev + gameState.defaultBet);
