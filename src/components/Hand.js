@@ -10,21 +10,20 @@ const Cards = styled.div`
   align-items: center;
 `;
 
-function Hand({ gameState, setHeld }) {
-  const { hand, held } = gameState;
-
-  const toggleHold = i => {
-    // if draws == 0
-    setHeld(i);
-  };
-
-  console.log(hand);
+function Hand({ gameState, toggleHeld }) {
+  const { hand, hidden, held } = gameState;
 
   return (
     <Styles>
       <Cards>
         {hand.map((v, i) => (
-          <Card key={v} value={v} held={held[i]} onClick={() => toggleHold(i)} />
+          <Card
+            key={v}
+            value={v}
+            hidden={hidden[i]}
+            held={held[i]}
+            onClick={() => toggleHeld(i)}
+          />
         ))}
       </Cards>
     </Styles>
