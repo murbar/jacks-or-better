@@ -7,9 +7,6 @@ import { useEffect, useRef } from 'react';
 // }
 
 export default function useHotKeys(keyHandlerMap) {
-  // TODO verify map is string and functions
-
-  const targets = Object.keys(keyHandlerMap);
   const keydown = useRef(false);
 
   useEffect(() => {
@@ -17,7 +14,7 @@ export default function useHotKeys(keyHandlerMap) {
       // check for long press
       if (keydown.current) return;
 
-      if (targets.includes(key)) {
+      if (key in keyHandlerMap) {
         keydown.current = true;
         const callback = keyHandlerMap[key];
         callback();
@@ -25,7 +22,7 @@ export default function useHotKeys(keyHandlerMap) {
     };
 
     const upHandler = ({ key }) => {
-      if (targets.includes(key)) {
+      if (key in keyHandlerMap) {
         keydown.current = false;
       }
     };
@@ -36,5 +33,5 @@ export default function useHotKeys(keyHandlerMap) {
       window.removeEventListener('keydown', downHandler);
       window.removeEventListener('keyup', upHandler);
     };
-  }, [targets, keyHandlerMap]);
+  }, [keyHandlerMap]);
 }

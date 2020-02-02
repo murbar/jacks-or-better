@@ -163,6 +163,16 @@ function Game() {
     }
   };
 
+  useHotKeys({
+    d: play,
+    b: incrementBet,
+    1: () => toggleHeld(0),
+    2: () => toggleHeld(1),
+    3: () => toggleHeld(2),
+    4: () => toggleHeld(3),
+    5: () => toggleHeld(4)
+  });
+
   return (
     <Styles>
       <div>Bank: ${gameState.bank}</div>
