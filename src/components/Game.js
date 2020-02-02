@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Hand from 'components/Hand';
 import { newDeck, takeCards, scoreHand } from 'poker';
+import useLocalStorageState from 'hooks/useLocalStorageState';
 // import useDebugLogging from 'hooks/useDebugLogging';
 import useHotKeys from 'hooks/useHotKeys';
 
@@ -15,12 +16,20 @@ function initGameState() {
     hand: takeCards(deck, 5),
     held: Array(5).fill(false),
     hidden: Array(5).fill(true),
-    bank: 500,
     defaultBet: 5,
     didDeal: false,
     didDraw: false,
     didScore: false,
     busy: false
+  };
+}
+
+function initPlayerState() {
+  return {
+    name: 'Lucky Player',
+    bank: 500,
+    soundFx: true,
+    theme: null
   };
 }
 
@@ -35,6 +44,7 @@ const getIndexes = (array, filter) =>
   array.reduce((indexes, value, i) => (filter(value) ? [...indexes, i] : indexes), []);
 
 function Game() {
+  const [playerState, setPlayerState] = useLocalStorageState('PLAYER', initPlayerState());
   const [gameState, setGameState] = React.useState(initGameState());
   const [bet, setBet] = React.useState(gameState.defaultBet);
   const [statusMessage, setStatusMessage] = React.useState(DEFAULT_STATUS);
@@ -75,6 +85,13 @@ function Game() {
     setGameState(prev => ({ ...prev, hand, held: prev.held.map(() => false) }));
   };
 
+  const incrementBank = React.useCallback(
+    points => {
+      setPlayerState(prev => ({ ...prev, bank: prev.bank + points }));
+    },
+    [setPlayerState]
+  );
+
   const toggleShowCard = React.useCallback(
     index => {
       setGameState(prev => {
@@ -112,11 +129,8 @@ function Game() {
     if (gameState.didDraw && !gameState.busy && !gameState.didScore) {
       const [winnings, winningHand] = scoreHand(gameState.hand, bet);
       setStatusMessage(winnings ? `${winningHand}! You win $${winnings}` : 'Game Over');
-      setGameState(prev => ({
-        ...prev,
-        bank: prev.bank + winnings,
-        didScore: true
-      }));
+      setGameState(prev => ({ ...prev, didScore: true }));
+      incrementBank(winnings);
     }
   }, [
     bet,
@@ -124,26 +138,26 @@ function Game() {
     gameState.didDraw,
     setGameState,
     gameState.busy,
-    gameState.didScore
+    gameState.didScore,
+    incrementBank
   ]);
 
   const play = () => {
     if (gameState.busy) return;
 
     if (!gameState.didDeal) {
-      console.log('firing deal');
       if (gameState.didDraw) {
         resetHand();
       }
       setGameState(prev => ({
         ...prev,
         didDeal: true,
-        bank: prev.bank - bet,
         busy: true
       }));
+      incrementBank(-bet);
+
       setStatusMessage(DEFAULT_STATUS);
     } else {
-      console.log('firing draw');
       discard();
       setGameState(prev => ({
         ...prev,
@@ -166,7 +180,7 @@ function Game() {
 
   return (
     <Styles>
-      <div>Bank: ${gameState.bank}</div>
+      <div>Bank: ${playerState.bank}</div>
       <div>Bet: ${bet}</div>
       <Hand gameState={gameState} toggleHeld={toggleHeld} />
       <div>{statusMessage}</div>
