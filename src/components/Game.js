@@ -6,7 +6,7 @@ import { newDeck, takeCards, scoreHand } from 'poker';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 // import useDebugLogging from 'hooks/useDebugLogging';
 import useHotKeys from 'hooks/useHotKeys';
-import { fxBet, fxBetMax, fxCardTurn, fxCardTap, fxGameOver, fxWin } from 'soundFx';
+import { playSound } from 'soundFx';
 
 const REVEAL_DELAY_MS = 100;
 const DEFAULT_STATUS = 'Good Luck!';
@@ -61,9 +61,9 @@ function Game() {
   };
 
   const playSoundFx = React.useCallback(
-    callback => {
+    key => {
       if (playerState.soundFx) {
-        callback();
+        playSound(key);
       }
     },
     [playerState.soundFx]
@@ -75,12 +75,12 @@ function Game() {
     } else {
       setBet(prev => prev + gameState.defaultBet);
     }
-    playSoundFx(fxBet);
+    playSoundFx('bet');
   };
 
   const maxBet = () => {
     setBet(MAX_BET);
-    playSoundFx(fxBetMax);
+    playSoundFx('betMax');
   };
 
   const toggleHeld = index => {
@@ -89,7 +89,7 @@ function Game() {
         prev.held[index] = !prev.held[index];
         return { ...prev, held: prev.held };
       });
-      playSoundFx(fxCardTap);
+      playSoundFx('cardTap');
     }
   };
 
@@ -125,7 +125,7 @@ function Game() {
     const showOneAndWait = () => {
       if (hidden.length) {
         setTimeout(() => {
-          playSoundFx(fxCardTurn);
+          playSoundFx('cardTurn');
           toggleShowCard(hidden.pop());
           showOneAndWait();
         }, REVEAL_DELAY_MS);
@@ -151,9 +151,9 @@ function Game() {
       setGameState(prev => ({ ...prev, didScore: true }));
       incrementBank(winnings);
       if (winnings) {
-        playSoundFx(fxWin);
+        playSoundFx('win');
       } else {
-        playSoundFx(fxGameOver);
+        playSoundFx('gameOver');
       }
     }
   }, [
@@ -222,8 +222,17 @@ function Game() {
         </Button>
       </div>
 
+      <br />
+      <br />
+      <br />
+      <br />
       <Button onClick={resetHand} disabled={gameState.busy}>
         DEBUG RESET
+      </Button>
+      <Button
+        onClick={() => setPlayerState(prev => ({ ...prev, soundFx: !prev.soundFx }))}
+      >
+        toggle sound {playerState.soundFx ? 'off' : 'on'}
       </Button>
     </Styles>
   );

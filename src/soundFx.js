@@ -1,4 +1,3 @@
-import UIfx from 'uifx';
 import betSrc from 'sounds/bet.mp3';
 import betMaxSrc from 'sounds/bet-max.mp3';
 import cardTurnSrc from 'sounds/card-turn-alt.mp3';
@@ -6,16 +5,51 @@ import cardTapSrc from 'sounds/card-tap.mp3';
 import gameOverSrc from 'sounds/game-over.mp3';
 import winSrc from 'sounds/win.mp3';
 
-const bet = new UIfx(betSrc);
-const betMax = new UIfx(betMaxSrc);
-const cardTurn = new UIfx(cardTurnSrc);
-const cardTap = new UIfx(cardTapSrc);
-const gameOver = new UIfx(gameOverSrc);
-const win = new UIfx(winSrc);
+let sourceMap = {
+  bet: betSrc,
+  betMax: betMaxSrc,
+  cardTurn: cardTurnSrc,
+  cardTap: cardTapSrc,
+  gameOver: gameOverSrc,
+  win: winSrc
+};
 
-export const fxBet = () => bet.play();
-export const fxBetMax = () => betMax.play();
-export const fxCardTurn = () => cardTurn.play();
-export const fxCardTap = () => cardTap.play();
-export const fxGameOver = () => gameOver.play();
-export const fxWin = () => win.play();
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const context = new AudioContext();
+
+initSourceMap();
+
+function loadFile(url) {
+  return window
+    .fetch(url)
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => {
+      return new Promise((resolve, reject) => {
+        context.decodeAudioData(
+          arrayBuffer,
+          buffer => {
+            resolve(buffer);
+          },
+          e => {
+            reject(e);
+          }
+        );
+      });
+    });
+}
+
+async function initSourceMap() {
+  Object.entries(sourceMap).forEach(async ([key, src]) => {
+    await loadFile(src).then(audioBuffer => (sourceMap[key] = audioBuffer));
+  });
+}
+
+export function playSound(key) {
+  if (!(key in sourceMap)) return;
+
+  const buffer = sourceMap[key];
+  const source = context.createBufferSource();
+  source.buffer = buffer;
+  source.connect(context.destination);
+  source.start(0);
+}
