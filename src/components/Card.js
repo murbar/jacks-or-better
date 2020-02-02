@@ -62,6 +62,7 @@ const Styles = styled.div`
     position: absolute;
     bottom: 0.5rem;
     right: 0.5rem;
+    transform: rotate(180deg);
   }
   ${p => p.hold && heldStyles}
   ${p => p.hide && hiddenStyles}
