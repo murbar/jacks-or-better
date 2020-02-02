@@ -194,6 +194,7 @@ function Game() {
 
   useHotKeys({
     d: play,
+    Enter: play,
     b: incrementBet,
     1: () => toggleHeld(0),
     2: () => toggleHeld(1),
