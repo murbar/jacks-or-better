@@ -23,6 +23,14 @@ const suitImageMap = {
   C: <ClubsSVG />
 };
 
+const hiddenStyles = css`
+  background: gray;
+  color: transparent;
+  svg {
+    display: none;
+  }
+`;
+
 const heldStyles = css`
   box-shadow: 0 0 0 0.5rem ${p => addHslAlpha(p.theme.colors.green, 1)};
 `;
@@ -32,8 +40,9 @@ const Styles = styled.div`
   position: relative;
   width: var(--card-size);
   height: calc(var(--card-size) * 1.4);
-  padding: 1rem 0.75rem;
+  padding: 0.5rem 0.5rem;
   font-family: Montserrat;
+  font-weight: 700;
   line-height: 1;
   font-size: calc(var(--card-size) * 0.3);
   color: ${p => ('HD'.includes(p.suit) ? p.theme.colors.red : p.theme.colors.offBlack)};
@@ -51,18 +60,19 @@ const Styles = styled.div`
   }
   span:nth-last-of-type(2) {
     position: absolute;
-    bottom: 1rem;
-    right: 0.75rem;
+    bottom: 0.5rem;
+    right: 0.5rem;
   }
-  ${p => p.held && heldStyles}
+  ${p => p.hold && heldStyles}
+  ${p => p.hide && hiddenStyles}
 `;
 
-function Card({ value, held, onClick }) {
+function Card({ value, hidden, held, onClick }) {
   let [rank, suit] = getRankAndSuit(value);
   rank = rank in faces ? faces[rank] : rank;
 
   return (
-    <Styles suit={suit} held={held} onClick={onClick}>
+    <Styles suit={suit} hide={hidden} hold={held} onClick={onClick}>
       <span>{rank}</span>
       {suitImageMap[suit]}
       <span>{rank}</span>
