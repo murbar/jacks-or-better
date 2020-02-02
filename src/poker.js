@@ -29,6 +29,14 @@ export function newDeck() {
   return shuffled(buildDeck());
 }
 
+export function takeCards(deck, count) {
+  const cards = [];
+  for (let i = 0; i < count; i++) {
+    cards.push(deck.pop());
+  }
+  return cards;
+}
+
 const HANDS = {
   royalFlush: 'Royal Flush',
   straightFlush: 'Straight Flush',

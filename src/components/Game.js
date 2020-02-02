@@ -1,21 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Hand from 'components/Hand';
-import { newDeck, scoreHand } from 'poker';
-// import useLocalStorageState from 'hooks/useLocalStorageState';
+import { newDeck, takeCards, scoreHand } from 'poker';
 // import useDebugLogging from 'hooks/useDebugLogging';
 import useHotKeys from 'hooks/useHotKeys';
 
 const REVEAL_DELAY_MS = 100;
 const DEFAULT_STATUS = 'Good Luck!';
-
-function takeCards(deck, count) {
-  const cards = [];
-  for (let i = 0; i < count; i++) {
-    cards.push(deck.pop());
-  }
-  return cards;
-}
 
 function initGameState() {
   const deck = newDeck();
