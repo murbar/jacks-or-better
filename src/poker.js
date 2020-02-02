@@ -1,5 +1,33 @@
 const SUITS = 'DCHS'; // ♦ ♣ ♥ ♠
 
+export const HANDS = {
+  royalFlush: 'Royal Flush',
+  straightFlush: 'Straight Flush',
+  fourOfKind: '4 of a Kind',
+  fullHouse: 'Full House',
+  flush: 'Flush',
+  straight: 'Straight',
+  threeOfKind: '3 of a Kind',
+  twoPair: '2 Pair',
+  jacksBetter: 'Jacks or Better',
+  zilch: 'Nothing'
+};
+
+export const PAYOUTS = {
+  [HANDS.royalFlush]: 250,
+  [HANDS.straightFlush]: 50,
+  [HANDS.fourOfKind]: 25,
+  [HANDS.fullHouse]: 9,
+  [HANDS.flush]: 6,
+  [HANDS.straight]: 4,
+  [HANDS.threeOfKind]: 3,
+  [HANDS.twoPair]: 2,
+  [HANDS.jacksBetter]: 1,
+  [HANDS.zilch]: 0
+};
+
+export const ROYAL_MAX_MULTIPLE = 4;
+
 function shuffled(array) {
   const copy = [...array];
 
@@ -36,32 +64,6 @@ export function takeCards(deck, count) {
   }
   return cards;
 }
-
-const HANDS = {
-  royalFlush: 'Royal Flush',
-  straightFlush: 'Straight Flush',
-  fourOfKind: '4 of a Kind',
-  fullHouse: 'Full House',
-  flush: 'Flush',
-  straight: 'Straight',
-  threeOfKind: '3 of a Kind',
-  twoPair: '2 Pair',
-  jacksBetter: 'Jacks or Better',
-  zilch: 'Nothing'
-};
-
-const PAYOUTS = {
-  [HANDS.royalFlush]: 250,
-  [HANDS.straightFlush]: 50,
-  [HANDS.fourOfKind]: 25,
-  [HANDS.fullHouse]: 9,
-  [HANDS.flush]: 6,
-  [HANDS.straight]: 4,
-  [HANDS.threeOfKind]: 3,
-  [HANDS.twoPair]: 2,
-  [HANDS.jacksBetter]: 1,
-  [HANDS.zilch]: 0
-};
 
 const getRank = card => card.slice(0, -1);
 
@@ -173,7 +175,7 @@ function isPairJacksBetter(hand) {
   return false;
 }
 
-export function scoreHand(hand, bet, payouts = PAYOUTS) {
+export function scoreHand(hand, payouts = PAYOUTS) {
   if (hand.length !== 5) {
     throw new Error('A hand must contain 5 cards');
   }
@@ -192,7 +194,7 @@ export function scoreHand(hand, bet, payouts = PAYOUTS) {
 
   for (let score of scoringHands) {
     if (score.test(hand)) {
-      return [bet * payouts[score.hand], score.hand];
+      return [payouts[score.hand], score.hand];
     }
   }
 
