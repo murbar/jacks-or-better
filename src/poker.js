@@ -38,11 +38,11 @@ const HANDS = {
   straight: 'Straight',
   threeOfKind: '3 of a Kind',
   twoPair: '2 Pair',
-  jacksBetter: 'High Pair',
+  jacksBetter: 'Jacks or Better',
   zilch: 'Nothing'
 };
 
-const payouts = {
+const PAYOUTS = {
   [HANDS.royalFlush]: 250,
   [HANDS.straightFlush]: 50,
   [HANDS.fourOfKind]: 25,
@@ -165,7 +165,7 @@ function isPairJacksBetter(hand) {
   return false;
 }
 
-export function scoreHand(hand, bet, payouts) {
+export function scoreHand(hand, bet, payouts = PAYOUTS) {
   if (hand.length !== 5) {
     throw new Error('A hand must contain 5 cards');
   }
@@ -190,3 +190,58 @@ export function scoreHand(hand, bet, payouts) {
 
   return [payouts[HANDS.zilch], HANDS.zilch];
 }
+
+// const nada = ['8S', '12D', '4H', '1H', '8C'];
+// const lowpair = ['8S', '11D', '4H', '12H', '8C'];
+// const jacks = ['8S', '12D', '4H', '12H', '7C'];
+// const twoPair = ['8S', '8D', '4H', '12H', '4C'];
+// const threeKind = ['8S', '8D', '4H', '12H', '8C'];
+// const straight = ['8S', '10D', '9H', '7H', '11C'];
+// const straightLow = ['14S', '2D', '4H', '3H', '5C'];
+// const flush = ['8S', '4S', '11S', '12S', '9S'];
+// const fullHouse = ['8S', '8D', '8H', '12H', '12C'];
+// const fourKind = ['8S', '8D', '4H', '8H', '8C'];
+// const straightFlush = ['8D', '10D', '9D', '7D', '11D'];
+// const straightFlushLow = ['14D', '2D', '4D', '3D', '5D'];
+// const royalFlush = ['10S', '14S', '12S', '11S', '13S'];
+
+// console.log('nothing', scoreHand(nada, 5, payouts));
+// console.log('lowpair', scoreHand(lowpair, 5, payouts));
+// console.log('jacks', scoreHand(jacks, 5, payouts));
+// console.log('twoPair', scoreHand(twoPair, 5, payouts));
+// console.log('3k', scoreHand(threeKind, 5, payouts));
+// console.log('strght', scoreHand(straight, 5, payouts));
+// console.log('strghtLOW', scoreHand(straightLow, 5, payouts));
+// console.log('flsh', scoreHand(flush, 5, payouts));
+// console.log('FH', scoreHand(fullHouse, 5, payouts));
+// console.log('4k', scoreHand(fourKind, 5, payouts));
+// console.log('strghtflush', scoreHand(straightFlush, 5, payouts));
+// console.log('strghtflushLOW', scoreHand(straightFlushLow, 5, payouts));
+// console.log('royal', scoreHand(royalFlush, 5, payouts));
+// console.log('royal', scoreHand(royalFlush, 5, payouts));
+
+// for 1 million hands
+// Nothing         801240
+// High pair       122348
+// 2 pair          47658
+// 3 kind          21109
+// Straight        4007
+// Flush           2012
+// Full house      1382
+// 4 kind          234
+// Straight flush  9
+// Royal flush     1
+
+// function runStats(n = 1000000) {
+//   const stats = {};
+//   for (let i = 0; i < n; i++) {
+//     const d = poker.newDeck();
+//     const h = d.slice(-5);
+//     const [, hand] = poker.scoreHand(h, 5);
+//     stats[hand] = (stats[hand] || 0) + 1;
+//   }
+//   const hands = Object.entries(stats).sort((a, b) => b[1] - a[1]);
+//   for (let hand of hands) {
+//     console.log(hand[0], hand[1], hand[1] / n);
+//   }
+// }
