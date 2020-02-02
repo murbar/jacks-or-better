@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Hand from 'components/Hand';
 import Button from 'components/Button';
+import ValueTween from 'components/ValueTween';
 import { newDeck, takeCards, scoreHand, HANDS, ROYAL_MAX_MULTIPLE } from 'poker';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 import useHotKeys from 'hooks/useHotKeys';
@@ -204,8 +205,13 @@ function Game() {
 
   return (
     <Styles>
-      <div>Bank: ${playerState.bank}</div>
-      <div>Bet: ${bet}</div>
+      <div>
+        Bank: $<ValueTween>{playerState.bank}</ValueTween>
+      </div>
+
+      <div>
+        Bet: $<ValueTween duration={250}>{bet}</ValueTween>
+      </div>
       <Hand gameState={gameState} toggleHeld={toggleHeld} />
       <div>{statusMessage}</div>
       <div>
