@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Card from 'components/Card';
 
-const Styles = styled.div``;
+const Styles = styled.div`
+  margin: 0 -1rem;
+`;
 
 const Cards = styled.div`
   display: flex;

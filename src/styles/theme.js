@@ -1,4 +1,12 @@
-import { media } from './helpers';
+import { mediaAbove } from './helpers';
+
+const bgGradients = {
+  blue:
+    'radial-gradient(circle at 50% 30%, hsl(213, 80%, 37%) 0%, hsl(212, 85%, 23%) 100%)',
+  red: 'radial-gradient(circle at 50% 30%, hsl(13, 91%, 17%) 0%, hsl(15, 80%, 8%) 100%)',
+  green:
+    'radial-gradient(circle at 50% 30%, hsl(150, 100%, 24%)  0%, hsl(152, 94%, 7%) 100%)'
+};
 
 const colors = {
   offWhite: 'hsl(0, 0%, 94%)',
@@ -12,12 +20,13 @@ const theme = {
     ...colors,
     background: colors.offWhite,
     foreground: colors.offBlack,
-    primary: colors.green
+    primary: colors.green,
+    holdHighlight: colors.green
   },
-  bgGradient: 'radial-gradient(circle, rgba(67,125,235,1) 0%, rgba(0,62,179,1) 100%)',
+  bgGradient: bgGradients.green,
   inputBorderRadius: `0.5rem`,
   fontFamily: "'Source Sans Pro', sans-serif",
-  media
+  mediaAbove
 };
 
 export default theme;
