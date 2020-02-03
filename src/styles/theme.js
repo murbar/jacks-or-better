@@ -1,5 +1,3 @@
-import { mediaAbove } from './helpers';
-
 const bgGradients = {
   blue:
     'radial-gradient(circle at 50% 30%, hsl(213, 80%, 37%) 0%, hsl(212, 85%, 23%) 100%)',
@@ -23,10 +21,13 @@ const theme = {
     primary: colors.green,
     holdHighlight: colors.green
   },
+  fonts: {
+    body: '"Source Sans Pro", sans-serif',
+    display: '"Titan One",  sans-serif',
+    cards: 'Montserrat, sans-serif'
+  },
   bgGradient: bgGradients.green,
-  inputBorderRadius: `0.5rem`,
-  fontFamily: "'Source Sans Pro', sans-serif",
-  mediaAbove
+  inputBorderRadius: `0.5rem`
 };
 
 export default theme;
