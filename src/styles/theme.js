@@ -10,7 +10,10 @@ const colors = {
   offWhite: 'hsl(0, 0%, 94%)',
   offBlack: 'hsl(0, 0%, 13%)',
   green: 'hsl(144, 54%, 50%)',
-  red: 'hsl(0, 100%, 38%)'
+  gold: 'hsl(51, 100%, 50%)',
+  goldDark: 'hsl(42, 80%, 50%)',
+  red: 'hsl(0, 100%, 38%)',
+  blue: 'hsl(213, 80%, 37%)'
 };
 
 const theme = {
@@ -19,7 +22,7 @@ const theme = {
     background: colors.offWhite,
     foreground: colors.offBlack,
     primary: colors.green,
-    holdHighlight: colors.green
+    highlight: colors.green
   },
   fonts: {
     body: '"Source Sans Pro", sans-serif',
