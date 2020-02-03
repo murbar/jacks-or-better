@@ -55,7 +55,7 @@ function Game() {
 
   const resetHand = () => {
     const newState = initGameState();
-    newState.bank = gameState.bank;
+    newState.currentBet = gameState.currentBet;
     setGameState(newState);
   };
 
