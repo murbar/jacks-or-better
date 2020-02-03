@@ -12,10 +12,11 @@ const pulse = css`
 `;
 
 export default styled.button`
-  font-size: 1em;
+  font-family: ${p => p.theme.fonts.cards};
+  font-size: 1.1em;
   font-weight: bold;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 1.25rem 2.5rem;
   background: ${p => p.theme.colors.offWhite};
   border-radius: 0.25rem;
   margin: 1rem 1rem 1rem 0;
