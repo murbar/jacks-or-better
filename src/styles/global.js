@@ -9,7 +9,9 @@ export default createGlobalStyle`
   }
   body {
     margin: 0;
-    background-image: ${p => p.theme.bgGradient};
+    background-image: repeating-linear-gradient(
+      45deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.03) 20px),
+      ${p => p.theme.bgGradient};
     background-attachment: fixed;
     color: ${p => p.theme.colors.offBlack};
     font-family: ${p => p.theme.fonts.body};
