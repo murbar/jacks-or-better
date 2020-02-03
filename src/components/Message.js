@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 const Styles = styled.div`
   display: flex;
-  margin: 2rem 0;
+  margin: 3rem 0;
+  height: 6rem;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -12,7 +13,6 @@ const Styles = styled.div`
   letter-spacing: 1px;
   line-height: 1;
   text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
-  /* text-transform: uppercase; */
 `;
 
 const GameOver = () => {

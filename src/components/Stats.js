@@ -4,7 +4,7 @@ import ValueTween from 'components/ValueTween';
 
 const Styles = styled.div`
   display: flex;
-  margin: 2rem 0;
+  margin: 3rem 0;
   justify-content: space-between;
   align-items: center;
   text-align: center;
