@@ -10,7 +10,7 @@ export default createGlobalStyle`
   body {
     margin: 0;
     background-image: repeating-linear-gradient(
-      45deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.03) 20px),
+      45deg, transparent, transparent 2rem, rgba(0,0,0,0.02) 2rem, rgba(0,0,0,0.02) 4rem),
       ${p => p.theme.bgGradient};
     background-attachment: fixed;
     color: ${p => p.theme.colors.offBlack};
