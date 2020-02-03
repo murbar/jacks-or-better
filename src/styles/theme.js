@@ -22,7 +22,9 @@ const theme = {
     background: colors.offWhite,
     foreground: colors.offBlack,
     primary: colors.green,
-    highlight: colors.green
+    highlight: colors.green,
+    cardHD: 'hsl(0, 100%, 42%)',
+    cardSC: 'hsl(0, 0%, 5%)'
   },
   fonts: {
     body: '"Source Sans Pro", sans-serif',

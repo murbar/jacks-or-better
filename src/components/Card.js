@@ -89,7 +89,7 @@ const Styles = styled.div`
   font-weight: 700;
   line-height: 1;
   font-size: calc(var(--card-size) * 0.3);
-  color: ${p => ('HD'.includes(p.suit) ? p.theme.colors.red : p.theme.colors.offBlack)};
+  color: ${p => ('HD'.includes(p.suit) ? p.theme.colors.cardHD : p.theme.colors.cardSC)};
   border-radius: 0.5rem;
   background: white;
   box-shadow: 0.2rem 0.2rem 1.5rem rgba(0, 0, 0, 0.2);
