@@ -67,7 +67,7 @@ const Styles = styled.div`
   height: calc(var(--card-size) * 1.4);
   padding: 0.5rem 0.5rem;
   margin: 0 0.35rem;
-  font-family: Montserrat;
+  font-family: ${p => p.theme.fonts.cards};
   font-weight: 700;
   line-height: 1;
   font-size: calc(var(--card-size) * 0.3);
