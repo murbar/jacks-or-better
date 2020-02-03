@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import Hand from 'components/Hand';
-import Button from 'components/Button';
 import { newDeck, takeCards, scoreHand, HANDS, ROYAL_MAX_MULTIPLE } from 'poker';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 import useHotKeys from 'hooks/useHotKeys';
 import { playSound } from 'soundFx';
 import Message from './Message';
 import Stats from './Stats';
+import Controls from './Controls';
 
 const REVEAL_DELAY_MS = 100;
 
@@ -80,7 +80,7 @@ function Game() {
     playSoundFx('bet');
   };
 
-  const maxBet = () => {
+  const setMaxBet = () => {
     setGameState(prev => ({ ...prev, currentBet: prev.maxBet }));
     playSoundFx('betMax');
   };
@@ -209,22 +209,7 @@ function Game() {
       <Stats gameState={gameState} playerState={playerState} />
       <Hand gameState={gameState} toggleHeld={toggleHeld} />
       <Message gameState={gameState} />
-      <div>
-        <Button onClick={incrementBet} disabled={gameState.didDeal || gameState.busy}>
-          Bet
-        </Button>
-        <Button onClick={maxBet} disabled={gameState.didDeal || gameState.busy}>
-          Bet Max
-        </Button>
-        <Button
-          onClick={play}
-          disabled={gameState.busy}
-          pulse={!gameState.didDeal && gameState.didScore}
-        >
-          {gameState.didDeal ? 'Draw' : 'Deal'}
-        </Button>
-        <Button onClick={toggleSoundMute}>{playerState.soundFx ? '🔈' : '🔇'}</Button>
-      </div>
+      <Controls gameState={gameState} actions={{ incrementBet, setMaxBet, play }} />
     </Styles>
   );
 }
