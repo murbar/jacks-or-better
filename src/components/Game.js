@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import Hand from 'components/Hand';
 import Button from 'components/Button';
-import ValueTween from 'components/ValueTween';
 import { newDeck, takeCards, scoreHand, HANDS, ROYAL_MAX_MULTIPLE } from 'poker';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 import useHotKeys from 'hooks/useHotKeys';
 import { playSound } from 'soundFx';
+import Message from './Message';
+import Stats from './Stats';
 
 const REVEAL_DELAY_MS = 100;
-const DEFAULT_STATUS = 'Good Luck!';
 
 function initGameState() {
   const deck = newDeck();
@@ -20,9 +20,12 @@ function initGameState() {
     hidden: Array(5).fill(true),
     defaultBet: 5,
     maxBet: 25,
+    currentBet: 5,
     didDeal: false,
     didDraw: false,
     didScore: false,
+    winnings: 0,
+    winningHand: null,
     busy: false
   };
 }
@@ -49,8 +52,6 @@ const getIndexes = (array, filter) =>
 function Game() {
   const [playerState, setPlayerState] = useLocalStorageState('PLAYER', initPlayerState());
   const [gameState, setGameState] = React.useState(initGameState());
-  const [bet, setBet] = React.useState(gameState.defaultBet);
-  const [statusMessage, setStatusMessage] = React.useState(DEFAULT_STATUS);
 
   const resetHand = () => {
     const newState = initGameState();
@@ -72,16 +73,15 @@ function Game() {
   );
 
   const incrementBet = () => {
-    if (bet === gameState.maxBet) {
-      setBet(gameState.defaultBet);
-    } else {
-      setBet(prev => prev + gameState.defaultBet);
-    }
+    const { currentBet, defaultBet, maxBet } = gameState;
+    const bet = currentBet === maxBet ? defaultBet : currentBet + defaultBet;
+
+    setGameState(prev => ({ ...prev, currentBet: bet }));
     playSoundFx('bet');
   };
 
   const maxBet = () => {
-    setBet(gameState.maxBet);
+    setGameState(prev => ({ ...prev, currentBet: prev.maxBet }));
     playSoundFx('betMax');
   };
 
@@ -150,11 +150,13 @@ function Game() {
   React.useEffect(() => {
     if (endOfPlay) {
       const [multiple, winningHand] = scoreHand(gameState.hand);
-      const royalMax = bet === gameState.maxBet && winningHand === HANDS.royalFlush;
-      const winnings = royalMax ? multiple * bet * ROYAL_MAX_MULTIPLE : multiple * bet;
+      const { currentBet, maxBet } = gameState;
+      const royalMax = currentBet === maxBet && winningHand === HANDS.royalFlush;
+      const winnings = royalMax
+        ? multiple * currentBet * ROYAL_MAX_MULTIPLE
+        : multiple * currentBet;
 
-      setStatusMessage(winnings ? `${winningHand}! You win $${winnings}` : 'Game Over');
-      setGameState(prev => ({ ...prev, didScore: true }));
+      setGameState(prev => ({ ...prev, didScore: true, winningHand, winnings }));
       incrementBank(winnings);
 
       if (winnings) {
@@ -163,7 +165,7 @@ function Game() {
         playSoundFx('gameOver');
       }
     }
-  }, [gameState, bet, setGameState, incrementBank, playSoundFx, endOfPlay]);
+  }, [gameState, incrementBank, playSoundFx, endOfPlay]);
 
   const play = () => {
     if (gameState.busy) return;
@@ -177,9 +179,7 @@ function Game() {
         didDeal: true,
         busy: true
       }));
-      incrementBank(-bet);
-
-      setStatusMessage(DEFAULT_STATUS);
+      incrementBank(-gameState.currentBet);
     } else {
       discard();
       setGameState(prev => ({
@@ -200,20 +200,15 @@ function Game() {
     2: () => toggleHeld(1),
     3: () => toggleHeld(2),
     4: () => toggleHeld(3),
-    5: () => toggleHeld(4)
+    5: () => toggleHeld(4),
+    l: () => console.log(gameState)
   });
 
   return (
     <Styles>
-      <div>
-        Bank: $<ValueTween>{playerState.bank}</ValueTween>
-      </div>
-
-      <div>
-        Bet: $<ValueTween duration={250}>{bet}</ValueTween>
-      </div>
+      <Stats gameState={gameState} playerState={playerState} />
       <Hand gameState={gameState} toggleHeld={toggleHeld} />
-      <div>{statusMessage}</div>
+      <Message gameState={gameState} />
       <div>
         <Button onClick={incrementBet} disabled={gameState.didDeal || gameState.busy}>
           Bet
@@ -221,7 +216,11 @@ function Game() {
         <Button onClick={maxBet} disabled={gameState.didDeal || gameState.busy}>
           Bet Max
         </Button>
-        <Button onClick={play} disabled={gameState.busy}>
+        <Button
+          onClick={play}
+          disabled={gameState.busy}
+          pulse={!gameState.didDeal && gameState.didScore}
+        >
           {gameState.didDeal ? 'Draw' : 'Deal'}
         </Button>
         <Button onClick={toggleSoundMute}>{playerState.soundFx ? '🔈' : '🔇'}</Button>
