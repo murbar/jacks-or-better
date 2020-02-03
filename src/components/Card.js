@@ -36,7 +36,25 @@ const hiddenStyles = css`
 `;
 
 const heldStyles = css`
-  box-shadow: 0 0 0 0.5rem ${p => addHslAlpha(p.theme.colors.holdHighlight, 1)};
+  margin-bottom: -2.5rem;
+  box-shadow: 0 0 0 0.5rem ${p => addHslAlpha(p.theme.colors.highlight, 1)};
+  &::after {
+    content: 'HELD';
+    position: absolute;
+    width: 100%;
+    bottom: -2.25rem;
+    left: 0;
+    line-height: 1;
+    text-align: center;
+    font-family: ${p => p.theme.fonts.cards};
+    font-size: 1.5rem;
+    color: ${p => p.theme.colors.highlight};
+    text-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const didScoreStyles = css`
+  opacity: 0.3;
 `;
 
 const Styles = styled.div`
@@ -77,12 +95,21 @@ const Styles = styled.div`
   box-shadow: 0.2rem 0.2rem 1.5rem rgba(0, 0, 0, 0.2);
   transform: rotate(${p => p.tilt}deg);
   box-shadow: inset 0 0 2rem rgba(0, 0, 0, 0.1);
+  transition: margin 250ms, opacity 250ms;
   &:first-child {
     margin-left: 0;
   }
   &:last-child {
     margin-right: 0;
   }
+  &:hover {
+    transform: ${p => !p.hide && !p.didDraw && 'scale(1.02)'} rotate(${p => p.tilt}deg);
+  }
+
+  ${p => p.hold && heldStyles}
+  ${p => p.hide && hiddenStyles}
+  ${p => p.didScore && didScoreStyles}
+
   svg {
     --w: calc(var(--card-size) * 0.35);
     width: auto;
@@ -97,17 +124,28 @@ const Styles = styled.div`
     right: 0.5rem;
     transform: rotate(180deg);
   }
-  ${p => p.hold && heldStyles}
-  ${p => p.hide && hiddenStyles}
 `;
 
-function Card({ value, hidden, held, onClick }) {
+const Held = styled.div`
+  height: 2rem;
+  position: relative;
+`;
+
+function Card({ value, hidden, held, didDraw, didScore, onClick }) {
   let [rank, suit] = getRankAndSuit(value);
   rank = rank in faces ? faces[rank] : rank;
   const tilt = React.useRef(randomInRange(-2, 2));
 
   return (
-    <Styles suit={suit} hide={hidden} hold={held} tilt={tilt.current} onClick={onClick}>
+    <Styles
+      suit={suit}
+      hide={hidden}
+      hold={held}
+      didScore={didScore}
+      didDraw={didDraw}
+      tilt={tilt.current}
+      onClick={onClick}
+    >
       <span>{rank}</span>
       {suitImageMap[suit]}
       <span>{rank}</span>

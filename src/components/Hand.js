@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import Card from 'components/Card';
+import Message from './Message';
 
 const Styles = styled.div`
-  margin: 0 -1rem;
+  position: relative;
+  margin: 5rem -1rem;
 `;
 
 const Cards = styled.div`
@@ -13,7 +15,10 @@ const Cards = styled.div`
 `;
 
 function Hand({ gameState, toggleHeld }) {
-  const { hand, hidden, held } = gameState;
+  const { hand, hidden, held, didDeal, didDraw, didScore, busy, winnings } = gameState;
+  const initState = !didDeal && !didDraw && !didScore && !busy;
+  const winState = didScore && winnings !== 0;
+  const noWinState = didScore && winnings === 0;
 
   return (
     <Styles>
@@ -24,10 +29,13 @@ function Hand({ gameState, toggleHeld }) {
             value={v}
             hidden={hidden[i]}
             held={held[i]}
+            didDraw={gameState.didDraw}
             onClick={() => toggleHeld(i)}
+            didScore={didScore}
           />
         ))}
       </Cards>
+      <Message gameState={gameState} states={{ initState, winState, noWinState }} />
     </Styles>
   );
 }

@@ -1,51 +1,77 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import theme from 'styles/theme';
+import { adjustHslLightness } from 'styles/helpers';
+
+const MESSAGE_STRINGS = {
+  goodLuck: 'Good Luck',
+  gameOver: 'Game Over',
+  youWin: 'You Win'
+};
+
+const color = theme.colors.gold;
+console.log(color);
+const effect3d = css`
+  text-shadow: 0 0.1rem 0 ${adjustHslLightness(color, -20)},
+    0rem -0.1rem 0 ${adjustHslLightness(color, 30)},
+    0 0.2rem 0 ${adjustHslLightness(color, -20)},
+    0 0.3rem 0 ${adjustHslLightness(color, -20)},
+    0 0.4rem 0 ${adjustHslLightness(color, -20)}, 0.1rem 1rem 0.5rem rgba(16, 16, 16, 0.3),
+    0.1rem 1.2rem 1rem rgba(16, 16, 16, 0.2), 0.1rem 1.4rem 3rem rgba(16, 16, 16, 0.2),
+    0.1rem 1.6rem 5rem rgba(16, 16, 16, 0.3);
+`;
 
 const Styles = styled.div`
   display: flex;
-  margin: 3rem 0;
-  height: 6rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
   text-align: center;
-  font-family: ${p => p.theme.fonts.display};
-  font-size: 3rem;
+  font-family: ${theme.fonts.display};
+  font-size: 3.5rem;
+  color: ${color};
   letter-spacing: 1px;
   line-height: 1;
-  text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  ${effect3d}
 `;
 
-const GameOver = () => {
-  return <span>Game Over</span>;
-};
+const Winnings = styled.div`
+  margin-top: 1rem;
+  font-size: 1.2em;
+`;
 
-const GoodLuck = () => {
-  return <span>Good Luck</span>;
-};
+const GameOver = styled.div`
+  font-size: 1.4em;
+`;
+
+const GoodLuck = styled.div`
+  font-size: 1.4em;
+`;
 
 const YouWin = ({ hand, winnings }) => {
   return (
-    <span>
+    <div>
       {hand}!
-      <br />
-      You win ${winnings}
-    </span>
+      <Winnings>
+        {MESSAGE_STRINGS.youWin} ${winnings}
+      </Winnings>
+    </div>
   );
 };
 
-export default function Message({ gameState }) {
-  const { winningHand, winnings, didScore } = gameState;
+export default function Message({ gameState, states }) {
+  const { winningHand, winnings } = gameState;
+
   return (
     <Styles>
-      {didScore ? (
-        winnings !== 0 ? (
-          <YouWin hand={winningHand} winnings={winnings} />
-        ) : (
-          <GameOver />
-        )
-      ) : (
-        <GoodLuck />
-      )}
+      {states.initState && <GoodLuck>{MESSAGE_STRINGS.goodLuck}</GoodLuck>}
+      {states.winState && <YouWin hand={winningHand} winnings={winnings} />}
+      {states.noWinState && <GameOver>{MESSAGE_STRINGS.gameOver}</GameOver>}
     </Styles>
   );
 }

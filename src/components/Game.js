@@ -5,7 +5,6 @@ import { newDeck, takeCards, scoreHand, HANDS, ROYAL_MAX_MULTIPLE } from 'poker'
 import useLocalStorageState from 'hooks/useLocalStorageState';
 import useHotKeys from 'hooks/useHotKeys';
 import { playSound } from 'soundFx';
-import Message from './Message';
 import Stats from './Stats';
 import Controls from './Controls';
 
@@ -208,7 +207,6 @@ function Game() {
     <Styles>
       <Stats gameState={gameState} playerState={playerState} />
       <Hand gameState={gameState} toggleHeld={toggleHeld} />
-      <Message gameState={gameState} />
       <Controls gameState={gameState} actions={{ incrementBet, setMaxBet, play }} />
     </Styles>
   );
