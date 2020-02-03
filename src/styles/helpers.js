@@ -40,6 +40,22 @@ export const mediaBelow = Object.keys(DEVICE_SIZES).reduce((acc, label) => {
   return acc;
 }, {});
 
+const parseHslString = hsl => {
+  const values = /hsla?\((\d+),\s*([\d.]+)%,\s*([\d.]+)%(?:,\s*)?([\d.]+)?\)/g.exec(hsl);
+  if (values) {
+    return values.slice(1).map(v => (v === undefined ? null : Number(v)));
+  } else {
+    console.warn('Invalid HSL value, returning black');
+    return [0, 0, 0, 0];
+  }
+};
+
 export const addHslAlpha = (hsl, alpha) => {
   return `${hsl.slice(0, -1)}, ${alpha})`;
+};
+
+export const adjustHslLightness = (hsl, delta) => {
+  const [h, s, l, a] = parseHslString(hsl);
+  const lum = l + delta;
+  return a === null ? `hsl(${h}, ${s}%, ${lum}%)` : `hsla(${h}, ${s}%, ${lum}%, ${a})`;
 };
