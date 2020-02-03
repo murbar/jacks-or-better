@@ -47,6 +47,11 @@ async function initSourceMap() {
 export function playSound(key) {
   if (!(key in sourceMap)) return;
 
+  // for browser's autoplay policy
+  if (context.state === 'suspended') {
+    context.resume();
+  }
+
   const buffer = sourceMap[key];
   const source = context.createBufferSource();
   source.buffer = buffer;
