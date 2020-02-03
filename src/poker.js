@@ -28,11 +28,14 @@ export const PAYOUTS = {
 
 export const ROYAL_MAX_MULTIPLE = 4;
 
+export const randomCrypto = () =>
+  window.crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32;
+
 function shuffled(array) {
   const copy = [...array];
 
   for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * i);
+    const j = Math.floor(randomCrypto() * i);
     const temp = copy[i];
     copy[i] = copy[j];
     copy[j] = temp;
