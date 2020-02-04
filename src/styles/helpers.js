@@ -69,3 +69,11 @@ export const effect3d = color => css`
     0.1rem 1rem 0.5rem rgba(16, 16, 16, 0.3), 0.1rem 1.2rem 1rem rgba(16, 16, 16, 0.2),
     0.1rem 1.4rem 3rem rgba(16, 16, 16, 0.2), 0.1rem 1.6rem 5rem rgba(16, 16, 16, 0.3);
 `;
+
+export const effect3dSmall = color => css`
+  text-shadow: 0rem -0.1rem 0 ${adjustHslLightness(color, 30)},
+    0 0.1rem 0 ${adjustHslLightness(color, -20)},
+    0 0.2rem 0 ${adjustHslLightness(color, -20)}, 0.1rem 0rem 1rem rgba(16, 16, 16, 0.3),
+    0.1rem 1rem 0.5rem rgba(16, 16, 16, 0.3), 0.1rem 1.2rem 1rem rgba(16, 16, 16, 0.2),
+    0.1rem 1.4rem 3rem rgba(16, 16, 16, 0.2);
+`;
