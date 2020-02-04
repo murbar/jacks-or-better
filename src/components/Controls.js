@@ -10,7 +10,7 @@ const Styles = styled.div`
 `;
 
 export default function Controls({ gameState, actions }) {
-  const { maxBet, busy, didDeal, didScore } = gameState;
+  const { busy, didDeal, didScore } = gameState;
   const { incrementBet, setMaxBet, play } = actions;
 
   return (
