@@ -25,7 +25,8 @@ const theme = {
     highlight: colors.green,
     cardHD: 'hsl(0, 100%, 42%)',
     cardSC: 'hsl(0, 0%, 5%)',
-    cardAccent: 'hsla(51, 100%, 50%, 0.5)'
+    cardAccent: 'hsl(51, 100%, 70%)'
+    // cardAccent: colors.gold
   },
   fonts: {
     body: '"Source Sans Pro", sans-serif',

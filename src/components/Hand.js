@@ -41,3 +41,13 @@ function Hand({ gameState, toggleHeld }) {
 }
 
 export default Hand;
+
+// test card
+// <Card
+//   value="11C"
+//   hidden={false}
+//   held={true}
+//   didDraw={false}
+//   onClick={() => {}}
+//   didScore={false}
+// />
