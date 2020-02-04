@@ -56,9 +56,12 @@ export function playSound(key, volume = 1) {
   const buffer = sourceMap[key];
   const source = context.createBufferSource();
   const gain = context.createGain();
-  gain.connect(context.destination);
-  gain.gain.value = volume;
+
   source.buffer = buffer;
+  gain.gain.value = volume;
+
   source.connect(gain);
+  gain.connect(context.destination);
+
   source.start();
 }

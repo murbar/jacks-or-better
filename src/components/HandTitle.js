@@ -6,7 +6,7 @@ import { mediaAbove, effect3d } from 'styles/helpers';
 const color = theme.colors.gold;
 const Styles = styled.div`
   display: flex;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   width: 100%;
   height: 1em;
   justify-content: center;
