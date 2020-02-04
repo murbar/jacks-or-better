@@ -34,8 +34,9 @@ function Hand({ gameState, toggleHeld }) {
             hidden={hidden[i]}
             held={held[i]}
             didDraw={gameState.didDraw}
-            onClick={() => toggleHeld(i)}
             didScore={didScore}
+            didWin={winState}
+            onClick={() => toggleHeld(i)}
           />
         ))}
       </Cards>

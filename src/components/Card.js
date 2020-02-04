@@ -36,9 +36,26 @@ const suitImageMap = {
   C: <ClubsSVG />
 };
 
+const bounce = keyframes`
+  from, 20%, 53%, 80%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -2rem, 0);
+  }
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -1rem, 0);
+  }
+  90% {
+    transform: translate3d(0, -0.5rem, 0);
+  }
+}`;
+
 const hiddenStyles = css`
   background: #aaa;
-  ${'' /* border: 1.1rem solid white; */}
   svg,
   span {
     display: none;
@@ -50,8 +67,11 @@ const heldStyles = css`
 `;
 
 const didScoreStyles = css`
-  ${'' /* opacity: 0.3; */}
   pointer-events: none;
+`;
+
+const didWinStyles = css`
+  animation: 1.5s ${p => p.index * 50}ms infinite ${bounce};
 `;
 
 const flip = keyframes`
@@ -68,7 +88,6 @@ const flip = keyframes`
 
 const Styles = styled.div`
   /* animation: ${flip} 1s alternate infinite; */
-
   --card-size: 8rem;
   --radius: 0.5rem;
   ${mediaAbove.px500`
@@ -154,14 +173,13 @@ const Styles = styled.div`
   ${p => p.isHeld && heldStyles}
   ${p => p.isHidden && hiddenStyles}
   ${p => p.didScore && didScoreStyles}
+  ${p => p.didWin && didWinStyles}
 `;
 
 const Container = styled.div`
-  /* display: flex; */
   ${p => p.isHeld && 'margin-bottom: -2.5rem;'}
   transform: rotate(${p => p.tilt}deg);
   transition: all 250ms;
-  z-index: ${p => (p.index + 1) * 20}
 `;
 
 const Held = styled.div`
@@ -175,7 +193,7 @@ const Held = styled.div`
   visibility: ${p => (p.isHeld ? 'visible' : 'hidden')};
 `;
 
-function Card({ value, index, hidden, held, didDraw, didScore, onClick }) {
+function Card({ value, index, hidden, held, didDraw, didScore, didWin, onClick }) {
   let [rank, suit] = getRankAndSuit(value);
   const rankString = rank in highCardValues ? highCardValues[rank] : rank;
   const tilt = React.useRef(randomInRange(-2, 2));
@@ -183,14 +201,15 @@ function Card({ value, index, hidden, held, didDraw, didScore, onClick }) {
   const isFace = rankVal > 10 && rankVal < 14;
 
   return (
-    <Container tilt={tilt.current} isHeld={held} index={index}>
+    <Container tilt={tilt.current} isHeld={held}>
       <Styles
+        index={index}
         suit={suit}
         isFace={isFace}
         isHidden={hidden}
         didScore={didScore}
         didDraw={didDraw}
-        // tilt={tilt.current}
+        didWin={didWin}
         isHeld={held}
         onClick={onClick}
       >

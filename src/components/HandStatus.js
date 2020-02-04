@@ -1,32 +1,11 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import theme from 'styles/theme';
-import { mediaAbove } from 'styles/helpers';
-import { adjustHslLightness } from 'styles/helpers';
+import { mediaAbove, effect3d } from 'styles/helpers';
 
-const MESSAGE_STRINGS = {
-  goodLuck: 'Good Luck',
-  gameOver: 'Game Over',
-  youWin: 'You Win'
-};
-
-const color = theme.colors.gold;
-const effect3d = css`
-  text-shadow: 0rem -0.1rem 0 ${adjustHslLightness(color, 30)},
-    0 0.1rem 0 ${adjustHslLightness(color, -20)},
-    0 0.2rem 0 ${adjustHslLightness(color, -20)},
-    0 0.3rem 0 ${adjustHslLightness(color, -20)},
-    0 0.4rem 0 ${adjustHslLightness(color, -20)}, 0.1rem 0rem 1rem rgba(16, 16, 16, 0.3),
-    0.1rem 1rem 0.5rem rgba(16, 16, 16, 0.3), 0.1rem 1.2rem 1rem rgba(16, 16, 16, 0.2),
-    0.1rem 1.4rem 3rem rgba(16, 16, 16, 0.2), 0.1rem 1.6rem 5rem rgba(16, 16, 16, 0.3);
-`;
-
+const textColor = theme.colors.gold;
 const Styles = styled.div`
   display: flex;
-  /* position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0; */
   margin-top: -1rem;
   width: 100%;
   height: 1em;
@@ -36,12 +15,12 @@ const Styles = styled.div`
   text-align: center;
   font-family: ${theme.fonts.display};
   font-size: 3.5rem;
-  color: ${color};
+  color: ${textColor};
   letter-spacing: 1px;
   line-height: 1;
-  z-index: 200;
+  z-index: 2000;
   
-  ${effect3d}
+  ${effect3d(textColor)}
   ${mediaAbove.px500`
     font-size: 4.5rem;
   `}
@@ -69,6 +48,12 @@ const GameOver = styled.div`
 const GoodLuck = styled.div`
   font-size: 1.4em;
 `;
+
+const MESSAGE_STRINGS = {
+  goodLuck: 'Good Luck',
+  gameOver: 'Game Over',
+  youWin: 'You Win'
+};
 
 export default function HandStatus({ gameState, states }) {
   return (
