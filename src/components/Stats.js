@@ -1,10 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import ValueTween from 'components/ValueTween';
+import { effect3dSmall } from 'styles/helpers';
+import { bounceIn } from 'styles/animations';
+
+const didWinAnimation = css`
+  animation: 1s ${bounceIn};
+`;
 
 const Styles = styled.div`
   display: flex;
-  margin: 3rem 0;
+  margin: 3rem 0 0;
   justify-content: space-between;
   align-items: center;
   text-align: center;
@@ -13,10 +19,16 @@ const Styles = styled.div`
   letter-spacing: 1px;
   line-height: 1;
   text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  ${p => effect3dSmall(p.theme.colors.offWhite)}
 `;
 
 const Bank = styled.div`
   text-align: right;
+`;
+
+const BankAmount = styled.div`
+  ${p => p.didWin && didWinAnimation}
+  /* ${didWinAnimation} */
 `;
 
 const Bet = styled.div`
@@ -25,7 +37,8 @@ const Bet = styled.div`
 
 export default function Stats({ gameState, playerState }) {
   const { bank } = playerState;
-  const { currentBet } = gameState;
+  const { currentBet, didScore, winnings } = gameState;
+  const didWin = didScore && winnings !== 0;
 
   return (
     <Styles>
@@ -37,9 +50,9 @@ export default function Stats({ gameState, playerState }) {
       </Bet>
       <Bank>
         Bank
-        <div>
+        <BankAmount didWin={didWin}>
           $<ValueTween>{bank}</ValueTween>
-        </div>
+        </BankAmount>
       </Bank>
     </Styles>
   );
