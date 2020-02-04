@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="250px" height="350px" viewBox="0 0 250 350" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>queen</title>
+    <desc>Created with Sketch.</desc>
+    <g id="queen" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(153.000000, -97.000000)" fill="hsl(213, 80%, 37%)">
+            <polygon id="Star-Copy-9" style="mix-blend-mode: multiply;" points="97.4117647 131.505882 28.5312453 166.292284 63.3176471 97.4117647 28.5312453 28.5312453 97.4117647 63.3176471 166.292284 28.5312453 131.505882 97.4117647 166.292284 166.292284"></polygon>
+            <polygon id="Star-Copy-10" style="mix-blend-mode: multiply;" transform="translate(97.941717, 97.941717) rotate(-24.000000) translate(-97.941717, -97.941717) " points="97.9417168 132.035834 29.0611974 166.822236 63.8475992 97.9417168 29.0611974 29.0611974 97.9417168 63.8475992 166.822236 29.0611974 132.035834 97.9417168 166.822236 166.822236"></polygon>
+            <polygon id="Star-Copy-18" style="mix-blend-mode: multiply;" transform="translate(97.411765, 98.411765) rotate(-45.000000) translate(-97.411765, -98.411765) " points="97.4117647 132.505882 28.5312453 167.292284 63.3176471 98.4117647 28.5312453 29.5312453 97.4117647 64.3176471 166.292284 29.5312453 131.505882 98.4117647 166.292284 167.292284"></polygon>
+        </g>
+        <g id="Group-Copy" transform="translate(-98.000000, 252.000000)" fill="hsl(213, 80%, 37%)">
+            <polygon id="Star-Copy-9" style="mix-blend-mode: multiply;" points="97.4117647 131.505882 28.5312453 166.292284 63.3176471 97.4117647 28.5312453 28.5312453 97.4117647 63.3176471 166.292284 28.5312453 131.505882 97.4117647 166.292284 166.292284"></polygon>
+            <polygon id="Star-Copy-10" style="mix-blend-mode: multiply;" transform="translate(97.941717, 97.941717) rotate(-24.000000) translate(-97.941717, -97.941717) " points="97.9417168 132.035834 29.0611974 166.822236 63.8475992 97.9417168 29.0611974 29.0611974 97.9417168 63.8475992 166.822236 29.0611974 132.035834 97.9417168 166.822236 166.822236"></polygon>
+            <polygon id="Star-Copy-18" style="mix-blend-mode: multiply;" transform="translate(97.411765, 98.411765) rotate(-45.000000) translate(-97.411765, -98.411765) " points="97.4117647 132.505882 28.5312453 167.292284 63.3176471 98.4117647 28.5312453 29.5312453 97.4117647 64.3176471 166.292284 29.5312453 131.505882 98.4117647 166.292284 167.292284"></polygon>
+        </g>
+    </g>
+</svg>
