@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ReactComponent as HeartsSVG } from 'images/hearts.svg';
 import { ReactComponent as ClubsSVG } from 'images/clubs.svg';
 import { ReactComponent as SpadesSVG } from 'images/spades.svg';
@@ -7,9 +7,9 @@ import { ReactComponent as DiamondsSVG } from 'images/diamonds.svg';
 import { ReactComponent as JackSVG } from 'images/jack-cir.svg';
 import { ReactComponent as QueenSVG } from 'images/queen-cir.svg';
 import { ReactComponent as KingSVG } from 'images/king-cir.svg';
-import { addHslAlpha } from 'styles/helpers';
+import { addHslAlpha, mediaAbove } from 'styles/helpers';
 import { getRankAndSuit } from 'poker';
-import { mediaAbove } from 'styles/helpers';
+import { bounce, flip } from 'styles/animations';
 
 // https://3dtransforms.desandro.com/card-flip
 
@@ -36,24 +36,6 @@ const suitImageMap = {
   C: <ClubsSVG />
 };
 
-const bounce = keyframes`
-  from, 20%, 53%, 80%, to {
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    transform: translate3d(0, 0, 0);
-  }
-  40%, 43% {
-    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    transform: translate3d(0, -2rem, 0);
-  }
-  70% {
-    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
-    transform: translate3d(0, -1rem, 0);
-  }
-  90% {
-    transform: translate3d(0, -0.5rem, 0);
-  }
-}`;
-
 const hiddenStyles = css`
   background: #aaa;
   svg,
@@ -72,18 +54,6 @@ const didScoreStyles = css`
 
 const didWinStyles = css`
   animation: 1.5s ${p => p.index * 50}ms infinite ${bounce};
-`;
-
-const flip = keyframes`
-  0% {
-    transform: rotateY(0);
-  }
-  50% {
-    transform: rotateY(180deg);
-  }
-  100% {
-    transform: rotateY(0);
-  }
 `;
 
 const Styles = styled.div`
