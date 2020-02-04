@@ -1,3 +1,4 @@
+import buttonSrc from 'sounds/button-press.mp3';
 import betSrc from 'sounds/bet.mp3';
 import betMaxSrc from 'sounds/bet-max.mp3';
 import cardTurnSrc from 'sounds/card-turn-alt.mp3';
@@ -6,6 +7,7 @@ import gameOverSrc from 'sounds/game-over.mp3';
 import winSrc from 'sounds/win.mp3';
 
 let sourceMap = {
+  buttonPress: buttonSrc,
   bet: betSrc,
   betMax: betMaxSrc,
   cardTurn: cardTurnSrc,
@@ -14,8 +16,7 @@ let sourceMap = {
   win: winSrc
 };
 
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-const context = new AudioContext();
+const context = new (window.AudioContext || window.webkitAudioContext)();
 
 initSourceMap();
 
@@ -44,7 +45,7 @@ async function initSourceMap() {
   });
 }
 
-export function playSound(key) {
+export function playSound(key, volume = 1) {
   if (!(key in sourceMap)) return;
 
   // for browser's autoplay policy
@@ -54,7 +55,10 @@ export function playSound(key) {
 
   const buffer = sourceMap[key];
   const source = context.createBufferSource();
+  const gain = context.createGain();
+  gain.connect(context.destination);
+  gain.gain.value = volume;
   source.buffer = buffer;
-  source.connect(context.destination);
-  source.start(0);
+  source.connect(gain);
+  source.start();
 }

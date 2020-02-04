@@ -63,9 +63,9 @@ function Game() {
   };
 
   const playSoundFx = React.useCallback(
-    key => {
+    (key, volume) => {
       if (playerState.soundFx) {
-        playSound(key);
+        playSound(key, volume);
       }
     },
     [playerState.soundFx]
@@ -76,11 +76,13 @@ function Game() {
     const bet = currentBet === maxBet ? defaultBet : currentBet + defaultBet;
 
     setGameState(prev => ({ ...prev, currentBet: bet }));
+    playSoundFx('buttonPress', 0.5);
     playSoundFx('bet');
   };
 
   const setMaxBet = () => {
     setGameState(prev => ({ ...prev, currentBet: prev.maxBet }));
+    playSoundFx('buttonPress', 0.5);
     playSoundFx('betMax');
   };
 
@@ -126,7 +128,7 @@ function Game() {
     const showOneAndWait = () => {
       if (hidden.length) {
         setTimeout(() => {
-          playSoundFx('cardTurn');
+          playSoundFx('cardTurn', 0.75);
           toggleShowCard(hidden.pop());
           showOneAndWait();
         }, REVEAL_DELAY_MS);
@@ -167,6 +169,7 @@ function Game() {
   }, [gameState, incrementBank, playSoundFx, endOfPlay]);
 
   const play = () => {
+    playSoundFx('buttonPress', 0.5);
     if (gameState.busy) return;
 
     if (!gameState.didDeal) {
