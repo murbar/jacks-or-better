@@ -55,7 +55,7 @@ const isFalsy = value => !!!value;
 const getIndexes = (array, filter) =>
   array.reduce((indexes, value, i) => (filter(value) ? [...indexes, i] : indexes), []);
 
-function Game() {
+function Game({ changeTheme }) {
   const [playerState, setPlayerState] = useLocalStorageState('PLAYER', initPlayerState());
   const [gameState, setGameState] = React.useState(initGameState());
   const { height: viewportHeight } = useViewportSize();

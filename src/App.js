@@ -12,11 +12,11 @@ const Styles = styled.div`
   font-size: 1em;
 `;
 
-function App() {
+function App({ changeTheme }) {
   return (
     <Styles>
       <Header />
-      <Game />
+      <Game changeTheme={changeTheme} />
     </Styles>
   );
 }

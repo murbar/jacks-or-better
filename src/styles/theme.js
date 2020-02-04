@@ -16,7 +16,7 @@ const colors = {
   blue: 'hsl(213, 80%, 37%)'
 };
 
-const theme = {
+export const defaultTheme = {
   colors: {
     ...colors,
     background: colors.offWhite,
@@ -35,4 +35,4 @@ const theme = {
   inputBorderRadius: `0.5rem`
 };
 
-export default theme;
+export default defaultTheme;
