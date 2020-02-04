@@ -13,26 +13,29 @@ const Styles = styled.div`
   margin: 3rem 0 0;
   justify-content: space-between;
   align-items: center;
-  text-align: center;
-  font-family: ${p => p.theme.fonts.display};
-  font-size: 3rem;
-  letter-spacing: 1px;
   line-height: 1;
   text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
-  ${p => effect3dSmall(p.theme.colors.offWhite)}
+  font-family: ${p => p.theme.fonts.cards};
 `;
 
 const Bank = styled.div`
   text-align: right;
 `;
 
-const BankAmount = styled.div`
-  ${p => p.didWin && didWinAnimation}
-  /* ${didWinAnimation} */
+const Bet = styled.div``;
+const BetAmount = styled.div`
+  font-family: ${p => p.theme.fonts.display};
+  font-size: 4rem;
+  letter-spacing: 1px;
+  font-weight: 400;
+  ${p => effect3dSmall(p.theme.colors.offWhite)}
+  .dollar-sign {
+    font-size: 0.8em;
+  }
 `;
 
-const Bet = styled.div`
-  text-align: left;
+const BankAmount = styled(BetAmount)`
+  ${p => p.didWin && didWinAnimation}
 `;
 
 export default function Stats({ gameState, playerState }) {
@@ -44,14 +47,16 @@ export default function Stats({ gameState, playerState }) {
     <Styles>
       <Bet>
         Bet
-        <div>
-          $<ValueTween duration={250}>{currentBet}</ValueTween>
-        </div>
+        <BetAmount>
+          <span className="dollar-sign">$</span>
+          <ValueTween duration={250}>{currentBet}</ValueTween>
+        </BetAmount>
       </Bet>
       <Bank>
         Bank
         <BankAmount didWin={didWin}>
-          $<ValueTween>{bank}</ValueTween>
+          <span className="dollar-sign">$</span>
+          <ValueTween>{bank}</ValueTween>
         </BankAmount>
       </Bank>
     </Styles>
