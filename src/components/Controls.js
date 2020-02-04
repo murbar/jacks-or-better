@@ -9,6 +9,10 @@ const Styles = styled.div`
   align-items: center;
 `;
 
+const PlayButton = styled(Button)`
+  padding: 1.5rem 2.5rem;
+`;
+
 export default function Controls({ gameState, actions }) {
   const { busy, didDeal, didScore } = gameState;
   const { incrementBet, setMaxBet, play } = actions;
@@ -16,20 +20,24 @@ export default function Controls({ gameState, actions }) {
   return (
     <Styles>
       <div>
-        <Button onClick={incrementBet} disabled={didDeal || busy} title="Set your bet">
+        <PlayButton
+          onClick={incrementBet}
+          disabled={didDeal || busy}
+          title="Set your bet"
+        >
           Bet
-        </Button>
-        <Button
+        </PlayButton>
+        <PlayButton
           onClick={setMaxBet}
           disabled={didDeal || busy}
           title="Set your bet to the max"
         >
           Max
-        </Button>
+        </PlayButton>
       </div>
-      <Button onClick={play} disabled={busy} pulse={!didDeal && didScore}>
+      <PlayButton onClick={play} disabled={busy} pulse={!didDeal && didScore}>
         {didDeal ? 'Draw' : 'Deal'}
-      </Button>
+      </PlayButton>
     </Styles>
   );
 }
