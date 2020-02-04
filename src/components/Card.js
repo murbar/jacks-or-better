@@ -44,8 +44,13 @@ const hiddenStyles = css`
   }
 `;
 
+const cardShadows = `0.2rem 0.2rem 1.5rem rgba(0, 0, 0, 0.2),
+    0.2rem 2rem 3rem rgba(0, 0, 0, 0.2),
+    inset 0 -1rem 2rem rgba(0, 0, 0, 0.1)`;
+
 const heldStyles = css`
-  box-shadow: 0 0 0 0.5rem ${p => addHslAlpha(p.theme.colors.highlight, 1)};
+  box-shadow: ${cardShadows},
+    0 0 0 0.5rem ${p => addHslAlpha(p.theme.colors.highlight, 1)};
 `;
 
 const didScoreStyles = css`
@@ -95,8 +100,7 @@ const Styles = styled.div`
   color: ${p => ('HD'.includes(p.suit) ? p.theme.colors.cardHD : p.theme.colors.cardSC)};
   border-radius: var(--radius);
   background: white;
-  box-shadow: 0.2rem 0.2rem 1.5rem rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 0 2rem rgba(0, 0, 0, 0.1);
+  box-shadow: ${cardShadows};
   transition: margin 250ms, opacity 250ms;
   overflow: hidden;
   &:first-child {
