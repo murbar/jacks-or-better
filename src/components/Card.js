@@ -167,7 +167,6 @@ const Styles = styled.div`
     height: 100%;
     top: 0;
     left:0;
-    color: ${p => p.theme.colors.cardAccent};
   }
 
   ${p => p.isHeld && heldStyles}
