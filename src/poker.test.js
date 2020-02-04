@@ -1,12 +1,5 @@
+import '__mocks__/crypto.mock';
 import { newDeck, takeCards, getRankAndSuit, scoreHand, HANDS, PAYOUTS } from 'poker';
-
-const crypto = require('crypto');
-
-Object.defineProperty(global.self, 'crypto', {
-  value: {
-    getRandomValues: arr => crypto.randomBytes(arr.length)
-  }
-});
 
 it('builds a new deck', () => {
   const deck = newDeck();
