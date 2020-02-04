@@ -90,7 +90,7 @@ function Game() {
   const setMaxBet = () => {
     setGameState(prev => ({ ...prev, currentBet: prev.maxBet }));
     playSoundFx('buttonPress', 0.5);
-    playSoundFx('betMax');
+    playSoundFx('betMax', 1);
   };
 
   const toggleHeld = index => {
@@ -202,7 +202,7 @@ function Game() {
 
   useHotKeys({
     d: play,
-    Enter: play,
+    ' ': play,
     b: incrementBet,
     m: toggleSoundMute,
     1: () => toggleHeld(0),
