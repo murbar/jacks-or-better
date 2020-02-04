@@ -37,7 +37,7 @@ const suitImageMap = {
 };
 
 const hiddenStyles = css`
-  background: ${p => p.theme.colors.blue};
+  background: #aaa;
   ${'' /* border: 1.1rem solid white; */}
   svg,
   span {
@@ -50,7 +50,7 @@ const heldStyles = css`
 `;
 
 const didScoreStyles = css`
-  opacity: 0.3;
+  ${'' /* opacity: 0.3; */}
   pointer-events: none;
 `;
 
@@ -161,6 +161,7 @@ const Container = styled.div`
   ${p => p.isHeld && 'margin-bottom: -2.5rem;'}
   transform: rotate(${p => p.tilt}deg);
   transition: all 250ms;
+  z-index: ${p => (p.index + 1) * 20}
 `;
 
 const Held = styled.div`
@@ -174,7 +175,7 @@ const Held = styled.div`
   visibility: ${p => (p.isHeld ? 'visible' : 'hidden')};
 `;
 
-function Card({ value, hidden, held, didDraw, didScore, onClick }) {
+function Card({ value, index, hidden, held, didDraw, didScore, onClick }) {
   let [rank, suit] = getRankAndSuit(value);
   const rankString = rank in highCardValues ? highCardValues[rank] : rank;
   const tilt = React.useRef(randomInRange(-2, 2));
@@ -182,7 +183,7 @@ function Card({ value, hidden, held, didDraw, didScore, onClick }) {
   const isFace = rankVal > 10 && rankVal < 14;
 
   return (
-    <Container tilt={tilt.current} isHeld={held}>
+    <Container tilt={tilt.current} isHeld={held} index={index}>
       <Styles
         suit={suit}
         isFace={isFace}
