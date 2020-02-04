@@ -10,6 +10,7 @@ import Controls from './Controls';
 import useViewportSize from 'hooks/useViewportSize';
 
 const REVEAL_DELAY_MS = 100;
+const STARTING_BANK = 500;
 
 function initGameState() {
   const deck = newDeck();
@@ -33,7 +34,7 @@ function initGameState() {
 function initPlayerState() {
   return {
     name: 'Lucky Player',
-    bank: 500,
+    bank: STARTING_BANK,
     soundFx: true,
     theme: null
   };
@@ -42,7 +43,7 @@ function initPlayerState() {
 const Styles = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   flex: 1;
   color: ${p => p.theme.colors.offWhite};
   min-height: ${p => p.height}px;
@@ -174,6 +175,14 @@ function Game() {
       }
     }
   }, [gameState, incrementBank, playSoundFx, endOfPlay]);
+
+  // when player goes bankrupt
+  // TODO display message to user
+  React.useEffect(() => {
+    if (playerState.bank < 0) {
+      setPlayerState(prev => ({ ...prev, bank: STARTING_BANK }));
+    }
+  }, [playerState.bank, setPlayerState]);
 
   const play = () => {
     playSoundFx('buttonPress', 0.5);
