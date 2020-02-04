@@ -7,6 +7,7 @@ import useHotKeys from 'hooks/useHotKeys';
 import { playSound } from 'soundFx';
 import Stats from './Stats';
 import Controls from './Controls';
+import useViewportSize from 'hooks/useViewportSize';
 
 const REVEAL_DELAY_MS = 100;
 
@@ -39,7 +40,12 @@ function initPlayerState() {
 }
 
 const Styles = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
   color: ${p => p.theme.colors.offWhite};
+  min-height: ${p => p.height}px;
 `;
 
 const isTruthy = value => !!value;
@@ -51,6 +57,7 @@ const getIndexes = (array, filter) =>
 function Game() {
   const [playerState, setPlayerState] = useLocalStorageState('PLAYER', initPlayerState());
   const [gameState, setGameState] = React.useState(initGameState());
+  const { height: viewportHeight } = useViewportSize();
 
   const resetHand = () => {
     const newState = initGameState();
@@ -207,7 +214,7 @@ function Game() {
   });
 
   return (
-    <Styles>
+    <Styles height={viewportHeight}>
       <Stats gameState={gameState} playerState={playerState} />
       <Hand gameState={gameState} toggleHeld={toggleHeld} />
       <Controls gameState={gameState} actions={{ incrementBet, setMaxBet, play }} />
