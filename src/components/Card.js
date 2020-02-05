@@ -179,7 +179,8 @@ const HoldIndicator = styled.div`
   font-family: ${p => p.theme.fonts.cards};
   font-size: 1.5rem;
   font-weight: 700;
-  margin-top: 0.5rem;
+  line-height: 1;
+  margin-top: 1rem;
   color: ${p => p.theme.colors.highlight};
   text-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   visibility: ${p => (p.isHeld ? 'visible' : 'hidden')};
