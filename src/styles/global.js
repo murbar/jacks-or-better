@@ -1,6 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
+import komica from 'fonts/komica-axis.woff';
 
 export default createGlobalStyle`
+  @font-face {
+      font-family: 'KomicaAxis';
+      src: url(${komica}) format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
   * { 
     box-sizing: border-box;
   }
@@ -9,6 +16,7 @@ export default createGlobalStyle`
   }
   body {
     margin: 0;
+    position: relative;
     background-image: repeating-linear-gradient(
       45deg, transparent, transparent 2rem, rgba(0,0,0,0.02) 2rem, rgba(0,0,0,0.02) 4rem),
       ${p => p.theme.bgGradient};

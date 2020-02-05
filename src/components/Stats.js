@@ -1,22 +1,21 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import ValueTween from 'components/ValueTween';
-import { effect3dSmall } from 'styles/helpers';
+import { effect3dSmall, mediaQuery } from 'styles/helpers';
 import { bounceIn } from 'styles/animations';
-
-const didWinAnimation = css`
-  animation: 1s ${bounceIn};
-`;
 
 const Styles = styled.div`
   display: flex;
-  margin: 3rem 0 0;
+  margin: 6rem 0 0;
   justify-content: space-between;
   align-items: center;
   line-height: 1;
   text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   font-family: ${p => p.theme.fonts.cards};
   font-weight: bold;
+  ${mediaQuery.above.phone`
+    margin-top: 2rem;
+  `}
 `;
 
 const Bank = styled.div`
@@ -38,7 +37,11 @@ const BetAmount = styled.div`
 `;
 
 const BankAmount = styled(BetAmount)`
-  ${p => p.didWin && didWinAnimation}
+  ${p =>
+    p.didWin &&
+    css`
+      animation: 1s ${bounceIn};
+    `}
 `;
 
 export default function Stats({ gameState, playerState }) {

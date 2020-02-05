@@ -7,10 +7,13 @@ import { DEVICE_SIZES, mediaQuery } from 'styles/helpers';
 const Styles = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   ${mediaQuery.below.px500`
     margin-left: -1rem;
     margin-right: -1rem;
+  `}
+  ${mediaQuery.above.phone`
+    margin-bottom: 2rem;
   `}
 `;
 

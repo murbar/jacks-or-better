@@ -44,11 +44,11 @@ const Winnings = styled.div`
 `;
 
 const GameOver = styled.div`
-  font-size: 1.4em;
+  /* font-size: 1.4em; */
 `;
 
 const GoodLuck = styled.div`
-  font-size: 1.4em;
+  font-size: 1.2em;
 `;
 
 const MESSAGE_STRINGS = {

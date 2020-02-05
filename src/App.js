@@ -7,7 +7,7 @@ import { DEVICE_SIZES } from 'styles/helpers';
 const Styles = styled.div`
   margin: 0 auto;
   padding: 0 2rem;
-  max-width: ${DEVICE_SIZES.desktop}px;
+  max-width: ${DEVICE_SIZES.px1100}px;
   min-width: 360px;
   font-size: 1em;
 `;

@@ -46,7 +46,7 @@ function initPlayerState() {
 const Styles = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   flex: 1;
   color: ${p => p.theme.colors.offWhite};
   min-height: ${p => p.height}px;

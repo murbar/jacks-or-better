@@ -91,9 +91,6 @@ const CardContainer = styled.div`
   ${mediaQuery.above.px950`
     --card-size: 15rem;
   `}
-  ${mediaQuery.above.px1100`
-    --card-size: 16.5rem;
-  `}
 
   position: relative;
   width: var(--card-size);

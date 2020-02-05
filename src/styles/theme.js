@@ -10,7 +10,7 @@ const colors = {
   offWhite: 'hsl(0, 0%, 94%)',
   offBlack: 'hsl(0, 0%, 13%)',
   green: 'hsl(144, 54%, 50%)',
-  gold: 'hsl(48, 100%, 60%)',
+  gold: 'hsl(48, 95%, 60%)',
   red: 'hsl(0, 100%, 38%)',
   blue: 'hsl(213, 90%, 50%)'
 };
@@ -29,7 +29,7 @@ export const defaultTheme = {
   },
   fonts: {
     body: 'Montserrat, sans-serif',
-    display: 'Pacifico, Bangers,  sans-serif',
+    display: 'KomicaAxis,  sans-serif',
     cards: 'Montserrat, sans-serif'
   },
   bgGradient: bgGradients.green,
