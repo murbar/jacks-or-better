@@ -7,7 +7,7 @@ import { ReactComponent as DiamondsSVG } from 'images/diamonds.svg';
 import { ReactComponent as JackSVG } from 'images/jack-cir.svg';
 import { ReactComponent as QueenSVG } from 'images/queen-cir.svg';
 import { ReactComponent as KingSVG } from 'images/king-cir.svg';
-import cardBackSVG from 'images/card-back-tri.svg';
+import cardBackSVG from 'images/card-back.svg';
 import { addHslAlpha, mediaAbove } from 'styles/helpers';
 import { getRankAndSuit } from 'poker';
 import { bounce } from 'styles/animations';
@@ -115,7 +115,7 @@ const CardFrontAndBack = styled.div`
 `;
 
 const CardBack = styled(CardFrontAndBack)`
-  background-color: ${p => p.theme.colors.blue};
+  background-color: ${p => p.theme.colors.cardBackside};
   background-image: url(${cardBackSVG});
   background-position: center;
   background-size: cover;
