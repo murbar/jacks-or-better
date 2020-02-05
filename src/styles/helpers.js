@@ -54,10 +54,18 @@ export const addHslAlpha = (hsl, alpha) => {
   return `${hsl.slice(0, -1)}, ${alpha})`;
 };
 
-export const adjustHslLightness = (hsl, delta) => {
+export const adjustHsl = (hsl, values) => {
+  values = { h: 0, s: 0, l: 0, a: 0, ...values };
   const [h, s, l, a] = parseHslString(hsl);
-  const lum = l + delta;
-  return a === null ? `hsl(${h}, ${s}%, ${lum}%)` : `hsla(${h}, ${s}%, ${lum}%, ${a})`;
+  const dH = h + values.h;
+  const dS = s + values.s;
+  const dL = l + values.l;
+  const dA = (a || 1) + values.a;
+  return `hsla(${dH}, ${dS}%, ${dL}%, ${dA})`;
+};
+
+export const adjustHslLightness = (hsl, delta) => {
+  return adjustHsl(hsl, { l: delta });
 };
 
 export const effect3d = color => css`
