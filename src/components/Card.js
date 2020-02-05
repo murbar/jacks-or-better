@@ -7,14 +7,10 @@ import { ReactComponent as DiamondsSVG } from 'images/diamonds.svg';
 import { ReactComponent as JackSVG } from 'images/jack-cir.svg';
 import { ReactComponent as QueenSVG } from 'images/queen-cir.svg';
 import { ReactComponent as KingSVG } from 'images/king-cir.svg';
+import cardBackSVG from 'images/card-back-tri.svg';
 import { addHslAlpha, mediaAbove } from 'styles/helpers';
 import { getRankAndSuit } from 'poker';
-import { bounce, flip } from 'styles/animations';
-
-// https://3dtransforms.desandro.com/card-flip
-
-const randomInRange = (start, end) =>
-  Math.floor(Math.random() * (1 + end - start)) + start;
+import { bounce } from 'styles/animations';
 
 const highCardValues = {
   '14': 'A',
@@ -36,14 +32,6 @@ const suitImageMap = {
   C: <ClubsSVG />
 };
 
-const hiddenStyles = css`
-  background: #aaa;
-  svg,
-  span {
-    display: none;
-  }
-`;
-
 const cardShadows = `0.2rem 0.2rem 1.5rem rgba(0, 0, 0, 0.2),
     0.2rem 2rem 3rem rgba(0, 0, 0, 0.2),
     inset 0 -1rem 2rem rgba(0, 0, 0, 0.1)`;
@@ -57,12 +45,24 @@ const didScoreStyles = css`
   pointer-events: none;
 `;
 
-const didWinStyles = css`
-  animation: 1.5s ${p => p.index * 50}ms infinite ${bounce};
+const Styles = styled.div`
+  --card-size: 8rem;
+  --radius: 0.5rem;
+
+  margin: 0 0.35rem;
+  transform: rotate(${p => p.tilt}deg);
+  transition: all 250ms;
+  &:first-child {
+    margin-left: 0;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+
+  ${p => p.isHeld && 'margin-bottom: -2.5rem;'}
 `;
 
-const Styles = styled.div`
-  /* animation: ${flip} 1s alternate infinite; */
+const CardContainer = styled.div`
   --card-size: 8rem;
   --radius: 0.5rem;
   ${mediaAbove.px500`
@@ -86,46 +86,67 @@ const Styles = styled.div`
   ${mediaAbove.px1100`
     --card-size: 16.5rem;
   `}
+
   position: relative;
   width: var(--card-size);
   min-width: 7rem;
   max-width: 18.5vw;
   height: calc(var(--card-size) * 1.4);
+  transition: transform 200ms;
+  transform-style: preserve-3d;
+
+  &:hover {
+    transform: ${p => !p.isHidden && !p.didDraw && 'rotateY(180deg) scale(1.02)'};
+  }
+
+  ${p => !p.isHidden && 'transform: rotateY(180deg)'};
+`;
+
+const CardFrontAndBack = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  box-shadow: ${cardShadows};
+  overflow: hidden;
+  backface-visibility: hidden;
+`;
+
+const CardBack = styled(CardFrontAndBack)`
+  background-color: ${p => p.theme.colors.blue};
+  background-image: url(${cardBackSVG});
+  background-position: center;
+  background-size: cover;
+  border: 0.3rem solid ${p => p.theme.colors.cardBackground};
+
+  ${mediaAbove.px600`
+    border: 0.6rem solid ${p => p.theme.colors.cardBackground};
+  `};
+`;
+
+const CardFront = styled(CardFrontAndBack)`
   padding: 0.5rem 0.5rem;
-  margin: 0 0.35rem;
+  background: ${p => p.theme.colors.cardBackground};
   font-family: ${p => p.theme.fonts.cards};
+  font-size: calc(var(--card-size) * 0.3);
   font-weight: 700;
   line-height: 1;
-  font-size: calc(var(--card-size) * 0.3);
   color: ${p => ('HD'.includes(p.suit) ? p.theme.colors.cardHD : p.theme.colors.cardSC)};
-  border-radius: var(--radius);
-  background: white;
-  box-shadow: ${cardShadows};
-  transition: margin 250ms, opacity 250ms;
-  overflow: hidden;
-  &:first-child {
-    margin-left: 0;
-  }
-  &:last-child {
-    margin-right: 0;
-  }
-  &:hover {
-    transform: ${p => !p.hide && !p.didDraw && 'scale(1.02)'} rotate(${p => p.tilt}deg);
-  }
+  transform: rotateY(180deg); /* on backside of CardBack */
 
   span:nth-of-type(1) {
     position: absolute;
     top: 0.5rem;
     left: 0.5rem;
   }
-  
   span:nth-of-type(2) {
     position: absolute;
     bottom: 0.5rem;
     right: 0.5rem;
     transform: rotate(180deg);
   }
-
   svg.card-suit {
     --w: calc(var(--card-size) * 0.35);
     position: absolute;
@@ -134,39 +155,50 @@ const Styles = styled.div`
     top: calc(50% - (var(--w) / 2));
     right: calc(50% - (var(--w) / 2));
   }
-
   svg.card-face {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
-    left:0;
+    left: 0;
   }
 
   ${p => p.isHeld && heldStyles}
-  ${p => p.isHidden && hiddenStyles}
   ${p => p.didScore && didScoreStyles}
-  ${p => p.didWin && didWinStyles}
 `;
 
-const Container = styled.div`
-  ${p => p.isHeld && 'margin-bottom: -2.5rem;'}
-  transform: rotate(${p => p.tilt}deg);
-  transition: all 250ms;
-`;
-
-const Held = styled.div`
-  width: 100%;
+const HoldIndicator = styled.div`
   text-align: center;
   font-family: ${p => p.theme.fonts.cards};
   font-size: 1.5rem;
+  font-weight: 700;
   margin-top: 0.5rem;
   color: ${p => p.theme.colors.highlight};
   text-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   visibility: ${p => (p.isHeld ? 'visible' : 'hidden')};
 `;
 
-function Card({ value, index, hidden, held, didDraw, didScore, didWin, onClick }) {
+const randomInRange = (start, end) =>
+  Math.floor(Math.random() * (1 + end - start)) + start;
+
+const WinBounce = styled.div`
+  ${p =>
+    p.didWin &&
+    css`
+      animation: 1.5s ${p => p.index * 50}ms infinite ${bounce};
+    `}
+`;
+
+export default function Card({
+  value,
+  index,
+  hidden,
+  held,
+  didDraw,
+  didScore,
+  didWin,
+  onClick
+}) {
   let [rank, suit] = getRankAndSuit(value);
   const rankString = rank in highCardValues ? highCardValues[rank] : rank;
   const tilt = React.useRef(randomInRange(-2, 2));
@@ -174,26 +206,24 @@ function Card({ value, index, hidden, held, didDraw, didScore, didWin, onClick }
   const isFace = rankVal > 10 && rankVal < 14;
 
   return (
-    <Container tilt={tilt.current} isHeld={held}>
-      <Styles
-        index={index}
-        suit={suit}
-        isFace={isFace}
-        isHidden={hidden}
-        didScore={didScore}
-        didDraw={didDraw}
-        didWin={didWin}
-        isHeld={held}
-        onClick={onClick}
-      >
-        <span>{rankString}</span>
-        {suitImageMap[suit]}
-        <span>{rankString}</span>
-        {isFace && faceImagesMap[rankVal]}
-      </Styles>
-      <Held isHeld={held}>HELD</Held>
-    </Container>
+    <Styles isHeld={held} tilt={tilt.current}>
+      <WinBounce index={index} didWin={didWin}>
+        <CardContainer
+          isHidden={hidden}
+          didWin={didWin}
+          didDraw={didDraw}
+          data-testid="card"
+        >
+          <CardFront suit={suit} didScore={didScore} isHeld={held} onClick={onClick}>
+            <span>{rankString}</span>
+            {suitImageMap[suit]}
+            <span>{rankString}</span>
+            {isFace && faceImagesMap[rankVal]}
+          </CardFront>
+          <CardBack />
+        </CardContainer>
+      </WinBounce>
+      <HoldIndicator isHeld={held}>HELD</HoldIndicator>
+    </Styles>
   );
 }
-
-export default Card;

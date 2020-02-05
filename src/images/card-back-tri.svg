@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg class="card-back" width="250px" height="350px" viewBox="0 0 250 350" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>cardback-tri</title>
+    <g id="cardback-tri" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2" transform="translate(-55.000000, -65.000000)" fill="currentColor">
+            <g id="Group" transform="translate(120.000000, 180.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+            <g id="Group-Copy" transform="translate(200.000000, 180.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+            <g id="Group-Copy-7" transform="translate(240.000000, 90.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+            <g id="Group-Copy-8" transform="translate(280.000000, 180.000000)">
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+            <g id="Group-Copy-9" transform="translate(240.000000, 270.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+            <g id="Group-Copy-19" transform="translate(280.000000, 360.000000)">
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+            </g>
+            <g id="Group-Copy-10" transform="translate(200.000000, 360.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+            </g>
+            <g id="Group-Copy-11" transform="translate(120.000000, 360.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+            </g>
+            <g id="Group-Copy-3" transform="translate(160.000000, 270.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+            <g id="Group-Copy-4" transform="translate(80.000000, 90.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+            <g id="Group-Copy-5" transform="translate(80.000000, 270.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+            <g id="Group-Copy-12" transform="translate(40.000000, 360.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+            </g>
+            <g id="Group-Copy-13" transform="translate(0.000000, 270.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+            </g>
+            <g id="Group-Copy-14" transform="translate(0.000000, 90.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+            </g>
+            <g id="Group-Copy-15" transform="translate(40.000000, 0.000000)">
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+            <g id="Group-Copy-16" transform="translate(120.000000, 0.000000)">
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+            <g id="Group-Copy-17" transform="translate(200.000000, 0.000000)">
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+            <g id="Group-Copy-6" transform="translate(40.000000, 180.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+            <g id="Group-Copy-2" transform="translate(160.000000, 90.000000)">
+                <polygon id="Path-Copy-3" fill-opacity="0.4" points="40 0 80 30 40 60"></polygon>
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy-13" fill-opacity="0.3" points="40 60 80 90 40 120"></polygon>
+                <polygon id="Path-Copy" fill-opacity="0.5" transform="translate(20.000000, 30.000000) rotate(-180.000000) translate(-20.000000, -30.000000) " points="0 0 40 30 0 60"></polygon>
+                <polygon id="Path-Copy-4" fill-opacity="0.7" transform="translate(60.000000, 60.000000) rotate(-180.000000) translate(-60.000000, -60.000000) " points="40 30 80 60 40 90"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+            <g id="Group-Copy-18" transform="translate(280.000000, 0.000000)">
+                <polygon id="Path-Copy-12" fill-opacity="0" points="0 30 40 60 0 90"></polygon>
+                <polygon id="Path-Copy-10" fill-opacity="0.15" transform="translate(20.000000, 90.000000) rotate(-180.000000) translate(-20.000000, -90.000000) " points="0 60 40 90 0 120"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

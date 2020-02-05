@@ -36,5 +36,5 @@ const Styles = styled.div`
 `;
 
 export default function Message({ gameState, states }) {
-  return <Styles>{states.winState && `${gameState.winningHand}!`}</Styles>;
+  return <Styles>{states.isWinState && `${gameState.winningHand}!`}</Styles>;
 }

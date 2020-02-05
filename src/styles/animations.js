@@ -1,6 +1,6 @@
 import { keyframes } from 'styled-components';
 
-export const pop = keyframes`
+export const tada = keyframes`
   from {
     transform: scale3d(1, 1, 1);
   }

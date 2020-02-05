@@ -60,9 +60,9 @@ const MESSAGE_STRINGS = {
 export default function HandStatus({ gameState, states }) {
   return (
     <Styles>
-      {states.initState && <GoodLuck>{MESSAGE_STRINGS.goodLuck}</GoodLuck>}
-      {states.noWinState && <GameOver>{MESSAGE_STRINGS.gameOver}</GameOver>}
-      {states.winState && (
+      {states.isInitState && <GoodLuck>{MESSAGE_STRINGS.goodLuck}</GoodLuck>}
+      {states.isNoWinState && <GameOver>{MESSAGE_STRINGS.gameOver}</GameOver>}
+      {states.isWinState && (
         <Winnings>
           {MESSAGE_STRINGS.youWin} ${gameState.winnings}
         </Winnings>

@@ -24,7 +24,8 @@ export const defaultTheme = {
     primary: colors.green,
     highlight: colors.green,
     cardHD: 'hsl(0, 100%, 42%)',
-    cardSC: 'hsl(0, 0%, 5%)'
+    cardSC: 'hsl(0, 0%, 5%)',
+    cardBackground: 'white'
   },
   fonts: {
     body: 'Montserrat, sans-serif',
