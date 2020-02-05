@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ReactComponent as LogoSVG } from 'images/logo.svg';
 
 const Styles = styled.header`
-  --w: 14rem;
+  --w: 8rem;
   justify-content: center;
   color: transparent;
   position: absolute;
@@ -18,7 +18,7 @@ const Styles = styled.header`
     width: var(--w);
     height: auto;
     position: absolute;
-    top: 0;
+    top: 0.5rem;
     left: calc(50% - calc(var(--w) / 2));
   }
 `;
