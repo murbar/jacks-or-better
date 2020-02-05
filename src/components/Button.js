@@ -56,12 +56,12 @@ const Container = styled.div`
 `;
 
 const Styles = styled.button`
-  display: flex;
   width: 100%;
   height: 100%;
   font-family: ${p => p.theme.fonts.cards};
   font-size: 1.1em;
   font-weight: bold;
+  text-align: center;
   color: ${addHslAlpha(textColor, 0.8)};
   padding: 1.25rem 2.5rem;
   background: ${gradient(activeWhite, 15)};

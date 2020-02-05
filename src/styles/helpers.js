@@ -40,6 +40,24 @@ export const mediaBelow = Object.keys(DEVICE_SIZES).reduce((acc, label) => {
   return acc;
 }, {});
 
+export const mediaQuery = {};
+mediaQuery.above = Object.keys(DEVICE_SIZES).reduce((acc, label) => {
+  acc[label] = (...args) => css`
+    @media (min-width: ${DEVICE_SIZES[label] / 16}em) {
+      ${css(...args)}
+    }
+  `;
+  return acc;
+}, {});
+mediaQuery.below = Object.keys(DEVICE_SIZES).reduce((acc, label) => {
+  acc[label] = (...args) => css`
+    @media (max-width: ${DEVICE_SIZES[label] / 16}em) {
+      ${css(...args)}
+    }
+  `;
+  return acc;
+}, {});
+
 const parseHslString = hsl => {
   const values = /hsla?\((\d+),\s*([\d.]+)%,\s*([\d.]+)%(?:,\s*)?([\d.]+)?\)/g.exec(hsl);
   if (values) {
