@@ -66,7 +66,7 @@ it('plays a full hand', async () => {
   const cards = getAllByTestId('card');
   expect(cards.length).toBe(5);
   cards.forEach(c => {
-    expect(c.querySelector('span')).toHaveStyle('display: none');
+    expect(c).not.toHaveStyle('transform: rotateY(180deg)');
   });
 
   // deal
@@ -75,7 +75,7 @@ it('plays a full hand', async () => {
   // wait for cards to turn
   await wait(() => {
     cards.forEach(c => {
-      expect(c.querySelector('span')).not.toHaveStyle('display: none');
+      expect(c).toHaveStyle('transform: rotateY(180deg)');
     });
   });
 
