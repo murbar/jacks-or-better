@@ -28,7 +28,7 @@ export const defaultTheme = {
   },
   fonts: {
     body: 'Montserrat, sans-serif',
-    display: '"Lilita One",  sans-serif',
+    display: 'Bangers,  sans-serif',
     cards: 'Montserrat, sans-serif'
   },
   bgGradient: bgGradients.green,
