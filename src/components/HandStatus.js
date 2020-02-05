@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 import { mediaAbove, effect3d } from 'styles/helpers';
+import { tada } from 'styles/animations';
 
 const textColor = theme.colors.gold;
 const Styles = styled.div`
   display: flex;
-  margin-top: -1rem;
+  margin-top: 1rem;
   width: 100%;
   height: 1em;
   justify-content: center;
@@ -26,7 +27,7 @@ const Styles = styled.div`
   `}
   ${mediaAbove.px600`
     font-size: 5.5rem;
-    margin-top: 0;
+
   `}
   ${mediaAbove.px700`
     font-size: 6rem;
@@ -39,6 +40,7 @@ const Styles = styled.div`
 const Winnings = styled.div`
   margin-top: 1rem;
   font-size: 1.2em;
+  animation: 1s ${tada};
 `;
 
 const GameOver = styled.div`
