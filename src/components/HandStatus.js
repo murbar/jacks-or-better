@@ -5,7 +5,7 @@ import { mediaAbove, effect3d } from 'styles/helpers';
 import { tada } from 'styles/animations';
 
 const textColor = theme.colors.gold;
-const Styles = styled.div`
+export const StatusStyles = styled.div`
   display: flex;
   margin-top: 1rem;
   width: 100%;
@@ -17,7 +17,7 @@ const Styles = styled.div`
   font-family: ${theme.fonts.display};
   font-size: 3.5rem;
   color: ${textColor};
-  letter-spacing: 1px;
+  letter-spacing: -1px;
   line-height: 1;
   z-index: 2000;
   
@@ -59,7 +59,7 @@ const MESSAGE_STRINGS = {
 
 export default function HandStatus({ gameState, states }) {
   return (
-    <Styles>
+    <StatusStyles>
       {states.isInitState && <GoodLuck>{MESSAGE_STRINGS.goodLuck}</GoodLuck>}
       {states.isNoWinState && <GameOver>{MESSAGE_STRINGS.gameOver}</GameOver>}
       {states.isWinState && (
@@ -67,6 +67,6 @@ export default function HandStatus({ gameState, states }) {
           {MESSAGE_STRINGS.youWin} ${gameState.winnings}
         </Winnings>
       )}
-    </Styles>
+    </StatusStyles>
   );
 }
