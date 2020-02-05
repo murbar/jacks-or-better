@@ -46,6 +46,10 @@ const Container = styled.div`
   margin: 1rem 1rem 1rem 0;
   border-radius: ${borderRadius};
   padding-bottom: ${depth};
+
+  &:last-child {
+    margin-right: 0;
+  }
   &:active {
     padding-bottom: 0;
     transform: translateY(${depth});
@@ -69,9 +73,7 @@ const Styles = styled.button`
   border-radius: ${borderRadius};
   box-shadow: ${activeShadows(depth)};
   outline: none;
-  &:last-child {
-    margin-right: 0;
-  }
+
   &:hover {
     cursor: pointer;
   }

@@ -8,6 +8,10 @@ const Styles = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
+  ${mediaQuery.below.px500`
+    margin-left: -1rem;
+    margin-right: -1rem;
+  `}
 `;
 
 const BetControls = styled.div`
@@ -21,6 +25,7 @@ const BetButton = styled(Button)`
 
 const DealButton = styled(BetButton)`
   width: 13rem;
+  margin-right: 0;
   ${mediaQuery.above.px500`
     width: 16rem;
   `}
