@@ -1,20 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ReactComponent as LogoSVG } from 'images/logo.svg';
 
 const Styles = styled.header`
-  color: #eee;
+  --w: 14rem;
+  justify-content: center;
+  color: transparent;
   position: absolute;
-  width: 50%;
-  top: 1rem;
-  right: 25%;
+  width: 100%;
+  top: 0;
+  left: 0;
   font-size: 1rem;
-  text-align: center;
+  h1 {
+    font-size: 0.5em;
+  }
+  svg {
+    width: var(--w);
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: calc(50% - calc(var(--w) / 2));
+  }
 `;
 
 export default function Header() {
   return (
     <Styles>
-      <h1>Jacks or Better</h1>
+      <h1>Jacks or Better Video Poker Game</h1>
+      <LogoSVG />
     </Styles>
   );
 }
