@@ -20,7 +20,7 @@ export default styled.button`
   border: none;
   padding: 1.25rem 2.5rem;
   background: ${offWhite};
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   margin: 1rem 1rem 1rem 0;
   box-shadow: ${shadow};
   &:last-child {
