@@ -13,6 +13,7 @@ const Styles = styled.div`
   text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   font-family: ${p => p.theme.fonts.cards};
   font-weight: bold;
+  cursor: default;
   ${mediaQuery.above.phone`
     margin-top: 2rem;
   `}
@@ -53,14 +54,14 @@ export default function Stats({ gameState, playerState }) {
     <Styles>
       <Bet>
         Bet
-        <BetAmount data-testid="current-bet">
+        <BetAmount data-testid="current-bet" title={`Current bet is ${currentBet}`}>
           <span className="dollar-sign">$</span>
           <ValueTween duration={250}>{currentBet}</ValueTween>
         </BetAmount>
       </Bet>
       <Bank>
         Bank
-        <BankAmount didWin={didWin} data-testid="bank">
+        <BankAmount didWin={didWin} data-testid="bank" title={`Bank is ${bank}`}>
           <span className="dollar-sign">$</span>
           <ValueTween>{bank}</ValueTween>
         </BankAmount>

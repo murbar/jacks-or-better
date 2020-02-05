@@ -8,5 +8,9 @@ const Styles = styled(StatusStyles)`
 `;
 
 export default function Message({ gameState, states }) {
-  return <Styles>{states.isWinState && `${gameState.winningHand}!`}</Styles>;
+  return (
+    <Styles title={`${gameState.winningHand}!`}>
+      {states.isWinState && `${gameState.winningHand}!`}
+    </Styles>
+  );
 }

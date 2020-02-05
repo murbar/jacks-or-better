@@ -43,20 +43,10 @@ export default function Controls({ gameState, actions }) {
   return (
     <Styles>
       <BetControls>
-        <BetButton
-          onClick={incrementBet}
-          disabled={didDeal || busy}
-          title="Set your bet"
-          data-testid="bet-button"
-        >
+        <BetButton onClick={incrementBet} disabled={didDeal || busy} title="Bet one">
           Bet {largeDisplay && 'One'}
         </BetButton>
-        <BetButton
-          onClick={setMaxBet}
-          disabled={didDeal || busy}
-          title="Set your bet to the max"
-          data-testid="bet-max-button"
-        >
+        <BetButton onClick={setMaxBet} disabled={didDeal || busy} title="Bet max">
           {largeDisplay && 'Bet'} Max
         </BetButton>
       </BetControls>
@@ -65,7 +55,7 @@ export default function Controls({ gameState, actions }) {
         onClick={play}
         disabled={busy}
         pulse={!didDeal && didScore}
-        data-testid="deal-button"
+        title={`${didDeal ? 'Discard and draw' : 'Deal a hand'}`}
       >
         {didDeal ? 'Draw' : 'Deal'}
       </DealButton>

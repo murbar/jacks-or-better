@@ -159,6 +159,7 @@ const CardFront = styled(CardFrontAndBack)`
     height: var(--w);
     top: calc(50% - (var(--w) / 2));
     right: calc(50% - (var(--w) / 2));
+    pointer-events: none;
   }
   svg.card-face {
     position: absolute;
@@ -166,6 +167,7 @@ const CardFront = styled(CardFrontAndBack)`
     height: 100%;
     top: 0;
     left: 0;
+    pointer-events: none;
   }
 
   ${p => p.isHeld && heldStyles}
