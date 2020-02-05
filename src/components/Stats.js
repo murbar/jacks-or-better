@@ -16,6 +16,7 @@ const Styles = styled.div`
   line-height: 1;
   text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   font-family: ${p => p.theme.fonts.cards};
+  font-weight: bold;
 `;
 
 const Bank = styled.div`
@@ -23,11 +24,13 @@ const Bank = styled.div`
 `;
 
 const Bet = styled.div``;
+
 const BetAmount = styled.div`
   font-family: ${p => p.theme.fonts.display};
   font-size: 4rem;
   letter-spacing: 1px;
   font-weight: 400;
+  margin-top: 0.75rem;
   ${p => effect3dSmall(p.theme.colors.offWhite)}
   .dollar-sign {
     font-size: 0.8em;
@@ -47,14 +50,14 @@ export default function Stats({ gameState, playerState }) {
     <Styles>
       <Bet>
         Bet
-        <BetAmount>
+        <BetAmount data-testid="current-bet">
           <span className="dollar-sign">$</span>
           <ValueTween duration={250}>{currentBet}</ValueTween>
         </BetAmount>
       </Bet>
       <Bank>
         Bank
-        <BankAmount didWin={didWin}>
+        <BankAmount didWin={didWin} data-testid="bank">
           <span className="dollar-sign">$</span>
           <ValueTween>{bank}</ValueTween>
         </BankAmount>

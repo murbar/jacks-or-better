@@ -9,7 +9,7 @@ const Styles = styled.div`
   align-items: center;
 `;
 
-const PlayButton = styled(Button)`
+const ControlButton = styled(Button)`
   padding: 1.5rem 2.5rem;
 `;
 
@@ -20,24 +20,32 @@ export default function Controls({ gameState, actions }) {
   return (
     <Styles>
       <div>
-        <PlayButton
+        <ControlButton
           onClick={incrementBet}
           disabled={didDeal || busy}
           title="Set your bet"
+          data-testid="bet-button"
         >
           Bet
-        </PlayButton>
-        <PlayButton
+        </ControlButton>
+        <ControlButton
           onClick={setMaxBet}
           disabled={didDeal || busy}
           title="Set your bet to the max"
+          data-testid="bet-max-button"
         >
           Max
-        </PlayButton>
+        </ControlButton>
       </div>
-      <PlayButton onClick={play} disabled={busy} pulse={!didDeal && didScore}>
+
+      <ControlButton
+        onClick={play}
+        disabled={busy}
+        pulse={!didDeal && didScore}
+        data-testid="deal-button"
+      >
         {didDeal ? 'Draw' : 'Deal'}
-      </PlayButton>
+      </ControlButton>
     </Styles>
   );
 }

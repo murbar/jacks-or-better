@@ -11,6 +11,9 @@ import useViewportSize from 'hooks/useViewportSize';
 
 const REVEAL_DELAY_MS = 100;
 const STARTING_BANK = 500;
+const MAX_BET = 25;
+
+const inDevelopment = process.env.NODE_ENV === 'development';
 
 function initGameState() {
   const deck = newDeck();
@@ -20,7 +23,7 @@ function initGameState() {
     held: Array(5).fill(false),
     hidden: Array(5).fill(true),
     defaultBet: 5,
-    maxBet: 25,
+    maxBet: MAX_BET,
     currentBet: 5,
     didDeal: false,
     didDraw: false,
@@ -219,7 +222,9 @@ function Game({ changeTheme }) {
     3: () => toggleHeld(2),
     4: () => toggleHeld(3),
     5: () => toggleHeld(4),
-    l: () => console.log(gameState)
+    l: () => {
+      if (inDevelopment) console.log(gameState);
+    }
   });
 
   return (

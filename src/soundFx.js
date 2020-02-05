@@ -17,8 +17,11 @@ let sourceMap = {
 };
 
 const context = new (window.AudioContext || window.webkitAudioContext)();
+const inTesting = process.env.NODE_ENV === 'test';
 
-initSourceMap();
+if (!inTesting) {
+  initSourceMap();
+}
 
 function loadFile(url) {
   return window
@@ -46,7 +49,7 @@ async function initSourceMap() {
 }
 
 export function playSound(key, volume = 1) {
-  if (!(key in sourceMap)) return;
+  if (!(key in sourceMap) || inTesting) return;
 
   // for browser's autoplay policy
   if (context.state === 'suspended') {
