@@ -1,34 +1,94 @@
+import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import theme from 'styles/theme';
+import { adjustHslLightness, addHslAlpha, adjustHsl } from 'styles/helpers';
 
-const { highlight, offWhite } = theme.colors;
-const shadow = '0 0 1rem rgba(0, 0, 0, 0.5)';
+const activeWhite = 'hsl(62, 74%, 90%)';
+const disabledWhite = 'hsl(62, 30%, 80%)';
+// const activeBlue = 'hsl(213, 90%, 75%)';
+// const disabledBlue = 'hsl(213, 30%, 65%)';
+
+const gradient = (color, lightDelta = 8) =>
+  `radial-gradient(ellipse,  ${adjustHslLightness(color, lightDelta)}, ${color})`;
+
+const depth = '0.8rem';
+const borderRadius = '0.5rem';
+const textColor = theme.colors.offBlack;
+
+const dropShadow = depth => `0 ${depth} 1rem rgba(0, 0, 0, 0.5)`;
+
+const insetShadow = `0 1.5em 0 0 rgba(255, 255, 255, 0.5) inset, 0 -0.25rem 1rem -0.25rem rgba(0,0,0,0.5 ) inset`;
+
+const baseShadowActive = (depth, color) =>
+  ` 0 ${depth} ${adjustHsl(color, { l: -15, s: -30 })}`;
+
+const baseShadowDisabled = (depth, color) =>
+  ` 0 ${depth} ${adjustHsl(color, { l: -5, s: -5 })}`;
+
+const activeShadows = depth =>
+  `${baseShadowActive(depth, activeWhite)}, ${insetShadow}, ${dropShadow(
+    depth
+  )}, 0 ${depth} 1rem ${activeWhite}`;
+
+const disabledShadows = depth =>
+  `${baseShadowDisabled(depth, disabledWhite)}, ${insetShadow}, ${dropShadow(depth)}`;
 
 const pulseKeyframes = keyframes`
-  from {  box-shadow: ${shadow}; }
-  to { box-shadow: 0 0 1.5rem ${highlight}; }
+  to { box-shadow:  0 0 1rem ${activeWhite}; }
 `;
 
 const pulse = css`
   animation: ${pulseKeyframes} 0.75s alternate infinite;
 `;
 
-export default styled.button`
+const Container = styled.div`
+  display: inline-flex;
+  margin: 1rem 1rem 1rem 0;
+  border-radius: ${borderRadius};
+  padding-bottom: ${depth};
+  &:active {
+    padding-bottom: 0;
+    transform: translateY(${depth});
+    box-shadow: ${activeShadows(0)};
+  }
+
+  ${p => p.pulse && pulse}
+`;
+
+const Styles = styled.button`
+  display: flex;
+  width: 100%;
+  height: 100%;
   font-family: ${p => p.theme.fonts.cards};
   font-size: 1.1em;
   font-weight: bold;
-  border: none;
+  color: ${addHslAlpha(textColor, 0.8)};
   padding: 1.25rem 2.5rem;
-  background: ${offWhite};
-  border-radius: 0.5rem;
-  margin: 1rem 1rem 1rem 0;
-  box-shadow: ${shadow};
+  background: ${gradient(activeWhite, 15)};
+  border: 0.1rem solid rgba(0, 0, 0, 0.15);
+  border-radius: ${borderRadius};
+  box-shadow: ${activeShadows(depth)};
+  outline: none;
   &:last-child {
     margin-right: 0;
   }
   &:hover {
     cursor: pointer;
   }
-
-  ${p => p.pulse && pulse}
+  &:active {
+    box-shadow: ${activeShadows(0)};
+  }
+  &:disabled {
+    color: ${textColor};
+    background: ${gradient(disabledWhite)};
+    box-shadow: ${disabledShadows(depth)};
+  }
 `;
+
+export default function Button({ children, pulse, ...props }) {
+  return (
+    <Container pulse={pulse}>
+      <Styles {...props}>{children}</Styles>
+    </Container>
+  );
+}
