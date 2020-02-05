@@ -54,14 +54,14 @@ export default function Stats({ gameState, playerState }) {
     <Styles>
       <Bet>
         Bet
-        <BetAmount data-testid="current-bet" title={`Current bet is ${currentBet}`}>
+        <BetAmount title={`Current bet is $${currentBet}`}>
           <span className="dollar-sign">$</span>
           <ValueTween duration={250}>{currentBet}</ValueTween>
         </BetAmount>
       </Bet>
       <Bank>
         Bank
-        <BankAmount didWin={didWin} data-testid="bank" title={`Bank is ${bank}`}>
+        <BankAmount didWin={didWin} title={`Bank is $${bank}`}>
           <span className="dollar-sign">$</span>
           <ValueTween>{bank}</ValueTween>
         </BankAmount>

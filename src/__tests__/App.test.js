@@ -25,9 +25,9 @@ it('renders without crashing', () => {
 });
 
 it('cycles bets', async () => {
-  const { getByTestId } = render(withTheme(App));
-  const betBtn = getByTestId('bet-button');
-  const betDisplay = getByTestId('current-bet');
+  const { getByTitle } = render(withTheme(App));
+  const betBtn = getByTitle(/bet one/i);
+  const betDisplay = getByTitle(/current bet is \$/i);
 
   expect(betDisplay).toHaveTextContent('$5');
   fireEvent.click(betBtn);
@@ -43,9 +43,9 @@ it('cycles bets', async () => {
 });
 
 it('sets max bet', async () => {
-  const { getByTestId } = render(withTheme(App));
-  const maxBetBtn = getByTestId('bet-max-button');
-  const betDisplay = getByTestId('current-bet');
+  const { getByTitle } = render(withTheme(App));
+  const maxBetBtn = getByTitle(/bet max/i);
+  const betDisplay = getByTitle(/current bet is \$/i);
 
   expect(betDisplay).toHaveTextContent('$5');
   fireEvent.click(maxBetBtn);
@@ -53,12 +53,12 @@ it('sets max bet', async () => {
 });
 
 it('plays a full hand', async () => {
-  const { getByTestId, getAllByTestId, getByText, queryByText } = render(withTheme(App));
-  const dealBtn = getByTestId('deal-button');
-  const betBtn = getByTestId('bet-button');
-  const betMaxBtn = getByTestId('bet-max-button');
-  const betDisplay = getByTestId('current-bet');
-  const bankDisplay = getByTestId('bank');
+  const { getAllByTestId, getByText, queryByText, getByTitle } = render(withTheme(App));
+  const dealBtn = getByTitle(/deal a hand/i);
+  const betBtn = getByTitle(/bet one/i);
+  const betMaxBtn = getByTitle(/bet max/i);
+  const betDisplay = getByTitle(/current bet is \$/i);
+  const bankDisplay = getByTitle(/bank is \$/i);
   const bet = betDisplay.textContent.slice(1);
   const bank = bankDisplay.textContent.slice(1);
 
