@@ -8,7 +8,7 @@ import { ReactComponent as JackSVG } from 'images/jack-cir.svg';
 import { ReactComponent as QueenSVG } from 'images/queen-cir.svg';
 import { ReactComponent as KingSVG } from 'images/king-cir.svg';
 import cardBackSVG from 'images/card-back.svg';
-import { addHslAlpha, mediaAbove } from 'styles/helpers';
+import { addHslAlpha, mediaQuery } from 'styles/helpers';
 import { getRankAndSuit } from 'poker';
 import { bounce } from 'styles/animations';
 
@@ -62,28 +62,36 @@ const Styles = styled.div`
   ${p => p.isHeld && 'margin-bottom: -2.5rem;'}
 `;
 
+const WinBounce = styled.div`
+  ${p =>
+    p.didWin &&
+    css`
+      animation: 1.5s ${p => p.index * 50}ms infinite ${bounce};
+    `}
+`;
+
 const CardContainer = styled.div`
   --card-size: 8rem;
   --radius: 0.5rem;
-  ${mediaAbove.px500`
+  ${mediaQuery.above.px500`
     --card-size: 8.5rem;
   `}
-  ${mediaAbove.px600`
+  ${mediaQuery.above.px600`
     --card-size: 10rem;
   `}
-  ${mediaAbove.px700`
+  ${mediaQuery.above.px700`
     --card-size: 11rem;
   `}
-  ${mediaAbove.px800`
+  ${mediaQuery.above.px800`
     --card-size: 12rem;
   `}
-  ${mediaAbove.px900`
+  ${mediaQuery.above.px900`
     --card-size: 13rem;
   `}
-  ${mediaAbove.px950`
+  ${mediaQuery.above.px950`
     --card-size: 15rem;
   `}
-  ${mediaAbove.px1100`
+  ${mediaQuery.above.px1100`
     --card-size: 16.5rem;
   `}
 
@@ -121,7 +129,7 @@ const CardBack = styled(CardFrontAndBack)`
   background-size: cover;
   border: 0.3rem solid ${p => p.theme.colors.cardBackground};
 
-  ${mediaAbove.px600`
+  ${mediaQuery.above.px600`
     border: 0.6rem solid ${p => p.theme.colors.cardBackground};
   `};
 `;
@@ -180,14 +188,6 @@ const HoldIndicator = styled.div`
 
 const randomInRange = (start, end) =>
   Math.floor(Math.random() * (1 + end - start)) + start;
-
-const WinBounce = styled.div`
-  ${p =>
-    p.didWin &&
-    css`
-      animation: 1.5s ${p => p.index * 50}ms infinite ${bounce};
-    `}
-`;
 
 export default function Card({
   value,

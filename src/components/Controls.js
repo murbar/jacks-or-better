@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from 'components/Button';
 import useViewportSize from 'hooks/useViewportSize';
-import { DEVICE_SIZES, mediaQuery, mediaAbove } from 'styles/helpers';
+import { DEVICE_SIZES, mediaQuery } from 'styles/helpers';
 
 const Styles = styled.div`
   display: flex;

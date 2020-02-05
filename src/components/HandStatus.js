@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
-import { mediaAbove, effect3d } from 'styles/helpers';
+import { mediaQuery, effect3d } from 'styles/helpers';
 import { tada } from 'styles/animations';
 
 const textColor = theme.colors.gold;
@@ -22,17 +22,17 @@ export const StatusStyles = styled.div`
   z-index: 2000;
   
   ${effect3d(textColor)}
-  ${mediaAbove.px500`
+  ${mediaQuery.above.px500`
     font-size: 4.5rem;
   `}
-  ${mediaAbove.px600`
+  ${mediaQuery.above.px600`
     font-size: 5.5rem;
 
   `}
-  ${mediaAbove.px700`
+  ${mediaQuery.above.px700`
     font-size: 6rem;
   `}
-  ${mediaAbove.px800`
+  ${mediaQuery.above.px800`
     font-size: 7rem;
   `}
 `;
