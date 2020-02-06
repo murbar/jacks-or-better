@@ -10,6 +10,7 @@ import Controls from './Controls';
 import useViewportSize from 'hooks/useViewportSize';
 import config from 'config';
 import { recordGAEvent } from 'analytics';
+import { getIndexes, isTruthy, isFalsy } from 'utils';
 
 function initGameState() {
   const deck = newDeck();
@@ -28,12 +29,6 @@ const Styles = styled.div`
   color: ${p => p.theme.colors.offWhite};
   min-height: ${p => p.height}px;
 `;
-
-const isTruthy = value => !!value;
-const isFalsy = value => !!!value;
-
-const getIndexes = (array, filter) =>
-  array.reduce((indexes, value, i) => (filter(value) ? [...indexes, i] : indexes), []);
 
 function Game({ changeTheme }) {
   const [playerState, setPlayerState] = useLocalStorageState(

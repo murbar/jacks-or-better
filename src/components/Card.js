@@ -11,6 +11,7 @@ import cardBackSVG from 'images/card-back.svg';
 import { addHslAlpha, mediaQuery } from 'styles/helpers';
 import { getRankAndSuit } from 'poker';
 import { bounce } from 'styles/animations';
+import { randomInRange } from 'utils';
 
 const highCardValues = {
   '14': 'A',
@@ -127,7 +128,7 @@ const CardBack = styled(CardFrontAndBack)`
   border: 0.3rem solid ${p => p.theme.colors.cardBackground};
 
   ${mediaQuery.above.px600`
-    border: 0.6rem solid ${p => p.theme.colors.cardBackground};
+    border: 0.5rem solid ${p => p.theme.colors.cardBackground};
   `};
 `;
 
@@ -185,9 +186,6 @@ const HoldIndicator = styled.div`
   text-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   visibility: ${p => (p.isHeld ? 'visible' : 'hidden')};
 `;
-
-const randomInRange = (start, end) =>
-  Math.floor(Math.random() * (1 + end - start)) + start;
 
 export default function Card({
   value,
