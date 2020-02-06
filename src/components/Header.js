@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as LogoSVG } from 'images/logo.svg';
+import { slideInDown } from 'styles/animations';
 
 const Styles = styled.header`
   --w: 8rem;
@@ -20,6 +21,7 @@ const Styles = styled.header`
     position: absolute;
     top: 0.5rem;
     left: calc(50% - calc(var(--w) / 2));
+    animation: ${slideInDown} 0.75s;
   }
 `;
 

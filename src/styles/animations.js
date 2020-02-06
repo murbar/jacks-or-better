@@ -1,5 +1,35 @@
 import { keyframes } from 'styled-components';
 
+export const slideInDown = keyframes`
+  from {
+    transform: translate3d(0, -100%, 0) scale(0.5);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+`;
+
+export const slideInLeft = keyframes`
+  from {
+    transform: translate3d(-100%, 0, 0) scale(0.5);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+`;
+
+export const slideInRight = keyframes`
+  from {
+    transform: translate3d(100%, 0, 0)  scale(0.5);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+`;
+
 export const tada = keyframes`
   from {
     transform: scale3d(1, 1, 1);
@@ -36,78 +66,29 @@ export const bounce = keyframes`
   }
 }`;
 
-export const flip = keyframes`
-  0% {
-    transform: rotateY(0);
-  }
-  50% {
-    transform: rotateY(180deg);
-  }
-  100% {
-    transform: rotateY(0);
-  }
-`;
-
 export const bounceIn = keyframes`
-  from,
-  20%,
-  40%,
-  60%,
-  80%,
-  to {
+  from, 20%, 40%, 60%, 80%, to {
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
-
   0% {
     opacity: 0;
     transform: scale3d(0.3, 0.3, 0.3);
   }
-
   20% {
     transform: scale3d(1.6, 1.6, 1.6);
   }
-
   40% {
     transform: scale3d(0.9, 0.9, 0.9);
   }
-
   60% {
     opacity: 1;
     transform: scale3d(1.03, 1.03, 1.03);
   }
-
   80% {
     transform: scale3d(0.97, 0.97, 0.97);
   }
-
   to {
     opacity: 1;
     transform: scale3d(1, 1, 1);
   }
 `;
-
-export const flipInY = keyframes`
-
-  from {
-    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
-    animation-timing-function: ease-in;
-    opacity: 0.5;
-  }
-
-  40% {
-    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
-    animation-timing-function: ease-in;
-  }
-
-  60% {
-    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
-    opacity: 1;
-  }
-
-  80% {
-    transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
-  }
-
-  to {
-    transform: perspective(400px);
-  }`;

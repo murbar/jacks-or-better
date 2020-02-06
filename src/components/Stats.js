@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import ValueTween from 'components/ValueTween';
 import { effect3dSmall, mediaQuery } from 'styles/helpers';
-import { bounceIn } from 'styles/animations';
+import { bounceIn, slideInLeft, slideInRight } from 'styles/animations';
 
 const Styles = styled.div`
   display: flex;
@@ -21,9 +21,12 @@ const Styles = styled.div`
 
 const Bank = styled.div`
   text-align: right;
+  animation: ${slideInRight} 0.75s;
 `;
 
-const Bet = styled.div``;
+const Bet = styled.div`
+  animation: ${slideInLeft} 0.75s;
+`;
 
 const BetAmount = styled.div`
   font-family: ${p => p.theme.fonts.display};
