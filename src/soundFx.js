@@ -26,7 +26,19 @@ if (!inTesting) {
 async function loadFile(url) {
   const response = await window.fetch(url);
   const arrayBuffer = await response.arrayBuffer();
-  return await context.decodeAudioData(arrayBuffer);
+  // return await context.decodeAudioData(arrayBuffer);
+  // Safari doesn't support await syntax for decodeAudioData
+  return new Promise((resolve, reject) => {
+    context.decodeAudioData(
+      arrayBuffer,
+      buffer => {
+        resolve(buffer);
+      },
+      e => {
+        reject(e);
+      }
+    );
+  });
 }
 
 async function initSourceMap() {
