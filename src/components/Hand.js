@@ -17,7 +17,16 @@ const Cards = styled.div`
 `;
 
 export default function Hand({ gameState, toggleHeld }) {
-  const { hand, hidden, held, didDeal, didDraw, didScore, busy, winnings } = gameState;
+  const {
+    hand,
+    cardsFaceDown,
+    cardsHeld,
+    didDeal,
+    didDraw,
+    didScore,
+    busy,
+    winnings
+  } = gameState;
   const isInitState = !didDeal && !didDraw && !didScore && !busy;
   const isWinState = didScore && winnings !== 0;
   const isNoWinState = didScore && winnings === 0;
@@ -34,8 +43,8 @@ export default function Hand({ gameState, toggleHeld }) {
             key={v}
             index={i}
             value={v}
-            hidden={hidden[i]}
-            held={held[i]}
+            isFaceDown={cardsFaceDown[i]}
+            isHeld={cardsHeld[i]}
             didDraw={gameState.didDraw}
             didScore={didScore}
             didWin={isWinState}

@@ -11,8 +11,8 @@ export default {
     theme: null
   },
   initGameState: {
-    held: Array(5).fill(false),
-    hidden: Array(5).fill(true),
+    cardsHeld: Array(5).fill(false),
+    cardsFaceDown: Array(5).fill(true),
     defaultBet: 5,
     maxBet: 25,
     currentBet: 5,

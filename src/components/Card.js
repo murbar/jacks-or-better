@@ -102,10 +102,10 @@ const CardContainer = styled.div`
   transform-style: preserve-3d;
 
   &:hover {
-    transform: ${p => !p.isHidden && !p.didDraw && 'rotateY(180deg) scale(1.02)'};
+    transform: ${p => !p.isFaceDown && !p.didDraw && 'rotateY(180deg) scale(1.02)'};
   }
 
-  ${p => !p.isHidden && 'transform: rotateY(180deg)'};
+  ${p => !p.isFaceDown && 'transform: rotateY(180deg)'};
 `;
 
 const CardFrontAndBack = styled.div`
@@ -190,8 +190,8 @@ const HoldIndicator = styled.div`
 export default function Card({
   value,
   index,
-  hidden,
-  held,
+  isFaceDown,
+  isHeld,
   didDraw,
   didScore,
   didWin,
@@ -204,15 +204,15 @@ export default function Card({
   const isFace = rankVal > 10 && rankVal < 14;
 
   return (
-    <Styles isHeld={held} tilt={tilt.current}>
+    <Styles isHeld={isHeld} tilt={tilt.current}>
       <WinBounce index={index} didWin={didWin}>
         <CardContainer
-          isHidden={hidden}
+          isFaceDown={isFaceDown}
           didWin={didWin}
           didDraw={didDraw}
           data-testid="card"
         >
-          <CardFront suit={suit} didScore={didScore} isHeld={held} onClick={onClick}>
+          <CardFront suit={suit} didScore={didScore} isHeld={isHeld} onClick={onClick}>
             <span>{rankString}</span>
             {suitImageMap[suit]}
             <span>{rankString}</span>
@@ -221,7 +221,7 @@ export default function Card({
           <CardBack />
         </CardContainer>
       </WinBounce>
-      <HoldIndicator isHeld={held}>HELD</HoldIndicator>
+      <HoldIndicator isHeld={isHeld}>HELD</HoldIndicator>
     </Styles>
   );
 }

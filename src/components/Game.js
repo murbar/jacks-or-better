@@ -36,8 +36,8 @@ function Game({ playerState, playerActions }) {
   const resetHand = () => {
     const newState = initGameState();
     newState.currentBet = gameState.currentBet;
-    newState.held = Array(5).fill(false);
-    newState.hidden = Array(5).fill(true);
+    newState.cardsHeld = Array(5).fill(false);
+    newState.cardsFaceDown = Array(5).fill(true);
     setGameState(newState);
   };
 
@@ -68,35 +68,35 @@ function Game({ playerState, playerActions }) {
   const toggleHeld = index => {
     if (gameState.didDeal) {
       setGameState(prev => {
-        prev.held[index] = !prev.held[index];
-        return { ...prev, held: prev.held };
+        prev.cardsHeld[index] = !prev.cardsHeld[index];
+        return { ...prev, cardsHeld: prev.cardsHeld };
       });
       playSoundFx('cardTap');
     }
   };
 
   const discard = () => {
-    const discards = getIndexes(gameState.held, isFalsy);
+    const discards = getIndexes(gameState.cardsHeld, isFalsy);
     const hand = [...gameState.hand];
     discards.forEach(i => {
       toggleShowCard(i);
       hand[i] = gameState.deck.pop();
     });
-    setGameState(prev => ({ ...prev, hand, held: prev.held.map(() => false) }));
+    setGameState(prev => ({ ...prev, hand, cardsHeld: prev.cardsHeld.map(() => false) }));
   };
 
   const toggleShowCard = React.useCallback(
     index => {
       setGameState(prev => {
-        prev.hidden[index] = !prev.hidden[index];
-        return { ...prev, hidden: prev.hidden };
+        prev.cardsFaceDown[index] = !prev.cardsFaceDown[index];
+        return { ...prev, cardsFaceDown: prev.cardsFaceDown };
       });
     },
     [setGameState]
   );
 
   const revealHiddenCards = React.useCallback(() => {
-    const hidden = getIndexes(gameState.hidden, isTruthy).reverse();
+    const hidden = getIndexes(gameState.cardsFaceDown, isTruthy).reverse();
     const showOneAndWait = () => {
       if (hidden.length) {
         setTimeout(() => {
@@ -109,7 +109,7 @@ function Game({ playerState, playerActions }) {
       }
     };
     showOneAndWait();
-  }, [gameState.hidden, playSoundFx, toggleShowCard]);
+  }, [gameState.cardsFaceDown, playSoundFx, toggleShowCard]);
 
   // reveal face-down cards after the deal and after the draw
   React.useEffect(() => {
