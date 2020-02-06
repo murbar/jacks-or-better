@@ -8,38 +8,14 @@ import { playSound } from 'soundFx';
 import Stats from './Stats';
 import Controls from './Controls';
 import useViewportSize from 'hooks/useViewportSize';
-
-const REVEAL_DELAY_MS = 100;
-const STARTING_BANK = 500;
-const MAX_BET = 25;
-
-const inDevelopment = process.env.NODE_ENV === 'development';
+import config from 'config';
 
 function initGameState() {
   const deck = newDeck();
   return {
+    ...config.initGameState,
     deck,
-    hand: takeCards(deck, 5),
-    held: Array(5).fill(false),
-    hidden: Array(5).fill(true),
-    defaultBet: 5,
-    maxBet: MAX_BET,
-    currentBet: 5,
-    didDeal: false,
-    didDraw: false,
-    didScore: false,
-    winnings: 0,
-    winningHand: null,
-    busy: false
-  };
-}
-
-function initPlayerState() {
-  return {
-    name: 'Lucky Player',
-    bank: STARTING_BANK,
-    soundFx: true,
-    theme: null
+    hand: takeCards(deck, 5)
   };
 }
 
@@ -59,7 +35,10 @@ const getIndexes = (array, filter) =>
   array.reduce((indexes, value, i) => (filter(value) ? [...indexes, i] : indexes), []);
 
 function Game({ changeTheme }) {
-  const [playerState, setPlayerState] = useLocalStorageState('PLAYER', initPlayerState());
+  const [playerState, setPlayerState] = useLocalStorageState(
+    'PLAYER',
+    config.initPlayerState
+  );
   const [gameState, setGameState] = React.useState(initGameState());
   const { height: viewportHeight } = useViewportSize();
 
@@ -142,7 +121,7 @@ function Game({ changeTheme }) {
           playSoundFx('cardTurn', 0.75);
           toggleShowCard(hidden.pop());
           showOneAndWait();
-        }, REVEAL_DELAY_MS);
+        }, config.cardRevealDelay);
       } else {
         setGameState(prev => ({ ...prev, busy: false }));
       }
@@ -183,7 +162,7 @@ function Game({ changeTheme }) {
   // TODO display message to user
   React.useEffect(() => {
     if (playerState.bank < 0) {
-      setPlayerState(prev => ({ ...prev, bank: STARTING_BANK }));
+      setPlayerState(prev => ({ ...prev, bank: config.initPlayerState.bank }));
     }
   }, [playerState.bank, setPlayerState]);
 
@@ -223,7 +202,7 @@ function Game({ changeTheme }) {
     4: () => toggleHeld(3),
     5: () => toggleHeld(4),
     l: () => {
-      if (inDevelopment) console.log(gameState);
+      if (config.env) console.log(gameState);
     }
   });
 
