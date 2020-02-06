@@ -34,7 +34,7 @@ const disabledShadows = depth =>
   `${baseShadowDisabled(depth, disabledWhite)}, ${insetShadow}, ${dropShadow(depth)}`;
 
 const pulseKeyframes = keyframes`
-  to { box-shadow:  0 0 1rem ${activeWhite}; }
+  to { box-shadow:  0 0 1.25rem ${activeWhite}; }
 `;
 
 const pulse = css`
