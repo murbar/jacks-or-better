@@ -1,16 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import Hand from 'components/Hand';
-import { newDeck, takeCards, scoreHand, HANDS, ROYAL_MAX_MULTIPLE } from 'poker';
-import useLocalStorageState from 'hooks/useLocalStorageState';
-import useHotKeys from 'hooks/useHotKeys';
-import { playSound } from 'soundFx';
-import Stats from './Stats';
-import Controls from './Controls';
-import useViewportSize from 'hooks/useViewportSize';
-import config from 'config';
 import { recordGAEvent } from 'analytics';
 import { getIndexes, isTruthy, isFalsy } from 'utils';
+import { newDeck, takeCards, scoreHand, HANDS, ROYAL_MAX_MULTIPLE } from 'poker';
+import { playSound } from 'soundFx';
+import useHotKeys from 'hooks/useHotKeys';
+import useViewportSize from 'hooks/useViewportSize';
+import config from 'config';
+import Stats from './Stats';
+import Hand from 'components/Hand';
+import Controls from './Controls';
 
 function initGameState() {
   const deck = newDeck();
@@ -30,11 +29,7 @@ const Styles = styled.div`
   min-height: ${p => p.height}px;
 `;
 
-function Game({ changeTheme }) {
-  const [playerState, setPlayerState] = useLocalStorageState(
-    'PLAYER',
-    config.initPlayerState
-  );
+function Game({ playerState, playerActions }) {
   const [gameState, setGameState] = React.useState(initGameState());
   const { height: viewportHeight } = useViewportSize();
 
@@ -44,10 +39,6 @@ function Game({ changeTheme }) {
     newState.held = Array(5).fill(false);
     newState.hidden = Array(5).fill(true);
     setGameState(newState);
-  };
-
-  const toggleSoundMute = () => {
-    setPlayerState(prev => ({ ...prev, soundFx: !prev.soundFx }));
   };
 
   const playSoundFx = React.useCallback(
@@ -94,13 +85,6 @@ function Game({ changeTheme }) {
     setGameState(prev => ({ ...prev, hand, held: prev.held.map(() => false) }));
   };
 
-  const incrementBank = React.useCallback(
-    points => {
-      setPlayerState(prev => ({ ...prev, bank: prev.bank + points }));
-    },
-    [setPlayerState]
-  );
-
   const toggleShowCard = React.useCallback(
     index => {
       setGameState(prev => {
@@ -146,7 +130,7 @@ function Game({ changeTheme }) {
         : multiple * currentBet;
 
       setGameState(prev => ({ ...prev, didScore: true, winningHand, winnings }));
-      incrementBank(winnings);
+      playerActions.incrementBank(winnings);
 
       if (winnings) {
         playSoundFx('win');
@@ -154,15 +138,15 @@ function Game({ changeTheme }) {
         playSoundFx('gameOver');
       }
     }
-  }, [gameState, incrementBank, playSoundFx, endOfPlay]);
+  }, [gameState, playSoundFx, endOfPlay, playerActions]);
 
   // when player goes bankrupt
   // TODO display message to user
   React.useEffect(() => {
     if (playerState.bank < 0) {
-      setPlayerState(prev => ({ ...prev, bank: config.initPlayerState.bank }));
+      playerActions.incrementBank(config.initPlayerState.bank - playerState.bank);
     }
-  }, [playerState.bank, setPlayerState]);
+  }, [playerActions, playerState.bank]);
 
   const play = () => {
     playSoundFx('buttonPress', 0.5);
@@ -177,7 +161,7 @@ function Game({ changeTheme }) {
         didDeal: true,
         busy: true
       }));
-      incrementBank(-gameState.currentBet);
+      playerActions.incrementBank(-gameState.currentBet);
       recordGAEvent('User', 'Gameplay', 'Deal');
     } else {
       discard();
@@ -192,9 +176,8 @@ function Game({ changeTheme }) {
 
   useHotKeys({
     d: play,
-    ' ': play,
     b: incrementBet,
-    m: toggleSoundMute,
+    m: playerActions.toggleSoundMute,
     1: () => toggleHeld(0),
     2: () => toggleHeld(1),
     3: () => toggleHeld(2),

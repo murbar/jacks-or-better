@@ -1,9 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { recordPageView, initializeGA } from 'analytics';
+import { DEVICE_SIZES } from 'styles/helpers';
+import config from 'config';
+import useLocalStorageState from 'hooks/useLocalStorageState';
 import Header from 'components/Header';
 import Game from 'components/Game';
-import { DEVICE_SIZES } from 'styles/helpers';
-import { recordPageView, initializeGA } from 'analytics';
+import Payouts from 'components/Payouts';
+import Settings from 'components/Settings';
+import About from 'components/About';
 
 initializeGA();
 
@@ -16,12 +21,33 @@ const Styles = styled.div`
 `;
 
 function App({ changeTheme }) {
-  recordPageView('/');
+  const [playerState, setPlayerState] = useLocalStorageState(
+    'PLAYER',
+    config.initPlayerState
+  );
 
+  const toggleSoundMute = () => {
+    setPlayerState(prev => ({ ...prev, soundFx: !prev.soundFx }));
+  };
+
+  const incrementBank = React.useCallback(
+    points => {
+      setPlayerState(prev => ({ ...prev, bank: prev.bank + points }));
+    },
+    [setPlayerState]
+  );
+
+  recordPageView('/');
   return (
     <Styles>
-      <Header />
-      <Game changeTheme={changeTheme} />
+      <Header toggleSoundMute={toggleSoundMute} />
+      <Game
+        playerState={playerState}
+        playerActions={{ toggleSoundMute, incrementBank }}
+      />
+      <Payouts />
+      <Settings />
+      <About />
     </Styles>
   );
 }
