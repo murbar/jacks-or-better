@@ -23,28 +23,20 @@ if (!inTesting) {
   initSourceMap();
 }
 
-function loadFile(url) {
-  return window
-    .fetch(url)
-    .then(response => response.arrayBuffer())
-    .then(arrayBuffer => {
-      return new Promise((resolve, reject) => {
-        context.decodeAudioData(
-          arrayBuffer,
-          buffer => {
-            resolve(buffer);
-          },
-          e => {
-            reject(e);
-          }
-        );
-      });
-    });
+async function loadFile(url) {
+  const response = await window.fetch(url);
+  const arrayBuffer = await response.arrayBuffer();
+  return await context.decodeAudioData(arrayBuffer);
 }
 
 async function initSourceMap() {
   Object.entries(sourceMap).forEach(async ([key, src]) => {
-    await loadFile(src).then(audioBuffer => (sourceMap[key] = audioBuffer));
+    try {
+      const audioBuffer = await loadFile(src);
+      sourceMap[key] = audioBuffer;
+    } catch (error) {
+      console.warn(`Unable to load sound "${key}" with src "${src}"`, error);
+    }
   });
 }
 
