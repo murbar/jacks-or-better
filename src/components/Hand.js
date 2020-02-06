@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Card from 'components/Card';
 import HandTitle from './HandTitle';
@@ -49,3 +50,16 @@ export default function Hand({ gameState, toggleHeld }) {
     </Styles>
   );
 }
+
+Hand.propTypes = {
+  gameState: PropTypes.shape({
+    hand: (props, propName) => {
+      if (props[propName].length !== 5) return new Error(`Hand must be of length 5`);
+    },
+    didDeal: PropTypes.bool.isRequired,
+    didScore: PropTypes.bool.isRequired,
+    busy: PropTypes.bool.isRequired,
+    winnings: PropTypes.number.isRequired
+  }).isRequired,
+  toggleHeld: PropTypes.func.isRequired
+};
