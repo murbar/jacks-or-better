@@ -21,7 +21,7 @@ export default createGlobalStyle`
       45deg, transparent, transparent 2rem, rgba(0,0,0,0.02) 2rem, rgba(0,0,0,0.02) 4rem),
       ${p => p.theme.bgGradient};
     background-attachment: fixed;
-    color: ${p => p.theme.colors.offBlack};
+    color: ${p => p.theme.colors.foreground};
     font-family: ${p => p.theme.fonts.body};
     font-size: 1.8rem;
     line-height: 1.7;

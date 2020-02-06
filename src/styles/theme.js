@@ -18,9 +18,9 @@ const colors = {
 export const defaultTheme = {
   colors: {
     ...colors,
-    background: colors.offWhite,
-    foreground: colors.offBlack,
-    primary: colors.green,
+    background: colors.offBlack,
+    foreground: colors.offWhite,
+    primary: colors.gold,
     highlight: colors.green,
     cardHD: 'hsl(0, 100%, 42%)',
     cardSC: 'hsl(0, 0%, 5%)',
