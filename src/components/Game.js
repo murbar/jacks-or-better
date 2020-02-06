@@ -9,6 +9,7 @@ import Stats from './Stats';
 import Controls from './Controls';
 import useViewportSize from 'hooks/useViewportSize';
 import config from 'config';
+import { recordGAEvent } from 'analytics';
 
 function initGameState() {
   const deck = newDeck();
@@ -180,6 +181,7 @@ function Game({ changeTheme }) {
         busy: true
       }));
       incrementBank(-gameState.currentBet);
+      recordGAEvent('User', 'Gameplay', 'Deal');
     } else {
       discard();
       setGameState(prev => ({

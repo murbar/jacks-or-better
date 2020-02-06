@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import Header from 'components/Header';
 import Game from 'components/Game';
 import { DEVICE_SIZES } from 'styles/helpers';
+import { recordPageView, initializeGA } from 'analytics';
+
+initializeGA();
 
 const Styles = styled.div`
   margin: 0 auto;
@@ -13,6 +16,8 @@ const Styles = styled.div`
 `;
 
 function App({ changeTheme }) {
+  recordPageView('/');
+
   return (
     <Styles>
       <Header />
