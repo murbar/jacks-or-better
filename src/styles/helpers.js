@@ -41,7 +41,7 @@ const parseHslString = hsl => {
 };
 
 export const addHslAlpha = (hsl, alpha) => {
-  return `${hsl.slice(0, -1)}, ${alpha})`;
+  return `hsla${hsl.slice(3, -1)}, ${alpha})`;
 };
 
 export const adjustHsl = (hsl, values) => {
