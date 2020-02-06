@@ -6,9 +6,6 @@ import config from 'config';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 import Header from 'components/Header';
 import Game from 'components/Game';
-import Payouts from 'components/Payouts';
-import Settings from 'components/Settings';
-import About from 'components/About';
 
 initializeGA();
 
@@ -45,9 +42,6 @@ function App({ changeTheme }) {
         playerState={playerState}
         playerActions={{ toggleSoundMute, incrementBank }}
       />
-      <Payouts />
-      <Settings />
-      <About />
     </Styles>
   );
 }
