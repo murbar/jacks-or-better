@@ -10,6 +10,7 @@ import Game from 'components/Game';
 initializeGA();
 
 const Styles = styled.div`
+  position: relative;
   margin: 0 auto;
   padding: 0 2rem;
   max-width: ${DEVICE_SIZES.px1100}px;
