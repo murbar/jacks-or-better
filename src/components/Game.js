@@ -46,6 +46,8 @@ function Game({ changeTheme }) {
   const resetHand = () => {
     const newState = initGameState();
     newState.currentBet = gameState.currentBet;
+    newState.held = Array(5).fill(false);
+    newState.hidden = Array(5).fill(true);
     setGameState(newState);
   };
 
