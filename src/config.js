@@ -1,8 +1,13 @@
+const VERSION = '2020.02.06';
+
 export default {
+  storageKeys: {
+    playerState: `poker-player-${VERSION}`
+  },
   initPlayerState: {
     name: 'Lucky Player',
     bank: 500,
-    soundFx: true,
+    soundFxOn: true,
     theme: null
   },
   initGameState: {

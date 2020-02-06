@@ -22,12 +22,12 @@ const Styles = styled.div`
 
 function App({ changeTheme }) {
   const [playerState, setPlayerState] = useLocalStorageState(
-    'PLAYER',
+    config.storageKeys.playerState,
     config.initPlayerState
   );
 
   const toggleSoundMute = () => {
-    setPlayerState(prev => ({ ...prev, soundFx: !prev.soundFx }));
+    setPlayerState(prev => ({ ...prev, soundFxOn: !prev.soundFxOn }));
   };
 
   const incrementBank = React.useCallback(
@@ -40,7 +40,7 @@ function App({ changeTheme }) {
   recordPageView('/');
   return (
     <Styles>
-      <Header toggleSoundMute={toggleSoundMute} />
+      <Header playerState={playerState} toggleSoundMute={toggleSoundMute} />
       <Game
         playerState={playerState}
         playerActions={{ toggleSoundMute, incrementBank }}

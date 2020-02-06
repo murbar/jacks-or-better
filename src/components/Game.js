@@ -43,11 +43,11 @@ function Game({ playerState, playerActions }) {
 
   const playSoundFx = React.useCallback(
     (key, volume) => {
-      if (playerState.soundFx) {
+      if (playerState.soundFxOn) {
         playSound(key, volume);
       }
     },
-    [playerState.soundFx]
+    [playerState.soundFxOn]
   );
 
   const incrementBet = () => {
