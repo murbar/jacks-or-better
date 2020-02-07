@@ -4,8 +4,13 @@ import '__mocks__/AudioContext.mock';
 import '__mocks__/crypto.mock';
 import { ThemeProvider } from 'styled-components';
 import defaultTheme from 'styles/theme';
-
-import { render, fireEvent, wait, waitForDomChange } from '@testing-library/react';
+import {
+  render,
+  fireEvent,
+  wait,
+  waitForDomChange,
+  cleanup
+} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import App from '../App';
@@ -17,6 +22,8 @@ export const withTheme = (Component, props) => {
     </ThemeProvider>
   );
 };
+
+afterEach(cleanup);
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
