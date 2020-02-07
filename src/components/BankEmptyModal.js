@@ -34,7 +34,7 @@ export default function BankEmptyModal({ isShowing = true, onAccept }) {
     <FullScreenModal onClickOff={accept} isShowing={showModal}>
       <Styles>
         <h2>You're out of cash!</h2>
-
+        <h3>Have some more.</h3>
         <Button onClick={accept} title="Get more cash">
           Get More Cash
         </Button>
