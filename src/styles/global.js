@@ -29,7 +29,9 @@ export default createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
+    font-family: ${p => p.theme.fonts.display};
     line-height: 1.3;
+    font-weight: normal;
   }
   a {
     color: inherit;
