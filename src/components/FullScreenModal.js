@@ -8,8 +8,8 @@ import { ReactComponent as XIcon } from 'images/x-circle-icon.svg';
 const CloseControl = styled.div`
   position: absolute;
   z-index: 5000;
-  top: 1rem;
-  right: 1rem;
+  top: 0rem;
+  right: 0rem;
   padding: 1rem;
   cursor: pointer;
   svg {
@@ -20,7 +20,7 @@ const CloseControl = styled.div`
 
 const OverlayBox = styled.div`
   color: ${p => p.theme.colors.foreground};
-  padding: 1rem;
+  padding: 2rem 1rem;
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.3);
   background: ${p => p.theme.colors.background};
   border-radius: 1rem;
@@ -96,7 +96,7 @@ export default function FullScreenModal({
         >
           <OverlayBox style={props} key={key}>
             {closeControl && (
-              <CloseControl role="button" onClick={() => onClickOff()}>
+              <CloseControl role="button" onClick={() => onClickOff()} title="Close">
                 <XIcon />
               </CloseControl>
             )}
