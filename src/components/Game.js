@@ -10,6 +10,7 @@ import config from 'config';
 import Stats from './Stats';
 import Hand from 'components/Hand';
 import Controls from './Controls';
+import BankEmptyModal from './BankEmptyModal';
 
 function initGameState() {
   const deck = newDeck();
@@ -32,6 +33,7 @@ const Styles = styled.div`
 function Game({ playerState, playerActions }) {
   const [gameState, setGameState] = React.useState(initGameState());
   const { height: viewportHeight } = useViewportSize();
+  const isBankEmpty = playerState.bank <= 0;
 
   const resetHand = () => {
     const newState = initGameState();
@@ -52,17 +54,25 @@ function Game({ playerState, playerActions }) {
 
   const incrementBet = () => {
     const { currentBet, defaultBet, maxBet } = gameState;
+    const { bank } = playerState;
     const bet = currentBet === maxBet ? defaultBet : currentBet + defaultBet;
 
-    setGameState(prev => ({ ...prev, currentBet: bet }));
+    setGameState(prev => ({ ...prev, currentBet: bet < bank ? bet : bank }));
     playSoundFx('buttonPress', 0.5);
     playSoundFx('bet');
   };
 
   const setMaxBet = () => {
-    setGameState(prev => ({ ...prev, currentBet: prev.maxBet }));
+    const max = gameState.maxBet;
+    const { bank } = playerState;
+    setGameState(prev => ({ ...prev, currentBet: max < bank ? max : bank }));
     playSoundFx('buttonPress', 0.5);
     playSoundFx('betMax', 1);
+  };
+
+  const resetBank = () => {
+    playerActions.incrementBank(config.initPlayerState.bank - playerState.bank);
+    recordGAEvent('User', 'Gameplay', 'Replenish bank');
   };
 
   const toggleHeld = index => {
@@ -134,19 +144,12 @@ function Game({ playerState, playerActions }) {
 
       if (winnings) {
         playSoundFx('win');
+        recordGAEvent('User', 'Gameplay', 'Winning hand');
       } else {
         playSoundFx('gameOver');
       }
     }
   }, [gameState, playSoundFx, endOfPlay, playerActions]);
-
-  // when player goes bankrupt
-  // TODO display message to user
-  React.useEffect(() => {
-    if (playerState.bank < 0) {
-      playerActions.incrementBank(config.initPlayerState.bank - playerState.bank);
-    }
-  }, [playerActions, playerState.bank]);
 
   const play = () => {
     playSoundFx('buttonPress', 0.5);
@@ -193,6 +196,7 @@ function Game({ playerState, playerActions }) {
       <Stats gameState={gameState} playerState={playerState} />
       <Hand gameState={gameState} toggleHeld={toggleHeld} />
       <Controls gameState={gameState} actions={{ incrementBet, setMaxBet, play }} />
+      {gameState.didScore && isBankEmpty && <BankEmptyModal onAccept={resetBank} />}
     </Styles>
   );
 }
