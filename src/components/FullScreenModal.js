@@ -38,8 +38,8 @@ const OverlayBox = styled.div`
     margin: 0;
   }
   ${mediaQuery.above.phone`
-    max-width: 50rem;
-  `} /* breakpoint for width on large screen */
+    max-width: 65rem;
+  `}
 `;
 
 const Styles = styled(animated.div)`
