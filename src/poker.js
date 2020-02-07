@@ -26,6 +26,22 @@ export const PAYOUTS = {
   [HANDS.zilch]: 0
 };
 
+export const exampleHands = {
+  zilch: ['8S', '12D', '4H', '1H', '8C'],
+  lowPair: ['8S', '11D', '4H', '12H', '8C'],
+  jacksBetter: ['8S', '12D', '4H', '12H', '7C'],
+  twoPair: ['8S', '8D', '4H', '12H', '4C'],
+  threeOfKind: ['8S', '8D', '4H', '12H', '8C'],
+  straight: ['8S', '10D', '9H', '7H', '11C'],
+  straightLow: ['14S', '2D', '4H', '3H', '5C'],
+  flush: ['8S', '4S', '11S', '12S', '9S'],
+  fullHouse: ['8S', '8D', '8H', '12H', '12C'],
+  fourOfKind: ['8S', '8D', '4H', '8H', '8C'],
+  straightFlush: ['8D', '10D', '9D', '7D', '11D'],
+  straightFlushLow: ['14D', '2D', '4D', '3D', '5D'],
+  royalFlush: ['10S', '14S', '12S', '11S', '13S']
+};
+
 export const ROYAL_MAX_MULTIPLE = 4;
 
 export const randomCrypto = () =>
