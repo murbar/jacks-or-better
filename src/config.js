@@ -8,7 +8,8 @@ export default {
     name: 'Lucky Player',
     bank: 500,
     soundFxOn: true,
-    theme: null
+    tableColor: 'green',
+    cardColor: 'blue'
   },
   initGameState: {
     cardsHeld: Array(5).fill(false),
