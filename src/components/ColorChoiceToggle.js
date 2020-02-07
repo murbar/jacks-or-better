@@ -61,7 +61,7 @@ export default function ColorChoiceToggle({ choices, onToggle, initialChoice }) 
           selected={selected === l}
           color={choices[l]}
           onClick={() => handleClick(l)}
-          title={l}
+          title={`Set to ${l}`}
         />
       ))}
     </Styles>
