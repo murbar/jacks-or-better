@@ -1,9 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
-import { recordPageView, initializeGA } from 'analytics';
-import { DEVICE_SIZES } from 'styles/helpers';
+import styled, { ThemeProvider } from 'styled-components';
 import config from 'config';
 import useLocalStorageState from 'hooks/useLocalStorageState';
+import { DEVICE_SIZES } from 'styles/helpers';
+import { withUserPreferences } from 'styles/theme';
+import { recordPageView, initializeGA } from 'analytics';
+import GlobalStyles from 'styles/global';
 import Header from 'components/Header';
 import Game from 'components/Game';
 
@@ -23,10 +25,21 @@ function App({ changeTheme }) {
     config.storageKeys.playerState,
     config.initPlayerState
   );
+  const [theme, setTheme] = React.useState(
+    withUserPreferences({
+      tableColor: playerState.tableColor,
+      cardColor: playerState.cardColor
+    })
+  );
 
-  const toggleSoundMute = () => {
-    setPlayerState(prev => ({ ...prev, soundFxOn: !prev.soundFxOn }));
-  };
+  React.useEffect(() => {
+    setTheme(
+      withUserPreferences({
+        tableColor: playerState.tableColor,
+        cardColor: playerState.cardColor
+      })
+    );
+  }, [playerState.tableColor, playerState.cardColor]);
 
   const incrementBank = React.useCallback(
     points => {
@@ -35,8 +48,22 @@ function App({ changeTheme }) {
     [setPlayerState]
   );
 
+  const toggleSoundMute = () => {
+    setPlayerState(prev => ({ ...prev, soundFxOn: !prev.soundFxOn }));
+  };
+
+  const setTableColor = name => {
+    setPlayerState(prev => ({ ...prev, tableColor: name }));
+  };
+
+  const setCardColor = name => {
+    setPlayerState(prev => ({ ...prev, cardColor: name }));
+  };
+
   recordPageView('/');
   return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
     <Styles>
       <Header playerState={playerState} toggleSoundMute={toggleSoundMute} />
       <Game
@@ -44,6 +71,7 @@ function App({ changeTheme }) {
         playerActions={{ toggleSoundMute, incrementBank }}
       />
     </Styles>
+    </ThemeProvider>
   );
 }
 
