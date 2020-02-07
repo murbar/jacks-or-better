@@ -1,5 +1,12 @@
 const SUITS = 'DCHS'; // ♦ ♣ ♥ ♠
 
+export const HIGH_CARD_STRINGS = {
+  '14': 'A',
+  '11': 'J',
+  '12': 'Q',
+  '13': 'K'
+};
+
 export const HANDS = {
   royalFlush: 'Royal Flush',
   straightFlush: 'Straight Flush',

@@ -9,16 +9,9 @@ import { ReactComponent as QueenSVG } from 'images/queen-cir.svg';
 import { ReactComponent as KingSVG } from 'images/king-cir.svg';
 import cardBackSVG from 'images/card-back.svg';
 import { addHslAlpha, mediaQuery } from 'styles/helpers';
-import { getRankAndSuit } from 'poker';
+import { getRankAndSuit, HIGH_CARD_STRINGS } from 'poker';
 import { bounce } from 'styles/animations';
 import { randomInRange } from 'utils';
-
-const highCardValues = {
-  '14': 'A',
-  '11': 'J',
-  '12': 'Q',
-  '13': 'K'
-};
 
 const faceImagesMap = {
   '11': <JackSVG />,
@@ -198,7 +191,7 @@ export default function Card({
   onClick
 }) {
   let [rank, suit] = getRankAndSuit(value);
-  const rankString = rank in highCardValues ? highCardValues[rank] : rank;
+  const rankString = rank in HIGH_CARD_STRINGS ? HIGH_CARD_STRINGS[rank] : rank;
   const tilt = React.useRef(randomInRange(-2, 2));
   const rankVal = parseInt(rank, 10);
   const isFace = rankVal > 10 && rankVal < 14;
