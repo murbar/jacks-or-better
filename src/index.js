@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from 'styles/theme';
 import GlobalStyles from 'styles/global';
 import App from './App';
+import ErrorBoundary from 'components/ErrorBoundary';
 
 const themes = {
   default: defaultTheme
@@ -20,10 +21,10 @@ const Root = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <>
+      <ErrorBoundary>
         <GlobalStyles />
         <App changeTheme={changeTheme} />
-      </>
+      </ErrorBoundary>
     </ThemeProvider>
   );
 };
