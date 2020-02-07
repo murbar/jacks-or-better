@@ -1,7 +1,5 @@
-# CRA Boilerplate v3.1.0
+# Jacks or Better
 
-August 2019 - is it [up to date](https://github.com/facebook/create-react-app/releases)?
+A little poker game build with React.
 
-- No cruft
-- Styled components - global styles, theme, helpers
-- "Nunito" font face
+https://poker.joelb.dev
