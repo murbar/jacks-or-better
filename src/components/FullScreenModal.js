@@ -3,12 +3,26 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 import { mediaQuery } from 'styles/helpers';
+import { ReactComponent as XIcon } from 'images/x-circle-icon.svg';
+
+const CloseControl = styled.div`
+  position: absolute;
+  z-index: 5000;
+  top: 1rem;
+  right: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  svg {
+    width: 1.75em;
+    height: auto;
+  }
+`;
 
 const OverlayBox = styled.div`
-  background: ${p => p.theme.colors.foreground};
+  color: ${p => p.theme.colors.foreground};
   padding: 1rem;
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.3);
-  color: ${p => p.theme.colors.background};
+  background: ${p => p.theme.colors.background};
   border-radius: 1rem;
   margin-bottom: 1rem;
   position: relative;
@@ -46,7 +60,12 @@ const Styles = styled(animated.div)`
   will-change: transform, opacity;
 `;
 
-export default function FullScreenModal({ children, onClickOff, isShowing }) {
+export default function FullScreenModal({
+  children,
+  onClickOff,
+  isShowing,
+  closeControl = true
+}) {
   const DOM_ID = 'modal';
   const overlayTransition = useTransition(isShowing, null, {
     config: { precision: 0.001 },
@@ -76,6 +95,11 @@ export default function FullScreenModal({ children, onClickOff, isShowing }) {
           }}
         >
           <OverlayBox style={props} key={key}>
+            {closeControl && (
+              <CloseControl role="button" onClick={() => onClickOff()}>
+                <XIcon />
+              </CloseControl>
+            )}
             {children}
           </OverlayBox>
         </Styles>,

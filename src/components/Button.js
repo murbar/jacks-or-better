@@ -80,7 +80,8 @@ const Styles = styled.button`
   &:active {
     box-shadow: ${activeShadows(0)};
   }
-  &:disabled {
+  &:disabled,
+  &.disabled {
     color: ${textColor};
     background: ${gradient(disabledColor)};
     box-shadow: ${disabledShadows(depth)};

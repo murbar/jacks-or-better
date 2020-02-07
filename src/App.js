@@ -8,6 +8,7 @@ import { recordPageView, initializeGA } from 'analytics';
 import GlobalStyles from 'styles/global';
 import Header from 'components/Header';
 import Game from 'components/Game';
+import SettingsModal from 'components/SettingsModal';
 
 initializeGA();
 
@@ -20,7 +21,7 @@ const Styles = styled.div`
   font-size: 1em;
 `;
 
-function App({ changeTheme }) {
+function App() {
   const [playerState, setPlayerState] = useLocalStorageState(
     config.storageKeys.playerState,
     config.initPlayerState
@@ -65,7 +66,11 @@ function App({ changeTheme }) {
     <ThemeProvider theme={theme}>
       <GlobalStyles />
     <Styles>
-      <Header playerState={playerState} toggleSoundMute={toggleSoundMute} />
+        <Header />
+        <SettingsModal
+          playerState={playerState}
+          actions={{ toggleSoundMute, setTableColor, setCardColor }}
+        />
       <Game
         playerState={playerState}
         playerActions={{ toggleSoundMute, incrementBank }}

@@ -5,6 +5,11 @@ import Button from 'components/Button';
 import FullScreenModal from 'components/FullScreenModal';
 import { mediaQuery, effect3dSmall } from 'styles/helpers';
 import { playSound } from 'soundFx';
+import ColorChoiceToggle from 'components/ColorChoiceToggle';
+import { cardOptions, tableOptions } from 'styles/theme';
+
+delete cardOptions.default;
+delete tableOptions.default;
 
 const SettingsModalControl = styled.div`
   position: absolute;
@@ -32,32 +37,16 @@ const Styles = styled.div`
     text-align: center;
     ${p => effect3dSmall(p.theme.colors.gold)};
   }
-
-  ul {
-    padding-left: 3rem;
-  }
-  li {
-    font-size: 0.9em;
-    margin-bottom: 0.5rem;
-  }
-
-  kbd {
-    font-size: 1.25em;
-    background: ${p => p.theme.textColor};
-    color: ${p => p.theme.backgroundColor};
-    padding: 0.15em 0.35em;
-    border-radius: 0.25em;
-  }
 `;
 
-export default function AboutModal({ isShowing = false, playerState, toggleSoundMute }) {
+export default function AboutModal({ isShowing = true, playerState, actions }) {
   const [showModal, setShowModal] = useState(isShowing);
+  const { toggleSoundMute, setTableColor, setCardColor } = actions;
+  const isSoundOn = playerState.soundFxOn;
 
   useEffect(() => {
     setShowModal(isShowing);
   }, [isShowing]);
-
-  const isSoundOn = playerState.soundFxOn;
 
   const toggleMute = () => {
     if (!isSoundOn) playSound('cardTap');
@@ -78,16 +67,27 @@ export default function AboutModal({ isShowing = false, playerState, toggleSound
       <FullScreenModal onClickOff={() => setShowModal(false)} isShowing={showModal}>
         <Styles>
           <h2>Settings</h2>
-          <p>Card color</p>
-          <p>Table color</p>
-          <p>
-            Sound on <input type="checkbox" onChange={toggleMute} checked={isSoundOn} />{' '}
-          </p>
-          <div>
-            <Button onClick={() => setShowModal(false)} title="Dismiss settings">
-              Done
-            </Button>
-          </div>
+          <h3>Cards</h3>
+          <ColorChoiceToggle
+            choices={cardOptions}
+            initialChoice={playerState.cardColor}
+            onToggle={setCardColor}
+          />
+          <h3>Table</h3>
+          <ColorChoiceToggle
+            choices={tableOptions}
+            initialChoice={playerState.tableColor}
+            onToggle={setTableColor}
+          />
+          <h3>Sound</h3>
+
+          <Button
+            onClick={toggleMute}
+            title="Toggle sound on/off"
+            className={!isSoundOn && 'disabled'}
+          >
+            {isSoundOn ? 'Turn Off' : 'Turn On'}
+          </Button>
         </Styles>
       </FullScreenModal>
     </>
