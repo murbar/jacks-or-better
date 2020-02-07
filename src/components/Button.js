@@ -4,9 +4,8 @@ import theme from 'styles/theme';
 import { adjustHslLightness, addHslAlpha, adjustHsl } from 'styles/helpers';
 
 const activeWhite = 'hsl(62, 74%, 90%)';
-const disabledWhite = 'hsl(62, 30%, 80%)';
-// const activeBlue = 'hsl(213, 90%, 75%)';
-// const disabledBlue = 'hsl(213, 30%, 65%)';
+const disabledColor = 'hsl(0, 0%, 70%)';
+// const activeBlue = 'hsl(213, 95%, 80%)';
 
 const gradient = (color, lightDelta = 8) =>
   `radial-gradient(ellipse,  ${adjustHslLightness(color, lightDelta)}, ${color})`;
@@ -31,7 +30,7 @@ const activeShadows = depth =>
   )}, 0 ${depth} 1rem ${activeWhite}`;
 
 const disabledShadows = depth =>
-  `${baseShadowDisabled(depth, disabledWhite)}, ${insetShadow}, ${dropShadow(depth)}`;
+  `${baseShadowDisabled(depth, disabledColor)}, ${insetShadow}, ${dropShadow(depth)}`;
 
 const pulseKeyframes = keyframes`
   to { box-shadow:  0 0 1.25rem ${activeWhite}; }
@@ -52,6 +51,7 @@ const Container = styled.div`
   }
   &:active {
     padding-bottom: 0;
+    margin-bottom: calc(1rem + ${depth});
     transform: translateY(${depth});
     box-shadow: ${activeShadows(0)};
   }
@@ -82,7 +82,7 @@ const Styles = styled.button`
   }
   &:disabled {
     color: ${textColor};
-    background: ${gradient(disabledWhite)};
+    background: ${gradient(disabledColor)};
     box-shadow: ${disabledShadows(depth)};
   }
 `;
