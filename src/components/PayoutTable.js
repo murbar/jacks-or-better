@@ -4,9 +4,7 @@ import { HANDS, PAYOUTS } from 'poker';
 import { adjustHsl } from 'styles/helpers';
 
 const Styles = styled.div`
-  h2 {
-    text-align: center;
-  }
+  margin: 0 -2rem;
 `;
 
 const Table = styled.table`
@@ -14,7 +12,7 @@ const Table = styled.table`
   background: ${p => adjustHsl(p.theme.colors.foreground, { a: 0.1 })};
   max-width: 80rem;
   padding: 0 1.5rem 1.75rem;
-  border-radius: 1rem;
+  font-size: 0.9em;
 `;
 
 const Row = styled.tr`
@@ -22,14 +20,15 @@ const Row = styled.tr`
   line-height: 1.5;
   font-size: 0.8em;
   font-weight: bold;
-  td:first-child {
+  td {
+    padding: 0;
+  }
+  th:first-child {
+    text-align: left;
   }
   td:not(:first-child) {
     padding: 0 0.25rem;
     text-align: center;
-  }
-  td {
-    padding: 0;
   }
   &:nth-child(2) td:last-child {
     color: ${p => p.theme.colors.background};
@@ -38,10 +37,9 @@ const Row = styled.tr`
   }
 `;
 
-export default function Payouts() {
+export default function PayoutTable() {
   return (
     <Styles>
-      <h2>Payouts</h2>
       <Table>
         <tbody>
           <Row>
@@ -52,6 +50,7 @@ export default function Payouts() {
             <th></th>
             <th>Max Bet</th>
           </Row>
+
           {Object.entries(HANDS)
             .filter(h => h[0] !== 'zilch')
             .map(([i, hand]) => {

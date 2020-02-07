@@ -9,6 +9,7 @@ import GlobalStyles from 'styles/global';
 import Header from 'components/Header';
 import Game from 'components/Game';
 import SettingsModal from 'components/SettingsModal';
+import AboutModal from 'components/AboutModal';
 
 initializeGA();
 
@@ -65,17 +66,18 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-    <Styles>
+      <Styles>
         <Header />
         <SettingsModal
           playerState={playerState}
           actions={{ toggleSoundMute, setTableColor, setCardColor }}
         />
-      <Game
-        playerState={playerState}
-        playerActions={{ toggleSoundMute, incrementBank }}
-      />
-    </Styles>
+        <AboutModal />
+        <Game
+          playerState={playerState}
+          playerActions={{ toggleSoundMute, incrementBank }}
+        />
+      </Styles>
     </ThemeProvider>
   );
 }
