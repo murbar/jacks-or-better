@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import '__mocks__/AudioContext.mock';
 import '__mocks__/crypto.mock';
 import { ThemeProvider } from 'styled-components';
-import { defaultTheme } from 'styles/theme';
+import defaultTheme from 'styles/theme';
 
 import { render, fireEvent, wait, waitForDomChange } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
