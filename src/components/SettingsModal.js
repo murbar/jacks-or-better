@@ -39,7 +39,7 @@ const Styles = styled.div`
   }
 `;
 
-export default function AboutModal({ isShowing = true, playerState, actions }) {
+export default function AboutModal({ isShowing = false, playerState, actions }) {
   const [showModal, setShowModal] = useState(isShowing);
   const { toggleSoundMute, setTableColor, setCardColor } = actions;
   const isSoundOn = playerState.soundFxOn;
