@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import { mediaQuery, adjustHsl } from 'styles/helpers';
+import { mediaQuery } from 'styles/helpers';
 
 const Styles = styled.div`
   display: flex;
