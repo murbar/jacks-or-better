@@ -67,7 +67,7 @@ const WinBounce = styled.div`
   ${p =>
     p.didWin &&
     css`
-      animation: 1.5s ${p => p.index * 50}ms infinite ${bounce};
+      animation: 1.5s ${p => p.index * 50}ms 5 ${bounce};
     `}
 `;
 
