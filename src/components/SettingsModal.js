@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as SettingsIcon } from 'images/settings-icon.svg';
 import Button from 'components/Button';
@@ -40,11 +40,11 @@ const Styles = styled.div`
 `;
 
 export default function AboutModal({ isShowing = false, playerState, actions }) {
-  const [showModal, setShowModal] = useState(isShowing);
+  const [showModal, setShowModal] = React.useState(isShowing);
   const { toggleSoundMute, setTableColor, setCardColor } = actions;
   const isSoundOn = playerState.soundFxOn;
 
-  useEffect(() => {
+  React.useEffect(() => {
     setShowModal(isShowing);
   }, [isShowing]);
 
@@ -59,7 +59,7 @@ export default function AboutModal({ isShowing = false, playerState, actions }) 
         onClick={() => setShowModal(true)}
         role="switch"
         aria-checked={showModal ? 'true' : 'false'}
-        title="Show settings"
+        title="Show Settings"
       >
         <SettingsIcon />
       </SettingsModalControl>
