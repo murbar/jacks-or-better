@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { slideInDown } from 'styles/animations';
-import { mediaQuery } from 'styles/helpers';
-import { playSound } from 'soundFx';
 import { ReactComponent as LogoImage } from 'images/logo.svg';
-import { ReactComponent as SoundOnImage } from 'images/sound-on-icon.svg';
-import { ReactComponent as SoundOffImage } from 'images/sound-off-icon.svg';
 
 const Styles = styled.header`
   position: absolute;
@@ -31,42 +27,13 @@ const Logo = styled.div`
   }
 `;
 
-const SoundControl = styled.div`
-  position: absolute;
-  top: 0;
-  right: 1rem;
-  padding: 1rem;
-  svg {
-    color: ${p => p.theme.colors.primary};
-    width: 1.5em;
-    height: auto;
-  }
-  ${mediaQuery.above.phone`
-    right: 15rem;
-  `}
-`;
-
-export default function Header({ playerState, toggleSoundMute }) {
-  const isSoundOn = playerState.soundFxOn;
-
-  const toggleMute = () => {
-    if (!isSoundOn) playSound('cardTap');
-    toggleSoundMute();
-  };
-
+export default function Header() {
   return (
     <Styles>
       <h1>Jacks or Better Video Poker Game</h1>
       <Logo>
         <LogoImage />
       </Logo>
-      <SoundControl
-        onClick={toggleMute}
-        role="switch"
-        aria-checked={isSoundOn ? 'true' : 'false'}
-      >
-        {isSoundOn ? <SoundOnImage /> : <SoundOffImage />}
-      </SoundControl>
     </Styles>
   );
 }
