@@ -14,7 +14,7 @@ export const HANDS = {
 };
 
 export const PAYOUTS = {
-  [HANDS.royalFlush]: 250,
+  [HANDS.royalFlush]: 250, // 800 with max bet
   [HANDS.straightFlush]: 50,
   [HANDS.fourOfKind]: 25,
   [HANDS.fullHouse]: 9,
