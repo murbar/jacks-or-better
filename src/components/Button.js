@@ -73,9 +73,9 @@ const Styles = styled.button`
   border-radius: ${borderRadius};
   box-shadow: ${activeShadows(depth)};
   outline: none;
+  cursor: pointer;
 
   &:hover {
-    cursor: pointer;
   }
   &:active {
     box-shadow: ${activeShadows(0)};
