@@ -197,6 +197,10 @@ export default function Card({
   const rankVal = parseInt(rank, 10);
   const isFace = rankVal > 10 && rankVal < 14;
 
+  let testingClasses = 'card';
+  if (isFaceDown) testingClasses += ' facedown';
+  if (isHeld) testingClasses += ' held';
+
   return (
     <Styles isHeld={isHeld} tilt={tilt.current}>
       <WinBounce index={index} didWin={didWin}>
@@ -205,6 +209,7 @@ export default function Card({
           didWin={didWin}
           didDraw={didDraw}
           data-testid="card"
+          className={testingClasses}
         >
           <CardFront suit={suit} didScore={didScore} isHeld={isHeld} onClick={onClick}>
             <span>{rankString}</span>

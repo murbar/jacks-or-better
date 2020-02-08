@@ -1,3 +1,4 @@
+import config from 'config';
 import buttonSrc from 'sounds/button-press.mp3';
 import betSrc from 'sounds/bet.mp3';
 import betMaxSrc from 'sounds/bet-max.mp3';
@@ -6,6 +7,8 @@ import cardTapSrc from 'sounds/card-tap.mp3';
 import gameOverSrc from 'sounds/game-over.mp3';
 import winSrc from 'sounds/win.mp3';
 import bigWinSrc from 'sounds/big-win.mp3';
+
+const inTesting = config.env === 'test';
 
 let sourceMap = {
   buttonPress: buttonSrc,
@@ -19,7 +22,6 @@ let sourceMap = {
 };
 
 const context = new (window.AudioContext || window.webkitAudioContext)();
-const inTesting = process.env.NODE_ENV === 'test';
 
 if (!inTesting) {
   initSourceMap();

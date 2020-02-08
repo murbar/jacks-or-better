@@ -1,6 +1,9 @@
 import confetti from 'canvas-confetti';
+import config from 'config';
 
 export default function fireworks() {
+  if (config.env === 'test') return;
+
   const end = Date.now() + 5000;
 
   const interval = setInterval(() => {
