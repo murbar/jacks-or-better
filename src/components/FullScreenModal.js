@@ -38,7 +38,7 @@ const OverlayBox = styled.div`
   }
   ${mediaQuery.above.phone`
     max-width: 65rem;
-  `} /* breakpoint for width on large screen */
+  `}
 `;
 
 const Styles = styled(animated.div)`
@@ -53,7 +53,6 @@ const Styles = styled(animated.div)`
   justify-content: center;
   padding: 2rem;
   background: rgba(0, 0, 0, 0.25);
-  pointer-events: auto;
   overflow: scroll;
   transform: scale(1);
   will-change: transform, opacity;
@@ -67,7 +66,6 @@ export default function FullScreenModal({
 }) {
   const DOM_ID = 'modal';
   const overlayTransition = useTransition(isShowing, null, {
-    config: { precision: 0.001 },
     from: {
       opacity: 0,
       transform: 'scale(1.15)'
@@ -87,13 +85,13 @@ export default function FullScreenModal({
       item &&
       ReactDOM.createPortal(
         <Styles
-          style={props}
           key={key}
           onClick={e => {
             if (e.target.parentNode.id === DOM_ID) onClickOff(e);
           }}
+          style={{ ...props, pointerEvents: isShowing ? 'auto' : 'none' }}
         >
-          <OverlayBox style={props} key={key}>
+          <OverlayBox key={key}>
             {closeControl && (
               <CloseControl role="button" onClick={() => onClickOff()} title="Close">
                 <XIcon />
