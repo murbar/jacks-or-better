@@ -12,9 +12,7 @@ export default function ValueTween({ children, duration = null, decimals = 0 }) 
   if (duration) config.config = { duration };
   const spring = useSpring(config);
 
-  return (
-    <animated.span>{spring.value.interpolate(v => v.toFixed(decimals))}</animated.span>
-  );
+  return <animated.span>{spring.value.to(v => v.toFixed(decimals))}</animated.span>;
 }
 
 ValueTween.propTypes = {
