@@ -2,8 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { recordGAEvent } from 'analytics';
 import { getIndexes, isTruthy, isFalsy } from 'utils';
-import { newDeck, takeCards, scoreHand, HANDS, ROYAL_MAX_MULTIPLE } from 'poker';
+import {
+  newDeck,
+  takeCards,
+  scoreHand,
+  HANDS,
+  ROYAL_MAX_MULTIPLE,
+  isBigWin
+} from 'poker';
 import { playSound } from 'soundFx';
+import fireworks from 'fireworks';
 import useHotKeys from 'hooks/useHotKeys';
 import useViewportSize from 'hooks/useViewportSize';
 import config from 'config';
@@ -144,6 +152,7 @@ function Game({ playerState, playerActions }) {
 
       if (winnings) {
         playSoundFx('win');
+        if (isBigWin(winningHand)) fireworks();
         recordGAEvent('User', 'Gameplay', 'Winning hand');
       } else {
         playSoundFx('gameOver');

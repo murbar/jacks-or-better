@@ -20,6 +20,15 @@ export const HANDS = {
   zilch: 'Nothing'
 };
 
+export const isBigWin = handString => {
+  return (
+    handString === HANDS.royalFlush ||
+    handString === HANDS.straightFlush ||
+    handString === HANDS.fourOfKind ||
+    handString === HANDS.fullHouse
+  );
+};
+
 export const PAYOUTS = {
   [HANDS.royalFlush]: 250, // 800 with max bet
   [HANDS.straightFlush]: 50,
