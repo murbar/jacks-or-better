@@ -7,7 +7,7 @@ import { ReactComponent as DiamondsSVG } from 'images/diamonds.svg';
 import { ReactComponent as JackSVG } from 'images/jack-cir.svg';
 import { ReactComponent as QueenSVG } from 'images/queen-cir.svg';
 import { ReactComponent as KingSVG } from 'images/king-cir.svg';
-import cardBackSVG from 'images/card-back.svg';
+import { ReactComponent as CardBackSVG } from 'images/card-back.svg';
 import { addHslAlpha, mediaQuery } from 'styles/helpers';
 import { getRankAndSuit, HIGH_CARD_STRINGS } from 'poker';
 import { bounce } from 'styles/animations';
@@ -115,11 +115,12 @@ const CardFrontAndBack = styled.div`
 
 const CardBack = styled(CardFrontAndBack)`
   background-color: ${p => p.theme.colors.cardBackside};
-  background-image: url(${cardBackSVG});
-  background-position: center;
-  background-size: cover;
   border: 0.3rem solid ${p => p.theme.colors.cardBackground};
-
+  svg {
+    color: black;
+    width: 100%;
+    height: 100%;
+  }
   ${mediaQuery.above.px600`
     border: 0.5rem solid ${p => p.theme.colors.cardBackground};
   `};
@@ -211,7 +212,9 @@ export default function Card({
             <span>{rankString}</span>
             {isFace && faceImagesMap[rankVal]}
           </CardFront>
-          <CardBack />
+          <CardBack>
+            <CardBackSVG />
+          </CardBack>
         </CardContainer>
       </WinBounce>
       <HoldIndicator isHeld={isHeld}>HELD</HoldIndicator>
