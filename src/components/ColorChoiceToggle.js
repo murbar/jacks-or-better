@@ -20,12 +20,10 @@ const ChoiceButton = styled.button`
   width: 8rem;
   height: 5rem;
   border-radius: 1rem;
-  border: 0.2rem solid transparent;
   box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.5);
 
   &:hover {
-    /* border color */
-    border-color: ${p => p.theme.colors.foreground};
+    box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.5), 0 0 0 0.4rem white inset;
   }
   &:first-child {
     margin-left: 0;
@@ -39,7 +37,7 @@ const ChoiceButton = styled.button`
   ${p =>
     p.selected &&
     css`
-      border-color ${p => p.theme.colors.foreground};;
+      box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.5), 0 0 0 0.4rem white inset;
       cursor: default;
     `}
 `;
