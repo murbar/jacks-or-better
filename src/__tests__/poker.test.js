@@ -24,6 +24,10 @@ describe('Helper functions', () => {
     expect(set.size).toEqual(52);
   });
 
+  it('shuffles decks', () => {
+    expect(newDeck()).not.toEqual(newDeck());
+  });
+
   it('takes cards', () => {
     const deck = newDeck();
     const hand = takeCards(deck, 5);
