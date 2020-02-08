@@ -9,7 +9,7 @@ const Styles = styled(StatusStyles)`
 
 export default function Message({ gameState, states }) {
   return (
-    <Styles title={`${gameState.winningHand}!`}>
+    <Styles title={states.isWinState ? `${gameState.winningHand}!` : ''}>
       {states.isWinState && `${gameState.winningHand}!`}
     </Styles>
   );
