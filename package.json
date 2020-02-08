@@ -1,5 +1,10 @@
 {
-  "name": "cra-boilerplate",
+  "name": "jacks-or-better",
+  "author": "Joel Bartlett (https://github.com/murbar)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/murbar/jacks-or-better.git"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
