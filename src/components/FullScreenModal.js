@@ -7,7 +7,6 @@ import { ReactComponent as XIcon } from 'images/x-circle-icon.svg';
 
 const CloseControl = styled.div`
   position: absolute;
-  z-index: 5000;
   top: 0rem;
   right: 0rem;
   padding: 1rem;
@@ -19,13 +18,13 @@ const CloseControl = styled.div`
 `;
 
 const OverlayBox = styled.div`
+  position: relative;
   color: ${p => p.theme.colors.foreground};
   padding: 2rem 1rem;
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.3);
   background: ${p => p.theme.colors.background};
   border-radius: 1rem;
   margin-bottom: 1rem;
-  position: relative;
   pointer-events: auto;
   overflow: scroll;
   width: 100%;
@@ -39,7 +38,7 @@ const OverlayBox = styled.div`
   }
   ${mediaQuery.above.phone`
     max-width: 65rem;
-  `}
+  `} /* breakpoint for width on large screen */
 `;
 
 const Styles = styled(animated.div)`

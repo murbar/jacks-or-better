@@ -98,10 +98,10 @@ export default function AboutModal({ isShowing = false }) {
         <Styles>
           <h2>How to Play</h2>
           <p>
-            <em>Jacks or Better</em> is a simple game that's easy to learn. In order to
-            win a hand, you must have at least one pair with rank of Jack, Queen, King or
-            Ace. Just like regular poker, your goal is to build the strongest hand with
-            the cards you are dealt. Aces can be played low or high.
+            <em>Jacks or Better</em> is a simple game that's easy to learn. To win a hand,
+            you must have at least one pair with a rank of Jack, Queen, King or Ace. Your
+            goal is to build the strongest hand with the cards you're dealt. Aces can be
+            played low or high.
           </p>
           <ul>
             <li>Place your bet, $5-25</li>
@@ -113,8 +113,9 @@ export default function AboutModal({ isShowing = false }) {
               Select <strong>DRAW</strong> to receive new cards to replace those discarded
             </li>
             <li>
-              Your hand will be scored and any winnings will be added to your bank in the
-              amount of the <a href="#payouts">payout</a> multiplied by your bet
+              Your hand will then be scored and any winnings will be added to your bank in
+              the amount of the hand's <a href="#payouts">payout</a> multiplied by your
+              bet
             </li>
           </ul>
           <p>
@@ -169,6 +170,10 @@ export default function AboutModal({ isShowing = false }) {
               <HandDisplay hand={exampleHands.royalFlush} />
             </li>
           </ul>
+
+          <h3 id="payouts">Payouts</h3>
+          <PayoutTable />
+
           <h3>Strategy</h3>
           <p>
             A little bit of skill will increase your winnings and make the game more fun
@@ -182,8 +187,7 @@ export default function AboutModal({ isShowing = false }) {
           </p>
           <ul>
             <li>
-              4 cards of a Royal Flush (unlikely to happen, but the payout is just too
-              high to pass up)
+              4 cards of a Royal Flush (the potential payout is just too high to pass up)
             </li>
             <li>Any cards that make a hand of two pair or better</li>
             <li>4 cards of a Straight Flush</li>
@@ -202,8 +206,6 @@ export default function AboutModal({ isShowing = false }) {
             <li>Otherwise, keep nothing and draw a new hand</li>
           </ul>
 
-          <h3 id="payouts">Payouts</h3>
-          <PayoutTable />
           <HotKeys>
             <h3>Hotkeys</h3>
             <dl>
