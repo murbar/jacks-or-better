@@ -1,14 +1,14 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import theme from 'styles/theme';
-import { adjustHslLightness, addHslAlpha, adjustHsl } from 'styles/helpers';
+import { addHslAlpha, adjustHsl } from 'styles/helpers';
 
 const activeWhite = 'hsl(62, 74%, 90%)';
 const disabledColor = 'hsl(0, 0%, 70%)';
 // const activeBlue = 'hsl(213, 95%, 80%)';
 
 const gradient = (color, lightDelta = 8) =>
-  `radial-gradient(ellipse,  ${adjustHslLightness(color, lightDelta)}, ${color})`;
+  `radial-gradient(ellipse,  ${adjustHsl(color, { l: lightDelta })}, ${color})`;
 
 const depth = '0.8rem';
 const borderRadius = '0.5rem';

@@ -54,24 +54,18 @@ export const adjustHsl = (hsl, values) => {
   return `hsla(${dH}, ${dS}%, ${dL}%, ${dA})`;
 };
 
-export const adjustHslLightness = (hsl, delta) => {
-  return adjustHsl(hsl, { l: delta });
-};
-
 export const effect3d = color => css`
-  text-shadow: 0rem -0.1rem 0 ${adjustHslLightness(color, 30)},
-    0 0.1rem 0 ${adjustHslLightness(color, -20)},
-    0 0.2rem 0 ${adjustHslLightness(color, -20)},
-    0 0.3rem 0 ${adjustHslLightness(color, -20)},
-    0 0.4rem 0 ${adjustHslLightness(color, -20)}, 0.1rem 0rem 1rem rgba(16, 16, 16, 0.3),
-    0.1rem 1rem 0.5rem rgba(16, 16, 16, 0.3), 0.1rem 1.2rem 1rem rgba(16, 16, 16, 0.2),
-    0.1rem 1.4rem 3rem rgba(16, 16, 16, 0.2), 0.1rem 1.6rem 5rem rgba(16, 16, 16, 0.3);
+  text-shadow: 0rem -0.1rem 0 ${adjustHsl(color, { l: 30 })},
+    0 0.1rem 0 ${adjustHsl(color, { l: -20 })}, 0 0.2rem 0 ${adjustHsl(color, { l: -20 })},
+    0 0.3rem 0 ${adjustHsl(color, { l: -20 })}, 0 0.4rem 0 ${adjustHsl(color, { l: -20 })},
+    0.1rem 0rem 1rem rgba(16, 16, 16, 0.3), 0.1rem 1rem 0.5rem rgba(16, 16, 16, 0.3),
+    0.1rem 1.2rem 1rem rgba(16, 16, 16, 0.2), 0.1rem 1.4rem 3rem rgba(16, 16, 16, 0.2),
+    0.1rem 1.6rem 5rem rgba(16, 16, 16, 0.3);
 `;
 
 export const effect3dSmall = color => css`
-  text-shadow: 0rem -0.1rem 0 ${adjustHslLightness(color, 30)},
-    0 0.1rem 0 ${adjustHslLightness(color, -20)},
-    0 0.2rem 0 ${adjustHslLightness(color, -20)}, 0.1rem 0rem 1rem rgba(16, 16, 16, 0.3),
-    0.1rem 0.5rem 0.5rem rgba(16, 16, 16, 0.3), 0.1rem 0.8rem 1rem rgba(16, 16, 16, 0.2),
-    0.1rem 1rem 3rem rgba(16, 16, 16, 0.2);
+  text-shadow: 0rem -0.1rem 0 ${adjustHsl(color, { l: 30 })},
+    0 0.1rem 0 ${adjustHsl(color, { l: -20 })}, 0 0.2rem 0 ${adjustHsl(color, { l: -20 })},
+    0.1rem 0rem 1rem rgba(16, 16, 16, 0.3), 0.1rem 0.5rem 0.5rem rgba(16, 16, 16, 0.3),
+    0.1rem 0.8rem 1rem rgba(16, 16, 16, 0.2), 0.1rem 1rem 3rem rgba(16, 16, 16, 0.2);
 `;
