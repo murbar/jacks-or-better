@@ -42,8 +42,8 @@ export default function TextHandDisplay({ hand, ...props }) {
   });
   return (
     <Styles {...props}>
-      {cards.map(c => (
-        <Card suit={c.suit}>
+      {cards.map((c, i) => (
+        <Card suit={c.suit} key={i}>
           {c.rank}
           <Suit>{suitMap[c.suit]}</Suit>
         </Card>
