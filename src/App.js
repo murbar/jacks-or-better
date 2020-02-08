@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import config from 'config';
 import useLocalStorageState from 'hooks/useLocalStorageState';
-import { DEVICE_SIZES } from 'styles/helpers';
+import { DEVICE_SIZES, mediaQuery } from 'styles/helpers';
 import { withUserPreferences } from 'styles/theme';
 import { recordPageView, initializeGA } from 'analytics';
 import GlobalStyles from 'styles/global';
@@ -12,6 +12,22 @@ import SettingsModal from 'components/SettingsModal';
 import AboutModal from 'components/AboutModal';
 
 initializeGA();
+
+const Menu = styled.div`
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  & > div {
+    margin: 0 0.25rem;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  ${mediaQuery.above.phone`
+    right: 15rem;
+  `}
+`;
 
 const Styles = styled.div`
   position: relative;
@@ -68,11 +84,13 @@ function App() {
       <GlobalStyles />
       <Styles>
         <Header />
-        <SettingsModal
-          playerState={playerState}
-          actions={{ toggleSoundMute, setTableColor, setCardColor }}
-        />
-        <AboutModal />
+        <Menu>
+          <SettingsModal
+            playerState={playerState}
+            actions={{ toggleSoundMute, setTableColor, setCardColor }}
+          />
+          <AboutModal />
+        </Menu>
         <Game
           playerState={playerState}
           playerActions={{ toggleSoundMute, incrementBank }}

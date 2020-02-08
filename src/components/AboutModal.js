@@ -8,9 +8,6 @@ import TextHandDisplay from 'components/TextHandDisplay';
 import PayoutTable from 'components/PayoutTable';
 
 const AboutModalControl = styled.div`
-  position: absolute;
-  top: 0;
-  right: calc(1rem + 2.5em);
   padding: 1rem;
   cursor: pointer;
   svg {
@@ -18,9 +15,6 @@ const AboutModalControl = styled.div`
     width: 1.5em;
     height: auto;
   }
-  ${mediaQuery.above.phone`
-    right: calc(15rem + 2.5em);
-  `}
 `;
 
 const HandDisplay = styled(TextHandDisplay)`
@@ -199,7 +193,7 @@ export default function AboutModal({ isShowing = false }) {
             <li>Any pair lower than Jacks</li>
             <li>4 cards of a Straight</li>
             <li>J, Q, K, and A of different suits</li>
-            <li>Any 2 cards higher of the same suit ranked J or better</li>
+            <li>Any 2 cards of the same suit ranked J or better</li>
             <li>3 cards of a Straight Flush</li>
             <li>J, Q, and K of different suits</li>
             <li>2 cards of different suits ranked J or better</li>

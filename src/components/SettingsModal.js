@@ -12,9 +12,6 @@ delete cardOptions.default;
 delete tableOptions.default;
 
 const SettingsModalControl = styled.div`
-  position: absolute;
-  top: 0;
-  right: 1rem;
   padding: 1rem;
   cursor: pointer;
   svg {
@@ -22,9 +19,6 @@ const SettingsModalControl = styled.div`
     width: 1.5em;
     height: auto;
   }
-  ${mediaQuery.above.phone`
-    right: 15rem;
-  `}
 `;
 
 const Styles = styled.div`
