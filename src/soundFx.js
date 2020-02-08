@@ -5,6 +5,7 @@ import cardTurnSrc from 'sounds/card-turn-alt.mp3';
 import cardTapSrc from 'sounds/card-tap.mp3';
 import gameOverSrc from 'sounds/game-over.mp3';
 import winSrc from 'sounds/win.mp3';
+import bigWinSrc from 'sounds/big-win.mp3';
 
 let sourceMap = {
   buttonPress: buttonSrc,
@@ -13,7 +14,8 @@ let sourceMap = {
   cardTurn: cardTurnSrc,
   cardTap: cardTapSrc,
   gameOver: gameOverSrc,
-  win: winSrc
+  win: winSrc,
+  bigWin: bigWinSrc
 };
 
 const context = new (window.AudioContext || window.webkitAudioContext)();

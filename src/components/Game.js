@@ -151,8 +151,12 @@ function Game({ playerState, playerActions }) {
       playerActions.incrementBank(winnings);
 
       if (winnings) {
-        playSoundFx('win');
-        if (isBigWin(winningHand)) fireworks();
+        if (isBigWin(winningHand)) {
+          playSoundFx('bigWin');
+          fireworks();
+        } else {
+          playSoundFx('win');
+        }
         recordGAEvent('User', 'Gameplay', 'Winning hand');
       } else {
         playSoundFx('gameOver');
