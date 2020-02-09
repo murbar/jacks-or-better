@@ -1,17 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { mediaQuery } from 'styles/helpers';
 import { slideInLeft, slideInRight } from 'styles/animations';
 import ChipStack from 'components/ChipStack';
 
 const Styles = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: -3rem -2.5rem;
+  margin: 0.5rem -3rem;
   align-items: center;
-  /* ${mediaQuery.above.phone`
-    margin-top: 2rem;
-  `} */
 `;
 
 const Bank = styled.div`
@@ -23,7 +19,7 @@ const Bet = styled.div`
   animation: ${slideInLeft} 0.75s;
 `;
 
-export default function Stats({ bet, bank }) {
+export default function Stacks({ bet, bank }) {
   return (
     <Styles>
       <Bet>

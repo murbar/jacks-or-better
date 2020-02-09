@@ -18,7 +18,7 @@ export const StatusStyles = styled.div`
   font-size: 3.5rem;
   color: ${textColor};
   letter-spacing: -1px;
-  line-height: 1;
+  line-height: 1.2;
   z-index: 2000;
   
   ${effect3d(textColor)}

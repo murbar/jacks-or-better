@@ -3,17 +3,20 @@ import styled, { css } from 'styled-components';
 import ValueTween from 'components/ValueTween';
 import { effect3dSmall, mediaQuery } from 'styles/helpers';
 import { bounceIn, slideInLeft, slideInRight } from 'styles/animations';
+import Stacks from './Stacks';
 
 const Styles = styled.div`
-  display: flex;
-  margin: 6rem 0 0;
-  justify-content: space-between;
-  align-items: center;
+  margin: 5rem 0 0;
   line-height: 1;
   text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   font-family: ${p => p.theme.fonts.cards};
   font-weight: bold;
   cursor: default;
+  & > div {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+  }
   ${mediaQuery.above.phone`
     margin-top: 2rem;
   `}
@@ -55,20 +58,23 @@ export default function Stats({ gameState, playerState }) {
 
   return (
     <Styles>
-      <Bet>
-        Bet
-        <BetAmount title={`Current bet is $${currentBet}`}>
-          <span className="dollar-sign">$</span>
-          <ValueTween duration={250}>{currentBet}</ValueTween>
-        </BetAmount>
-      </Bet>
-      <Bank>
-        Bank
-        <BankAmount didWin={didWin} title={`Bank is $${bank}`}>
-          <span className="dollar-sign">$</span>
-          <ValueTween>{bank}</ValueTween>
-        </BankAmount>
-      </Bank>
+      <div>
+        <Bet>
+          Bet
+          <BetAmount title={`Current bet is $${currentBet}`}>
+            <span className="dollar-sign">$</span>
+            <ValueTween duration={250}>{currentBet}</ValueTween>
+          </BetAmount>
+        </Bet>
+        <Bank>
+          Bank
+          <BankAmount didWin={didWin} title={`Bank is $${bank}`}>
+            <span className="dollar-sign">$</span>
+            <ValueTween>{bank}</ValueTween>
+          </BankAmount>
+        </Bank>
+      </div>
+      <Stacks bet={gameState.currentBet} bank={playerState.bank} />
     </Styles>
   );
 }
