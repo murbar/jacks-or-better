@@ -24,7 +24,7 @@ let sourceMap = {
 const context = new (window.AudioContext || window.webkitAudioContext)();
 
 if (!inTesting) {
-  initSourceMap();
+  setTimeout(initSourceMap, 250);
 }
 
 async function loadFile(url) {
