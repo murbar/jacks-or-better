@@ -39,4 +39,11 @@ export default createGlobalStyle`
       color: ${p => p.theme.colors.primary};
     }
   }
+  @media (min-width: 133.33vw) {
+  /* the zoom level in Safari is at most 75% */
+  html {
+    /* Something smaller than usual */
+    font-size: 0.8em;
+  }
+}
 `;
