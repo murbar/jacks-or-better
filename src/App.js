@@ -46,21 +46,14 @@ function App() {
     config.storageKeys.playerState,
     config.initPlayerState
   );
-  const [theme, setTheme] = React.useState(
+  const theme = React.useMemo(
+    () =>
     withUserPreferences({
       tableColor: playerState.tableColor,
       cardColor: playerState.cardColor
-    })
-  );
-
-  React.useEffect(() => {
-    setTheme(
-      withUserPreferences({
-        tableColor: playerState.tableColor,
-        cardColor: playerState.cardColor
-      })
+      }),
+    [playerState.tableColor, playerState.cardColor]
     );
-  }, [playerState.tableColor, playerState.cardColor]);
 
   const incrementBank = React.useCallback(
     points => {
