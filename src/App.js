@@ -10,6 +10,7 @@ import Header from 'components/Header';
 import Game from 'components/Game';
 import SettingsModal from 'components/SettingsModal';
 import AboutModal from 'components/AboutModal';
+import 'fonts.css';
 
 initializeGA();
 
@@ -48,12 +49,12 @@ function App() {
   );
   const theme = React.useMemo(
     () =>
-    withUserPreferences({
-      tableColor: playerState.tableColor,
-      cardColor: playerState.cardColor
+      withUserPreferences({
+        tableColor: playerState.tableColor,
+        cardColor: playerState.cardColor
       }),
     [playerState.tableColor, playerState.cardColor]
-    );
+  );
 
   const incrementBank = React.useCallback(
     points => {

@@ -1,13 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-import komica from 'fonts/komica-axis.woff';
 
 export default createGlobalStyle`
-  @font-face {
-      font-family: 'KomicaAxis';
-      src: url(${komica}) format('woff');
-      font-weight: normal;
-      font-style: normal;
-  }
   * { 
     box-sizing: border-box;
   }
