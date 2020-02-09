@@ -2,4 +2,6 @@
 
 A little poker game build with React.
 
-https://poker.joelb.dev
+Playable at https://poker.joelb.dev
+
+![Screenshot](public/screenshot.jpg)
