@@ -16,6 +16,7 @@ import useHotKeys from 'hooks/useHotKeys';
 import useViewportSize from 'hooks/useViewportSize';
 import config from 'config';
 import Stats from './Stats';
+import Stacks from './Stacks';
 import Hand from 'components/Hand';
 import Controls from './Controls';
 import BankEmptyModal from './BankEmptyModal';
@@ -207,6 +208,7 @@ function Game({ playerState, playerActions }) {
   return (
     <Styles height={viewportHeight}>
       <Stats gameState={gameState} playerState={playerState} />
+      <Stacks bet={gameState.currentBet} bank={playerState.bank} />
       <Hand gameState={gameState} toggleHeld={toggleHeld} />
       <Controls gameState={gameState} actions={{ incrementBet, setMaxBet, play }} />
       {gameState.didScore && isBankEmpty && <BankEmptyModal onAccept={resetBank} />}
