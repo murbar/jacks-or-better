@@ -19,7 +19,7 @@ const Logo = styled.div`
   width: var(--w);
   position: absolute;
   top: 0.5rem;
-  left: calc(50% - calc(var(--w) / 2));
+  left: calc(50% - (var(--w) / 2));
   animation: ${slideInDown} 0.75s;
   svg {
     width: 100%;
