@@ -20,6 +20,9 @@ const Menu = styled.div`
   right: 1rem;
   & > div {
     margin: 0 0.25rem;
+    &:first-child {
+      margin-left: 0;
+    }
     &:last-child {
       margin-right: 0;
     }
