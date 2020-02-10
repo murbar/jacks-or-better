@@ -80,7 +80,7 @@ function Game({ playerState, playerActions }) {
 
   const resetBank = () => {
     playerActions.incrementBank(config.initPlayerState.bank - playerState.bank);
-    recordGAEvent('User', 'Gameplay', 'Replenish bank');
+    recordGAEvent('User', 'Play', 'Replenish bank');
   };
 
   const toggleHeld = index => {
@@ -160,7 +160,7 @@ function Game({ playerState, playerActions }) {
         } else {
           playSoundFx('win');
         }
-        recordGAEvent('User', 'Gameplay', 'Winning hand');
+        recordGAEvent('User', 'Play', 'Winning hand');
       } else {
         playSoundFx('gameOver');
       }
@@ -181,7 +181,7 @@ function Game({ playerState, playerActions }) {
         busy: true
       }));
       playerActions.incrementBank(-gameState.currentBet);
-      recordGAEvent('User', 'Gameplay', 'Deal');
+      recordGAEvent('User', 'Play', 'Deal');
     } else {
       discard();
       setGameState(prev => ({
