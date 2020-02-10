@@ -53,8 +53,9 @@ const BankAmount = styled(BetAmount)`
 
 export default function Stats({ gameState, playerState }) {
   const { bank } = playerState;
-  const { currentBet, didScore, winnings } = gameState;
+  const { currentBet, didScore, didDeal, didDraw, winnings } = gameState;
   const didWin = didScore && winnings !== 0;
+  const inPLay = (didDeal || didDraw) && !didScore;
 
   return (
     <Styles>
@@ -74,7 +75,7 @@ export default function Stats({ gameState, playerState }) {
           </BankAmount>
         </Bank>
       </div>
-      <Stacks bet={gameState.currentBet} bank={playerState.bank} />
+      <Stacks bet={gameState.currentBet} bank={playerState.bank} inPLay={inPLay} />
     </Styles>
   );
 }

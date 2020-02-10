@@ -16,13 +16,15 @@ const Bank = styled.div`
 `;
 
 const Bet = styled.div`
+  opacity: ${p => (p.inPlay ? 1 : 0.35)};
+  transition: opacity 250ms;
   animation: ${slideInLeft} 0.75s;
 `;
 
-export default function Stacks({ bet, bank }) {
+export default function Stacks({ bet, bank, inPLay }) {
   return (
     <Styles>
-      <Bet>
+      <Bet inPlay={inPLay}>
         <ChipStack total={bet} />
       </Bet>
       <Bank>
