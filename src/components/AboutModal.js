@@ -216,7 +216,7 @@ export default function AboutModal({ isShowing = false }) {
               <dt>
                 <kbd>B</kbd>
               </dt>
-              <dd>Bet</dd>
+              <dd>Bet one</dd>
               <dt>
                 <kbd>1</kbd>
                 <kbd>2</kbd>
