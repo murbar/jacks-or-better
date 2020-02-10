@@ -95,10 +95,12 @@ const CardContainer = styled.div`
   transform-style: preserve-3d;
 
   &:hover {
-    transform: ${p => !p.isFaceDown && !p.didDraw && 'rotateY(180deg) scale(1.02)'};
+    transform: ${p =>
+      !p.isFaceDown && !p.didDraw && !p.busy && 'rotateY(180deg) scale(1.02)'};
   }
 
-  ${p => !p.isFaceDown && 'transform: rotateY(180deg)'};
+  ${p => !p.isFaceDown && 'transform: rotateY(180deg);'};
+  ${p => p.busy && 'pointer-events: none;'};
 `;
 
 const CardFrontAndBack = styled.div`
@@ -189,6 +191,7 @@ export default function Card({
   didDraw,
   didScore,
   didWin,
+  busy,
   onClick
 }) {
   let [rank, suit] = getRankAndSuit(value);
@@ -200,6 +203,7 @@ export default function Card({
   let testingClasses = 'card';
   if (isFaceDown) testingClasses += ' facedown';
   if (isHeld) testingClasses += ' held';
+  console.log(busy);
 
   return (
     <Styles isHeld={isHeld} tilt={tilt.current}>
@@ -208,6 +212,7 @@ export default function Card({
           isFaceDown={isFaceDown}
           didWin={didWin}
           didDraw={didDraw}
+          busy={busy}
           data-testid="card"
           className={testingClasses}
         >

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { mediaQuery } from 'styles/helpers';
 import { randomInRange as random } from 'utils';
 import chip1 from 'images/chip1.svg';
 import chip5 from 'images/chip5.svg';
@@ -36,6 +37,12 @@ const ChipStyles = styled.div`
 const Styles = styled.div`
   --chip-size: 4rem;
   --stack-size: calc(var(--chip-size) * 2);
+  ${mediaQuery.above.phone`
+    --chip-size: 5rem;
+  `}
+  ${mediaQuery.above.tablet`
+    --chip-size: 6rem;
+  `}
   position: relative;
   width: var(--stack-size);
   height: var(--stack-size);
