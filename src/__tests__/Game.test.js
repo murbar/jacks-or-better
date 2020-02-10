@@ -102,10 +102,10 @@ it('plays a full hand', async () => {
     cards.forEach(c => {
       expect(c).toHaveStyle('transform: rotateY(180deg)');
     });
+    // deal is active after last card flips
+    expect(dealBtn).not.toBeDisabled();
   });
 
-  // deal is active again
-  expect(dealBtn).not.toBeDisabled();
   expect(dealBtn).toHaveTextContent('Draw');
 
   // bets are disabled
@@ -113,7 +113,7 @@ it('plays a full hand', async () => {
   expect(betMaxBtn).toBeDisabled();
 
   // bet was deducted from bank
-  await waitForDomChange(() => {
+  await wait(() => {
     const current = Number(bankDisplay.textContent.slice(1));
     expect(current).toEqual(bank - bet);
   });

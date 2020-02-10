@@ -121,9 +121,12 @@ function Game({ playerState, playerActions }) {
           playSoundFx('cardTurn', 0.75);
           toggleShowCard(hidden.pop());
           showOneAndWait();
-        }, config.cardRevealDelay);
+        }, config.cardRevealDelayMS);
       } else {
-        setGameState(prev => ({ ...prev, busy: false }));
+        setTimeout(
+          () => setGameState(prev => ({ ...prev, busy: false })),
+          config.cardFlipDurationMS
+        );
       }
     };
     showOneAndWait();

@@ -8,6 +8,7 @@ import { ReactComponent as JackSVG } from 'images/jack-cir.svg';
 import { ReactComponent as QueenSVG } from 'images/queen-cir.svg';
 import { ReactComponent as KingSVG } from 'images/king-cir.svg';
 import { ReactComponent as CardBackSVG } from 'images/card-back.svg';
+import config from 'config';
 import { addHslAlpha, mediaQuery } from 'styles/helpers';
 import { getRankAndSuit, HIGH_CARD_STRINGS } from 'poker';
 import { bounce } from 'styles/animations';
@@ -91,7 +92,7 @@ const CardContainer = styled.div`
   min-width: 7rem;
   max-width: 18.5vw;
   height: calc(var(--card-size) * 1.4);
-  transition: transform 200ms;
+  transition: transform ${config.cardFlipDurationMS}ms;
   transform-style: preserve-3d;
 
   &:hover {
@@ -203,7 +204,6 @@ export default function Card({
   let testingClasses = 'card';
   if (isFaceDown) testingClasses += ' facedown';
   if (isHeld) testingClasses += ' held';
-  console.log(busy);
 
   return (
     <Styles isHeld={isHeld} tilt={tilt.current}>

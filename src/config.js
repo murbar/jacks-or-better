@@ -24,7 +24,8 @@ export default {
     winningHand: null,
     busy: false
   },
-  cardRevealDelay: 100,
+  cardRevealDelayMS: 100,
+  cardFlipDurationMS: 200,
   GAPropertyId: 'UA-140727716-7',
   env: process.env.NODE_ENV
 };
