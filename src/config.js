@@ -1,4 +1,4 @@
-const VERSION = '2020.02.06';
+const VERSION = '2020.02.09';
 
 export default {
   storageKeys: {
