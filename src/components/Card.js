@@ -66,8 +66,13 @@ const WinBounce = styled.div`
 `;
 
 const CardContainer = styled.div`
-  --card-size: 8rem;
+  --card-size: 7rem;
   --radius: 0.5rem;
+    min-width: 6rem;
+  ${mediaQuery.above.px350`
+    --card-size: 8rem;
+    min-width: 7rem;
+  `}
   ${mediaQuery.above.px500`
     --card-size: 8.5rem;
   `}
@@ -89,7 +94,6 @@ const CardContainer = styled.div`
 
   position: relative;
   width: var(--card-size);
-  min-width: 7rem;
   max-width: 18.5vw;
   height: calc(var(--card-size) * 1.4);
   transition: transform ${config.cardFlipDurationMS}ms;

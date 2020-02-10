@@ -38,7 +38,7 @@ const Styles = styled.div`
   margin: 0 auto;
   padding: 0 2rem;
   max-width: ${DEVICE_SIZES.px1100}px;
-  min-width: 360px;
+  min-width: 320px;
   font-size: 1em;
 `;
 
