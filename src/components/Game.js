@@ -11,10 +11,10 @@ import {
   isBigWin
 } from 'poker';
 import { playSound } from 'soundFx';
+import config from 'config';
 import fireworks from 'fireworks';
 import useHotKeys from 'hooks/useHotKeys';
 import useViewportSize from 'hooks/useViewportSize';
-import config from 'config';
 import Stats from './Stats';
 import Hand from 'components/Hand';
 import Controls from './Controls';
@@ -38,7 +38,7 @@ const Styles = styled.div`
   min-height: ${p => p.height}px;
 `;
 
-function Game({ playerState, playerActions }) {
+export default function Game({ playerState, playerActions }) {
   const [gameState, setGameState] = React.useState(initGameState());
   const { height: viewportHeight } = useViewportSize();
   const isBankEmpty = playerState.bank <= 0;
@@ -115,6 +115,7 @@ function Game({ playerState, playerActions }) {
 
   const revealHiddenCards = React.useCallback(() => {
     const hidden = getIndexes(gameState.cardsFaceDown, isTruthy).reverse();
+
     const showOneAndWait = () => {
       if (hidden.length) {
         setTimeout(() => {
@@ -129,8 +130,35 @@ function Game({ playerState, playerActions }) {
         );
       }
     };
+
     showOneAndWait();
   }, [gameState.cardsFaceDown, playSoundFx, toggleShowCard]);
+
+  const play = () => {
+    playSoundFx('buttonPress', 0.5);
+    if (gameState.busy) return;
+
+    if (!gameState.didDeal) {
+      if (gameState.didDraw) {
+        resetHand();
+      }
+      setGameState(prev => ({
+        ...prev,
+        didDeal: true,
+        busy: true
+      }));
+      playerActions.incrementBank(-gameState.currentBet);
+      recordGAEvent('User', 'Play', 'Deal');
+    } else {
+      discard();
+      setGameState(prev => ({
+        ...prev,
+        didDeal: false,
+        didDraw: true,
+        busy: true
+      }));
+    }
+  };
 
   // reveal face-down cards after the deal and after the draw
   React.useEffect(() => {
@@ -167,32 +195,6 @@ function Game({ playerState, playerActions }) {
     }
   }, [gameState, playSoundFx, endOfPlay, playerActions]);
 
-  const play = () => {
-    playSoundFx('buttonPress', 0.5);
-    if (gameState.busy) return;
-
-    if (!gameState.didDeal) {
-      if (gameState.didDraw) {
-        resetHand();
-      }
-      setGameState(prev => ({
-        ...prev,
-        didDeal: true,
-        busy: true
-      }));
-      playerActions.incrementBank(-gameState.currentBet);
-      recordGAEvent('User', 'Play', 'Deal');
-    } else {
-      discard();
-      setGameState(prev => ({
-        ...prev,
-        didDeal: false,
-        didDraw: true,
-        busy: true
-      }));
-    }
-  };
-
   useHotKeys({
     d: play,
     b: incrementBet,
@@ -217,5 +219,3 @@ function Game({ playerState, playerActions }) {
     </Styles>
   );
 }
-
-export default Game;
