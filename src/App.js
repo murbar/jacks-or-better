@@ -42,6 +42,8 @@ const Styles = styled.div`
   font-size: 1em;
 `;
 
+recordPageView('/');
+
 function App() {
   const [playerState, setPlayerState] = useLocalStorageState(
     config.storageKeys.playerState,
@@ -75,7 +77,6 @@ function App() {
     setPlayerState(prev => ({ ...prev, cardColor: name }));
   };
 
-  recordPageView('/');
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
