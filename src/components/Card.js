@@ -10,9 +10,9 @@ import { ReactComponent as KingSVG } from 'images/king-cir.svg';
 import { ReactComponent as CardBackSVG } from 'images/card-back.svg';
 import config from 'config';
 import { addHslAlpha, mediaQuery } from 'styles/helpers';
-import { getRankAndSuit, HIGH_CARD_STRINGS } from 'poker';
 import { bounce } from 'styles/animations';
-import { randomInRange } from 'utils';
+import { getRankAndSuit, HIGH_CARD_STRINGS } from 'lib/poker';
+import { randomInRange } from 'lib/utils';
 
 const faceImagesMap = {
   '11': <JackSVG />,

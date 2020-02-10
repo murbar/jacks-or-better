@@ -4,13 +4,13 @@ import config from 'config';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 import { DEVICE_SIZES, mediaQuery } from 'styles/helpers';
 import { withUserPreferences } from 'styles/theme';
-import { recordPageView, initializeGA } from 'analytics';
+import { recordPageView, initializeGA } from 'lib/analytics';
 import GlobalStyles from 'styles/global';
 import Header from 'components/Header';
 import Game from 'components/Game';
 import SettingsModal from 'components/SettingsModal';
 import AboutModal from 'components/AboutModal';
-import 'fonts.css';
+import 'styles/fonts.css';
 
 initializeGA();
 

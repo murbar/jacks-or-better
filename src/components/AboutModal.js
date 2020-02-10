@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { mediaQuery, effect3dSmall } from 'styles/helpers';
-import { exampleHands } from 'poker';
+import { exampleHands } from 'lib/poker';
 import { ReactComponent as AboutIcon } from 'images/help-circle-icon.svg';
 import FullScreenModal from 'components/FullScreenModal';
 import TextHandDisplay from 'components/TextHandDisplay';

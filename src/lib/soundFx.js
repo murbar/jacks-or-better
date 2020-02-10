@@ -1,12 +1,12 @@
 import config from 'config';
-import buttonSrc from 'sounds/button-press.mp3';
-import betSrc from 'sounds/bet.mp3';
-import betMaxSrc from 'sounds/bet-max.mp3';
-import cardTurnSrc from 'sounds/card-turn-alt.mp3';
-import cardTapSrc from 'sounds/card-tap.mp3';
-import gameOverSrc from 'sounds/game-over.mp3';
-import winSrc from 'sounds/win.mp3';
-import bigWinSrc from 'sounds/big-win.mp3';
+import buttonSrc from 'audio/button-press.mp3';
+import betSrc from 'audio/bet.mp3';
+import betMaxSrc from 'audio/bet-max.mp3';
+import cardTurnSrc from 'audio/card-turn-alt.mp3';
+import cardTapSrc from 'audio/card-tap.mp3';
+import gameOverSrc from 'audio/game-over.mp3';
+import winSrc from 'audio/win.mp3';
+import bigWinSrc from 'audio/big-win.mp3';
 
 const inTesting = config.env === 'test';
 

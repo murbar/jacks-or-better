@@ -14,7 +14,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 import Game from 'components/Game';
 import config from 'config';
-import { scoreHand } from 'poker';
+import { scoreHand } from 'lib/poker';
 
 export const withTheme = (Component, props) => {
   return (

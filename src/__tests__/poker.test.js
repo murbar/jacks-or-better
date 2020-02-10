@@ -7,7 +7,7 @@ import {
   exampleHands,
   HANDS,
   PAYOUTS
-} from 'poker';
+} from 'lib/poker';
 
 describe('Helper functions', () => {
   it('builds a new deck', () => {

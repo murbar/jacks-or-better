@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { recordGAEvent } from 'analytics';
-import { getIndexes, isTruthy, isFalsy } from 'utils';
+import { recordGAEvent } from 'lib/analytics';
+import { getIndexes, isTruthy, isFalsy } from 'lib/utils';
 import {
   newDeck,
   takeCards,
@@ -9,16 +9,16 @@ import {
   HANDS,
   ROYAL_MAX_MULTIPLE,
   isBigWin
-} from 'poker';
-import { playSound } from 'soundFx';
+} from 'lib/poker';
+import { playSound } from 'lib/soundFx';
 import config from 'config';
-import fireworks from 'fireworks';
+import fireworks from 'lib/fireworks';
 import useHotKeys from 'hooks/useHotKeys';
 import useViewportSize from 'hooks/useViewportSize';
-import Stats from './Stats';
+import Stats from 'components/Stats';
 import Hand from 'components/Hand';
-import Controls from './Controls';
-import BankEmptyModal from './BankEmptyModal';
+import Controls from 'components/Controls';
+import BankEmptyModal from 'components/BankEmptyModal';
 
 function initGameState() {
   const deck = newDeck();

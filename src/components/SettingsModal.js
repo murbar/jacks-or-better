@@ -4,7 +4,7 @@ import { ReactComponent as SettingsIcon } from 'images/settings-icon.svg';
 import Button from 'components/Button';
 import FullScreenModal from 'components/FullScreenModal';
 import { effect3dSmall } from 'styles/helpers';
-import { playSound } from 'soundFx';
+import { playSound } from 'lib/soundFx';
 import ColorChoiceToggle from 'components/ColorChoiceToggle';
 import { cardOptions, tableOptions } from 'styles/theme';
 

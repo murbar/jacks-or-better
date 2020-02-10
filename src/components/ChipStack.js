@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { mediaQuery } from 'styles/helpers';
-import { randomInRange as random } from 'utils';
+import { randomInRange as random } from 'lib/utils';
 import chip1 from 'images/chip1.svg';
 import chip5 from 'images/chip5.svg';
 import chip10 from 'images/chip10.svg';
