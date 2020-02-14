@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import config from 'config';
 import useLocalStorageState from 'hooks/useLocalStorageState';
@@ -77,23 +78,25 @@ function App() {
 
   recordPageView('/');
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Styles>
-        <Header />
-        <Menu>
-          <SettingsModal
+    <Router>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Styles>
+          <Header />
+          <Menu>
+            <SettingsModal
+              playerState={playerState}
+              actions={{ toggleSoundMute, setTableColor, setCardColor }}
+            />
+            <AboutModal />
+          </Menu>
+          <Game
             playerState={playerState}
-            actions={{ toggleSoundMute, setTableColor, setCardColor }}
+            playerActions={{ toggleSoundMute, incrementBank }}
           />
-          <AboutModal />
-        </Menu>
-        <Game
-          playerState={playerState}
-          playerActions={{ toggleSoundMute, incrementBank }}
-        />
-      </Styles>
-    </ThemeProvider>
+        </Styles>
+      </ThemeProvider>
+    </Router>
   );
 }
 

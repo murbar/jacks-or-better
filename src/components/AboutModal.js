@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory, useRouteMatch, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { mediaQuery, effect3dSmall } from 'styles/helpers';
 import { exampleHands } from 'poker';
@@ -21,6 +22,7 @@ const HandDisplay = styled(TextHandDisplay)`
   display: block;
   margin-bottom: 1rem;
 `;
+
 const HotKeys = styled.div`
   display: none;
   ${mediaQuery.above.phone`
@@ -80,21 +82,24 @@ const Styles = styled.div`
   }
 `;
 
-export default function AboutModal({ isShowing = false }) {
-  const [showModal, setShowModal] = React.useState(isShowing);
+export default function AboutModal() {
+  const history = useHistory();
+  const routeMatch = useRouteMatch('/how-to-play');
+  const showModal = routeMatch && routeMatch.isExact;
 
   return (
     <>
-      <AboutModalControl
-        onClick={() => setShowModal(true)}
-        role="switch"
-        aria-checked={showModal ? 'true' : 'false'}
-        title="Show About"
-      >
-        <AboutIcon />
-      </AboutModalControl>
+      <Link to="/how-to-play">
+        <AboutModalControl
+          role="switch"
+          aria-checked={showModal ? 'true' : 'false'}
+          title="Show About"
+        >
+          <AboutIcon />
+        </AboutModalControl>
+      </Link>
 
-      <FullScreenModal onClickOff={() => setShowModal(false)} isShowing={showModal}>
+      <FullScreenModal onClickOff={() => history.push('/')} isShowing={showModal}>
         <Styles>
           <h2>How to Play</h2>
           <p>

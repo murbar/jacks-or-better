@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory, useRouteMatch, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ReactComponent as SettingsIcon } from 'images/settings-icon.svg';
 import Button from 'components/Button';
@@ -33,14 +34,12 @@ const Styles = styled.div`
   }
 `;
 
-export default function AboutModal({ isShowing = false, playerState, actions }) {
-  const [showModal, setShowModal] = React.useState(isShowing);
+export default function AboutModal({ playerState, actions }) {
   const { toggleSoundMute, setTableColor, setCardColor } = actions;
   const isSoundOn = playerState.soundFxOn;
-
-  React.useEffect(() => {
-    setShowModal(isShowing);
-  }, [isShowing]);
+  const history = useHistory();
+  const routeMatch = useRouteMatch('/settings');
+  const showModal = routeMatch && routeMatch.isExact;
 
   const toggleMute = () => {
     if (!isSoundOn) playSound('cardTap');
@@ -49,16 +48,17 @@ export default function AboutModal({ isShowing = false, playerState, actions }) 
 
   return (
     <>
-      <SettingsModalControl
-        onClick={() => setShowModal(true)}
-        role="switch"
-        aria-checked={showModal ? 'true' : 'false'}
-        title="Show Settings"
-      >
-        <SettingsIcon />
-      </SettingsModalControl>
+      <Link to="/settings">
+        <SettingsModalControl
+          role="switch"
+          aria-checked={showModal ? 'true' : 'false'}
+          title="Show Settings"
+        >
+          <SettingsIcon />
+        </SettingsModalControl>
+      </Link>
 
-      <FullScreenModal onClickOff={() => setShowModal(false)} isShowing={showModal}>
+      <FullScreenModal onClickOff={() => history.push('/')} isShowing={showModal}>
         <Styles>
           <h2>Settings</h2>
           <h3>Cards</h3>
