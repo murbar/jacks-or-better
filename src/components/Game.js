@@ -212,7 +212,6 @@ export default function Game({ playerState, playerActions }) {
   return (
     <Styles height={viewportHeight}>
       <Stats gameState={gameState} playerState={playerState} />
-
       <Hand gameState={gameState} toggleHeld={toggleHeld} />
       <Controls gameState={gameState} actions={{ incrementBet, setMaxBet, play }} />
       {gameState.didScore && isBankEmpty && <BankEmptyModal onAccept={resetBank} />}

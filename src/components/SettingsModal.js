@@ -53,7 +53,7 @@ export default function AboutModal({ isShowing = false, playerState, actions }) 
         onClick={() => setShowModal(true)}
         role="switch"
         aria-checked={showModal ? 'true' : 'false'}
-        title="Show Settings"
+        title="Game Settings"
       >
         <SettingsIcon />
       </SettingsModalControl>

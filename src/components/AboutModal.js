@@ -89,7 +89,7 @@ export default function AboutModal({ isShowing = false }) {
         onClick={() => setShowModal(true)}
         role="switch"
         aria-checked={showModal ? 'true' : 'false'}
-        title="Show About"
+        title="How to Play"
       >
         <AboutIcon />
       </AboutModalControl>
