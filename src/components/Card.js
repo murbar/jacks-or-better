@@ -8,10 +8,11 @@ import { ReactComponent as JackSVG } from 'images/jack-cir.svg';
 import { ReactComponent as QueenSVG } from 'images/queen-cir.svg';
 import { ReactComponent as KingSVG } from 'images/king-cir.svg';
 import { ReactComponent as CardBackSVG } from 'images/card-back.svg';
+import config from 'config';
 import { addHslAlpha, mediaQuery } from 'styles/helpers';
-import { getRankAndSuit, HIGH_CARD_STRINGS } from 'poker';
 import { bounce } from 'styles/animations';
-import { randomInRange } from 'utils';
+import { getRankAndSuit, HIGH_CARD_STRINGS } from 'lib/poker';
+import { randomInRange } from 'lib/utils';
 
 const faceImagesMap = {
   '11': <JackSVG />,
@@ -45,7 +46,7 @@ const Styles = styled.div`
 
   margin: 0 0.35rem;
   transform: rotate(${p => p.tilt}deg);
-  transition: all 250ms;
+  transition: all 250ms ease;
   &:first-child {
     margin-left: 0;
   }
@@ -65,8 +66,13 @@ const WinBounce = styled.div`
 `;
 
 const CardContainer = styled.div`
-  --card-size: 8rem;
+  --card-size: 7rem;
   --radius: 0.5rem;
+    min-width: 6rem;
+  ${mediaQuery.above.px350`
+    --card-size: 8rem;
+    min-width: 7rem;
+  `}
   ${mediaQuery.above.px500`
     --card-size: 8.5rem;
   `}
@@ -88,17 +94,18 @@ const CardContainer = styled.div`
 
   position: relative;
   width: var(--card-size);
-  min-width: 7rem;
   max-width: 18.5vw;
   height: calc(var(--card-size) * 1.4);
-  transition: transform 200ms;
+  transition: transform ${config.cardFlipDurationMS}ms;
   transform-style: preserve-3d;
 
   &:hover {
-    transform: ${p => !p.isFaceDown && !p.didDraw && 'rotateY(180deg) scale(1.02)'};
+    transform: ${p =>
+      !p.isFaceDown && !p.didDraw && !p.busy && 'rotateY(180deg) scale(1.02)'};
   }
 
-  ${p => !p.isFaceDown && 'transform: rotateY(180deg)'};
+  ${p => !p.isFaceDown && 'transform: rotateY(180deg);'};
+  ${p => p.busy && 'pointer-events: none;'};
 `;
 
 const CardFrontAndBack = styled.div`
@@ -189,6 +196,7 @@ export default function Card({
   didDraw,
   didScore,
   didWin,
+  busy,
   onClick
 }) {
   let [rank, suit] = getRankAndSuit(value);
@@ -208,6 +216,7 @@ export default function Card({
           isFaceDown={isFaceDown}
           didWin={didWin}
           didDraw={didDraw}
+          busy={busy}
           data-testid="card"
           className={testingClasses}
         >

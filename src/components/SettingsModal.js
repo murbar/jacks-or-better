@@ -5,7 +5,7 @@ import { ReactComponent as SettingsIcon } from 'images/settings-icon.svg';
 import Button from 'components/Button';
 import FullScreenModal from 'components/FullScreenModal';
 import { effect3dSmall } from 'styles/helpers';
-import { playSound } from 'soundFx';
+import { playSound } from 'lib/soundFx';
 import ColorChoiceToggle from 'components/ColorChoiceToggle';
 import { cardOptions, tableOptions } from 'styles/theme';
 
@@ -52,7 +52,7 @@ export default function AboutModal({ playerState, actions }) {
         <SettingsModalControl
           role="switch"
           aria-checked={showModal ? 'true' : 'false'}
-          title="Show Settings"
+          title="Game Settings"
         >
           <SettingsIcon />
         </SettingsModalControl>

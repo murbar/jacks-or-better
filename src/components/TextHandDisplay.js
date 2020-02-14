@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { getRankAndSuit, HIGH_CARD_STRINGS } from 'poker';
+import { getRankAndSuit, HIGH_CARD_STRINGS } from 'lib/poker';
 
 const suitMap = {
   D: '♦',

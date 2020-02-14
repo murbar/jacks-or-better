@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { recordGAEvent } from 'analytics';
-import { getIndexes, isTruthy, isFalsy } from 'utils';
+import { recordGAEvent } from 'lib/analytics';
+import { getIndexes, isTruthy, isFalsy } from 'lib/utils';
 import {
   newDeck,
   takeCards,
@@ -9,16 +9,16 @@ import {
   HANDS,
   ROYAL_MAX_MULTIPLE,
   isBigWin
-} from 'poker';
-import { playSound } from 'soundFx';
-import fireworks from 'fireworks';
+} from 'lib/poker';
+import { playSound } from 'lib/soundFx';
+import config from 'config';
+import fireworks from 'lib/fireworks';
 import useHotKeys from 'hooks/useHotKeys';
 import useViewportSize from 'hooks/useViewportSize';
-import config from 'config';
-import Stats from './Stats';
+import Stats from 'components/Stats';
 import Hand from 'components/Hand';
-import Controls from './Controls';
-import BankEmptyModal from './BankEmptyModal';
+import Controls from 'components/Controls';
+import BankEmptyModal from 'components/BankEmptyModal';
 
 function initGameState() {
   const deck = newDeck();
@@ -32,13 +32,13 @@ function initGameState() {
 const Styles = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex: 1;
   color: ${p => p.theme.colors.offWhite};
   min-height: ${p => p.height}px;
 `;
 
-function Game({ playerState, playerActions }) {
+export default function Game({ playerState, playerActions }) {
   const [gameState, setGameState] = React.useState(initGameState());
   const { height: viewportHeight } = useViewportSize();
   const isBankEmpty = playerState.bank <= 0;
@@ -80,7 +80,7 @@ function Game({ playerState, playerActions }) {
 
   const resetBank = () => {
     playerActions.incrementBank(config.initPlayerState.bank - playerState.bank);
-    recordGAEvent('User', 'Gameplay', 'Replenish bank');
+    recordGAEvent('User', 'Play', 'Replenish bank');
   };
 
   const toggleHeld = index => {
@@ -115,19 +115,50 @@ function Game({ playerState, playerActions }) {
 
   const revealHiddenCards = React.useCallback(() => {
     const hidden = getIndexes(gameState.cardsFaceDown, isTruthy).reverse();
+
     const showOneAndWait = () => {
       if (hidden.length) {
         setTimeout(() => {
           playSoundFx('cardTurn', 0.75);
           toggleShowCard(hidden.pop());
           showOneAndWait();
-        }, config.cardRevealDelay);
+        }, config.cardRevealDelayMS);
       } else {
-        setGameState(prev => ({ ...prev, busy: false }));
+        setTimeout(
+          () => setGameState(prev => ({ ...prev, busy: false })),
+          config.cardFlipDurationMS
+        );
       }
     };
+
     showOneAndWait();
   }, [gameState.cardsFaceDown, playSoundFx, toggleShowCard]);
+
+  const play = () => {
+    playSoundFx('buttonPress', 0.5);
+    if (gameState.busy) return;
+
+    if (!gameState.didDeal) {
+      if (gameState.didDraw) {
+        resetHand();
+      }
+      setGameState(prev => ({
+        ...prev,
+        didDeal: true,
+        busy: true
+      }));
+      playerActions.incrementBank(-gameState.currentBet);
+      recordGAEvent('User', 'Play', 'Deal');
+    } else {
+      discard();
+      setGameState(prev => ({
+        ...prev,
+        didDeal: false,
+        didDraw: true,
+        busy: true
+      }));
+    }
+  };
 
   // reveal face-down cards after the deal and after the draw
   React.useEffect(() => {
@@ -157,38 +188,12 @@ function Game({ playerState, playerActions }) {
         } else {
           playSoundFx('win');
         }
-        recordGAEvent('User', 'Gameplay', 'Winning hand');
+        recordGAEvent('User', 'Play', 'Winning hand');
       } else {
         playSoundFx('gameOver');
       }
     }
   }, [gameState, playSoundFx, endOfPlay, playerActions]);
-
-  const play = () => {
-    playSoundFx('buttonPress', 0.5);
-    if (gameState.busy) return;
-
-    if (!gameState.didDeal) {
-      if (gameState.didDraw) {
-        resetHand();
-      }
-      setGameState(prev => ({
-        ...prev,
-        didDeal: true,
-        busy: true
-      }));
-      playerActions.incrementBank(-gameState.currentBet);
-      recordGAEvent('User', 'Gameplay', 'Deal');
-    } else {
-      discard();
-      setGameState(prev => ({
-        ...prev,
-        didDeal: false,
-        didDraw: true,
-        busy: true
-      }));
-    }
-  };
 
   useHotKeys({
     d: play,
@@ -207,12 +212,9 @@ function Game({ playerState, playerActions }) {
   return (
     <Styles height={viewportHeight}>
       <Stats gameState={gameState} playerState={playerState} />
-
       <Hand gameState={gameState} toggleHeld={toggleHeld} />
       <Controls gameState={gameState} actions={{ incrementBet, setMaxBet, play }} />
       {gameState.didScore && isBankEmpty && <BankEmptyModal onAccept={resetBank} />}
     </Styles>
   );
 }
-
-export default Game;

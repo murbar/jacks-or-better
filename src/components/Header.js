@@ -30,7 +30,7 @@ const Logo = styled.div`
 export default function Header() {
   return (
     <Styles>
-      <h1>Jacks or Better Video Poker Game</h1>
+      <h1>Jacks or Better 9/6 Video Poker Game</h1>
       <Logo>
         <LogoImage />
       </Logo>

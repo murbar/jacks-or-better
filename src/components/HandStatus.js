@@ -26,14 +26,14 @@ export const StatusStyles = styled.div`
     font-size: 4.5rem;
   `}
   ${mediaQuery.above.px600`
-    font-size: 5.5rem;
+    font-size: 5rem;
 
   `}
   ${mediaQuery.above.px700`
-    font-size: 6rem;
+    font-size: 5.5rem;
   `}
   ${mediaQuery.above.px800`
-    font-size: 7rem;
+    font-size: 6rem;
   `}
 `;
 

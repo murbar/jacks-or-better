@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { HANDS, PAYOUTS } from 'poker';
+import { HANDS, PAYOUTS } from 'lib/poker';
 import { adjustHsl } from 'styles/helpers';
 
 const Styles = styled.div`

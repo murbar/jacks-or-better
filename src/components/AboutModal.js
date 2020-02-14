@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory, useRouteMatch, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { mediaQuery, effect3dSmall } from 'styles/helpers';
-import { exampleHands } from 'poker';
+import { exampleHands } from 'lib/poker';
 import { ReactComponent as AboutIcon } from 'images/help-circle-icon.svg';
 import FullScreenModal from 'components/FullScreenModal';
 import TextHandDisplay from 'components/TextHandDisplay';
@@ -93,7 +93,7 @@ export default function AboutModal() {
         <AboutModalControl
           role="switch"
           aria-checked={showModal ? 'true' : 'false'}
-          title="Show About"
+          title="How to Play"
         >
           <AboutIcon />
         </AboutModalControl>
@@ -221,7 +221,7 @@ export default function AboutModal() {
               <dt>
                 <kbd>B</kbd>
               </dt>
-              <dd>Bet</dd>
+              <dd>Bet one</dd>
               <dt>
                 <kbd>1</kbd>
                 <kbd>2</kbd>
