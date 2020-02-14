@@ -46,7 +46,7 @@ const Styles = styled.div`
 
   margin: 0 0.35rem;
   transform: rotate(${p => p.tilt}deg);
-  transition: all 250ms;
+  transition: all 250ms ease;
   &:first-child {
     margin-left: 0;
   }
