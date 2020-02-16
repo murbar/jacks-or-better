@@ -53,6 +53,7 @@ const Styles = styled(animated.div)`
   justify-content: center;
   padding: 2rem;
   background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
   overflow: scroll;
   transform: scale(1);
   will-change: transform, opacity;
