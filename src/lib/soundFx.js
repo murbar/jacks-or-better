@@ -56,12 +56,12 @@ async function initSourceMap() {
   });
 }
 
-export function playSound(key, volume = 1) {
+export async function playSound(key, volume = 1) {
   if (!(key in sourceMap) || inTesting) return;
 
   // for browser's autoplay policy
   if (context.state === 'suspended') {
-    context.resume();
+    await context.resume();
   }
 
   const buffer = sourceMap[key];
