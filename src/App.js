@@ -13,6 +13,7 @@ import Game from 'components/Game';
 import SettingsModal from 'components/SettingsModal';
 import AboutModal from 'components/AboutModal';
 import 'styles/fonts.css';
+import { revealGame } from 'styles/animations';
 
 initializeGA();
 
@@ -30,6 +31,8 @@ const Menu = styled.div`
       margin-right: 0;
     }
   }
+
+  ${revealGame}
   ${mediaQuery.above.phone`
     right: 15rem;
   `}

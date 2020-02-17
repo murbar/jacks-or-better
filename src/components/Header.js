@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { slideInDown } from 'styles/animations';
+import { introLogo } from 'styles/animations';
 import { ReactComponent as LogoImage } from 'images/logo.svg';
 import { mediaQuery } from 'styles/helpers';
 
@@ -21,11 +21,11 @@ const Logo = styled.div`
   position: absolute;
   top: 1rem;
   left: calc(50% - (var(--w) / 2));
-  animation: ${slideInDown} 0.75s;
   svg {
     width: 100%;
     height: auto;
   }
+  ${introLogo}
   ${mediaQuery.above.px450`
     --w: 14rem;
   `}

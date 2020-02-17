@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Button from 'components/Button';
 import useViewportSize from 'hooks/useViewportSize';
 import { DEVICE_SIZES, mediaQuery } from 'styles/helpers';
-import { slideInLeft, slideInRight } from 'styles/animations';
 
 const Styles = styled.div`
   display: flex;
@@ -21,7 +20,6 @@ const Styles = styled.div`
 const BetControls = styled.div`
   display: flex;
   flex: 1;
-  animation: ${slideInLeft} 0.75s;
 `;
 
 const BetButton = styled(Button)`
@@ -31,7 +29,6 @@ const BetButton = styled(Button)`
 const DealButton = styled(BetButton)`
   width: 13rem;
   margin-right: 0;
-  animation: ${slideInRight} 0.75s;
   ${mediaQuery.above.px500`
     width: 16rem;
   `}

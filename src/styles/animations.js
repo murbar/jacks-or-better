@@ -1,10 +1,9 @@
-import { keyframes } from 'styled-components';
+import { css, keyframes } from 'styled-components';
 
 export const slideInDown = keyframes`
   from {
     transform: translate3d(0, -100%, 0) scale(0.5);
   }
-
   to {
     transform: translate3d(0, 0, 0) scale(1);
   }
@@ -14,7 +13,6 @@ export const slideInLeft = keyframes`
   from {
     transform: translate3d(-100%, 0, 0) scale(0.5);
   }
-
   to {
     transform: translate3d(0, 0, 0) scale(1);
   }
@@ -24,7 +22,6 @@ export const slideInRight = keyframes`
   from {
     transform: translate3d(100%, 0, 0)  scale(0.5);
   }
-
   to {
     transform: translate3d(0, 0, 0) scale(1);
   }
@@ -91,4 +88,38 @@ export const bounceIn = keyframes`
     opacity: 1;
     transform: scale3d(1, 1, 1);
   }
+`;
+
+export const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+export const revealGame = css`
+  opacity: 0;
+  animation: ${fadeIn} 750ms 1000ms forwards;
+`;
+
+export const slideLogo = keyframes`
+  from {
+    opacity: 0;
+  }
+  33% {
+    opacity: 1;
+  }
+  66% {
+    transform: translate3d(0, 250%, 0) scale(2.5);
+  }
+  to {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+`;
+
+export const introLogo = css`
+  transform: translate3d(0, 250%, 0) scale(2.5);
+  animation: ${slideLogo} 1500ms forwards;
 `;

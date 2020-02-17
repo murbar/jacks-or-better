@@ -19,6 +19,7 @@ import Stats from 'components/Stats';
 import Hand from 'components/Hand';
 import Controls from 'components/Controls';
 import BankEmptyModal from 'components/BankEmptyModal';
+import { revealGame } from 'styles/animations';
 
 function initGameState() {
   const deck = newDeck();
@@ -36,6 +37,8 @@ const Styles = styled.div`
   flex: 1;
   color: ${p => p.theme.colors.offWhite};
   min-height: ${p => p.height}px;
+
+  ${revealGame}
 `;
 
 export default function Game({ playerState, playerActions }) {

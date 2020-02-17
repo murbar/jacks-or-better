@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { slideInLeft, slideInRight } from 'styles/animations';
 import ChipStack from 'components/ChipStack';
 
 const Styles = styled.div`
@@ -12,13 +11,11 @@ const Styles = styled.div`
 
 const Bank = styled.div`
   text-align: right;
-  animation: ${slideInRight} 0.75s;
 `;
 
 const Bet = styled.div`
   opacity: ${p => (p.inPlay ? 1 : 0.35)};
   transition: opacity 250ms;
-  animation: ${slideInLeft} 0.75s;
 `;
 
 export default function Stacks({ bet, bank, inPLay }) {
