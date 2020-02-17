@@ -3,4 +3,5 @@
   src: url(../fonts/komica-axis.woff) format('woff');
   font-weight: normal;
   font-style: normal;
+  font-display: fallback;
 }
