@@ -35,8 +35,11 @@ const ChipStyles = styled.div`
 `;
 
 const Styles = styled.div`
-  --chip-size: 4rem;
+  --chip-size: 3rem;
   --stack-size: calc(var(--chip-size) * 2);
+  ${mediaQuery.above.phoneSmall`
+    --chip-size: 4rem;
+  `}
   ${mediaQuery.above.phone`
     --chip-size: 5rem;
   `}

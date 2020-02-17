@@ -15,13 +15,16 @@ export const StatusStyles = styled.div`
   pointer-events: none;
   text-align: center;
   font-family: ${theme.fonts.display};
-  font-size: 3.5rem;
+  font-size: 3rem;
   color: ${textColor};
   letter-spacing: -1px;
   line-height: 1.2;
   z-index: 2000;
   
   ${effect3d(textColor)}
+  ${mediaQuery.above.phoneSmall`
+    font-size: 3.5rem;
+  `}
   ${mediaQuery.above.px500`
     font-size: 4.5rem;
   `}

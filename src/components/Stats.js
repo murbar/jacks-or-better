@@ -30,7 +30,7 @@ const Bet = styled.div``;
 
 const BetAmount = styled.div`
   font-family: ${p => p.theme.fonts.display};
-  font-size: 4rem;
+  font-size: 3rem;
   letter-spacing: 1px;
   font-weight: 400;
   margin-top: 0.75rem;
@@ -38,6 +38,9 @@ const BetAmount = styled.div`
   .dollar-sign {
     font-size: 0.8em;
   }
+  ${mediaQuery.above.phoneSmall`
+    font-size: 4rem;
+  `}
 `;
 
 const BankAmount = styled(BetAmount)`

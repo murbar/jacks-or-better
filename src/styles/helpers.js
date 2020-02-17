@@ -5,7 +5,7 @@ export const DEVICE_SIZES = {
   desktop: 1200,
   tablet: 900,
   phone: 625,
-  phoneSmall: 400
+  phoneSmall: 370
 };
 
 for (let px = 350; px <= 1800; px += 50) {
