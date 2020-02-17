@@ -8,7 +8,9 @@ export default function useLocalStorageState(key, initialValue = null) {
   const [state, setState] = useState(() => {
     let value;
     try {
-      value = JSON.parse(window.localStorage.getItem(key) || JSON.stringify(initialValue));
+      value = JSON.parse(
+        window.localStorage.getItem(key) ?? JSON.stringify(initialValue)
+      );
     } catch (err) {
       value = initialValue;
     }
