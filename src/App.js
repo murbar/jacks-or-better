@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import config from 'config';
 import useLocalStorageState from 'hooks/useLocalStorageState';
+import useAnalyticsPageView from 'hooks/useAnalyticsPageView';
 import { DEVICE_SIZES, mediaQuery } from 'styles/helpers';
 import { withUserPreferences } from 'styles/theme';
-import { recordPageView, initializeGA } from 'lib/analytics';
+import { initializeGA } from 'lib/analytics';
 import GlobalStyles from 'styles/global';
 import Header from 'components/Header';
 import Game from 'components/Game';
@@ -43,8 +44,6 @@ const Styles = styled.div`
   font-size: 1em;
 `;
 
-recordPageView('/');
-
 function App() {
   const [playerState, setPlayerState] = useLocalStorageState(
     config.storageKeys.playerState,
@@ -58,6 +57,9 @@ function App() {
       }),
     [playerState.tableColor, playerState.cardColor]
   );
+  const location = useLocation();
+
+  useAnalyticsPageView(location);
 
   const incrementBank = React.useCallback(
     points => {
@@ -79,25 +81,23 @@ function App() {
   };
 
   return (
-    <Router>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <Styles>
-          <Header />
-          <Menu>
-            <SettingsModal
-              playerState={playerState}
-              actions={{ toggleSoundMute, setTableColor, setCardColor }}
-            />
-            <AboutModal />
-          </Menu>
-          <Game
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Styles>
+        <Header />
+        <Menu>
+          <SettingsModal
             playerState={playerState}
-            playerActions={{ toggleSoundMute, incrementBank }}
+            actions={{ toggleSoundMute, setTableColor, setCardColor }}
           />
-        </Styles>
-      </ThemeProvider>
-    </Router>
+          <AboutModal />
+        </Menu>
+        <Game
+          playerState={playerState}
+          playerActions={{ toggleSoundMute, incrementBank }}
+        />
+      </Styles>
+    </ThemeProvider>
   );
 }
 
