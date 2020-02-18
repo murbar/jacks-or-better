@@ -154,7 +154,7 @@ const CardFront = styled(CardFrontAndBack)`
     right: 0.5rem;
     transform: rotate(180deg);
   }
-  svg.card-suit {
+  svg[class*='card-suit'] {
     --w: calc(var(--card-size) * 0.35);
     position: absolute;
     width: auto;
@@ -163,7 +163,7 @@ const CardFront = styled(CardFrontAndBack)`
     right: calc(50% - (var(--w) / 2));
     pointer-events: none;
   }
-  svg.card-face {
+  svg[class*='card-face'] {
     position: absolute;
     width: 100%;
     height: 100%;

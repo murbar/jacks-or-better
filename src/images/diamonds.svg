@@ -1,7 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg class="card-suit" width="150px" height="150px" viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>diamonds</title>
-    <g id="diamonds" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M75.0001432,144 C60.1492903,119.554633 44.5249972,95.7956937 25,75.5 C44.5249972,55.2045917 60.1492903,31.4456521 75.0001432,7 C89.8509961,31.4456521 105.475003,55.2045917 125,75.5 C105.475003,95.7956937 89.8509961,119.554633 75.0001432,144 Z" id="path6600-5" fill="currentColor"></path>
-    </g>
-</svg>
+<svg class="diamonds_svg__card-suit" width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg"><title>diamonds</title><path d="M75 144c-14.85-24.445-30.475-48.204-50-68.5C44.525 55.205 60.15 31.446 75 7c14.851 24.446 30.475 48.205 50 68.5-19.525 20.296-35.149 44.055-50 68.5z" fill="currentColor" fill-rule="evenodd"/></svg>
