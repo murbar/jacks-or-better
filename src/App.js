@@ -4,39 +4,18 @@ import styled, { ThemeProvider } from 'styled-components';
 import config from 'config';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 import useAnalyticsPageView from 'hooks/useAnalyticsPageView';
-import { DEVICE_SIZES, mediaQuery } from 'styles/helpers';
+import { DEVICE_SIZES } from 'styles/helpers';
 import { withUserPreferences } from 'styles/theme';
 import { initializeGA } from 'lib/analytics';
 import GlobalStyles from 'styles/global';
 import Header from 'components/Header';
+import Menu from 'components/Menu';
 import Game from 'components/Game';
 import SettingsModal from 'components/SettingsModal';
 import AboutModal from 'components/AboutModal';
 import 'styles/fonts.css';
-import { revealGame } from 'styles/animations';
 
 initializeGA();
-
-const Menu = styled.div`
-  display: flex;
-  position: absolute;
-  top: 0;
-  right: 1rem;
-  & > div {
-    margin: 0 0.25rem;
-    &:first-child {
-      margin-left: 0;
-    }
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-
-  ${revealGame}
-  ${mediaQuery.above.phone`
-    right: 15rem;
-  `}
-`;
 
 const Styles = styled.div`
   position: relative;
@@ -87,7 +66,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Styles>
-        <Header />
         <Menu>
           <SettingsModal
             playerState={playerState}
@@ -95,6 +73,7 @@ function App() {
           />
           <AboutModal />
         </Menu>
+        <Header />
         <Game
           playerState={playerState}
           playerActions={{ toggleSoundMute, incrementBank }}

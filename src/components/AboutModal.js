@@ -7,16 +7,7 @@ import { ReactComponent as AboutIcon } from 'images/help-circle-icon.svg';
 import FullScreenModal from 'components/FullScreenModal';
 import TextHandDisplay from 'components/TextHandDisplay';
 import PayoutTable from 'components/PayoutTable';
-
-const AboutModalControl = styled.div`
-  padding: 1rem;
-  cursor: pointer;
-  svg {
-    color: ${p => p.theme.colors.primary};
-    width: 1.5em;
-    height: auto;
-  }
-`;
+import MenuItem from './MenuItem';
 
 const HandDisplay = styled(TextHandDisplay)`
   display: block;
@@ -90,13 +81,13 @@ export default function AboutModal() {
   return (
     <>
       <Link to="/how-to-play">
-        <AboutModalControl
+        <MenuItem
           role="switch"
           aria-checked={showModal ? 'true' : 'false'}
           title="How to Play"
         >
           <AboutIcon />
-        </AboutModalControl>
+        </MenuItem>
       </Link>
 
       <FullScreenModal onClickOff={() => history.push('/')} isShowing={showModal}>

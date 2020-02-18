@@ -9,6 +9,7 @@ const Styles = styled.header`
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 0;
   h1 {
     color: transparent;
     font-size: 0.5em;

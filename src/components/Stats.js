@@ -18,7 +18,7 @@ const Styles = styled.div`
     display: flex;
   }
   ${mediaQuery.above.phone`
-    margin-top: 2rem;
+    margin-top: 3rem;
   `}
 `;
 

@@ -8,19 +8,10 @@ import { effect3dSmall } from 'styles/helpers';
 import { playSound } from 'lib/soundFx';
 import ColorChoiceToggle from 'components/ColorChoiceToggle';
 import { cardOptions, tableOptions } from 'styles/theme';
+import MenuItem from './MenuItem';
 
 delete cardOptions.default;
 delete tableOptions.default;
-
-const SettingsModalControl = styled.div`
-  padding: 1rem;
-  cursor: pointer;
-  svg {
-    color: ${p => p.theme.colors.primary};
-    width: 1.5em;
-    height: auto;
-  }
-`;
 
 const Styles = styled.div`
   width: 100%;
@@ -49,13 +40,13 @@ export default function AboutModal({ playerState, actions }) {
   return (
     <>
       <Link to="/settings">
-        <SettingsModalControl
+        <MenuItem
           role="switch"
           aria-checked={showModal ? 'true' : 'false'}
           title="Game Settings"
         >
           <SettingsIcon />
-        </SettingsModalControl>
+        </MenuItem>
       </Link>
 
       <FullScreenModal onClickOff={() => history.push('/')} isShowing={showModal}>
