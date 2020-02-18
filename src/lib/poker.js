@@ -111,7 +111,7 @@ export function getRankAndSuit(card) {
 function countCards(hand, key) {
   return hand.reduce((counts, card) => {
     const value = key(card);
-    counts[value] = (counts[value] || 0) + 1;
+    counts[value] = (counts[value] ?? 0) + 1;
     return counts;
   }, {});
 }
