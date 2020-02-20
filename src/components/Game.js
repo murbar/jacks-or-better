@@ -21,6 +21,8 @@ import Controls from 'components/Controls';
 import BankEmptyModal from 'components/BankEmptyModal';
 import { revealGame } from 'styles/animations';
 
+const inDevelopment = config.env === 'development';
+
 function initGameState() {
   const deck = newDeck();
   return {
@@ -208,7 +210,15 @@ export default function Game({ playerState, playerActions }) {
     4: () => toggleHeld(3),
     5: () => toggleHeld(4),
     l: () => {
-      if (config.env) console.log(gameState);
+      if (inDevelopment) console.log(gameState);
+    },
+    s: () => {
+      if (inDevelopment) {
+        setGameState(prev => {
+          const hand = window.prompt('Hand Values', prev.hand).split(',');
+          return { ...prev, hand };
+        });
+      }
     }
   });
 
