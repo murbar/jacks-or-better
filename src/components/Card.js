@@ -188,7 +188,7 @@ const HoldIndicator = styled.div`
   visibility: ${p => (p.isHeld ? 'visible' : 'hidden')};
 `;
 
-export default function Card({
+const Card = ({
   value,
   index,
   isFaceDown,
@@ -197,8 +197,8 @@ export default function Card({
   didScore,
   didWin,
   busy,
-  onClick
-}) {
+  toggleHeld
+}) => {
   let [rank, suit] = getRankAndSuit(value);
   const rankString = rank in HIGH_CARD_STRINGS ? HIGH_CARD_STRINGS[rank] : rank;
   const tilt = React.useRef(randomInRange(-2, 2));
@@ -220,7 +220,12 @@ export default function Card({
           data-testid="card"
           className={testingClasses}
         >
-          <CardFront suit={suit} didScore={didScore} isHeld={isHeld} onClick={onClick}>
+          <CardFront
+            suit={suit}
+            didScore={didScore}
+            isHeld={isHeld}
+            onClick={() => toggleHeld(index)}
+          >
             <span>{rankString}</span>
             {suitImageMap[suit]}
             <span>{rankString}</span>
@@ -234,4 +239,6 @@ export default function Card({
       <HoldIndicator isHeld={isHeld}>HELD</HoldIndicator>
     </Styles>
   );
-}
+};
+
+export default React.memo(Card);

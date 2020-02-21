@@ -88,15 +88,18 @@ export default function Game({ playerState, playerActions }) {
     recordGAEvent('User', 'Play', 'Replenish bank');
   };
 
-  const toggleHeld = index => {
-    if (gameState.didDeal) {
-      setGameState(prev => {
-        prev.cardsHeld[index] = !prev.cardsHeld[index];
-        return { ...prev, cardsHeld: prev.cardsHeld };
-      });
-      playSoundFx('cardTap');
-    }
-  };
+  const toggleHeld = React.useCallback(
+    index => {
+      if (gameState.didDeal) {
+        setGameState(prev => {
+          prev.cardsHeld[index] = !prev.cardsHeld[index];
+          return { ...prev, cardsHeld: prev.cardsHeld };
+        });
+        playSoundFx('cardTap');
+      }
+    },
+    [gameState.didDeal, playSoundFx]
+  );
 
   const discard = () => {
     const discards = getIndexes(gameState.cardsHeld, isFalsy);

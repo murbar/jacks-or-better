@@ -49,7 +49,7 @@ export default function Hand({ gameState, toggleHeld }) {
             didScore={didScore}
             didWin={isWinState}
             busy={busy}
-            onClick={() => toggleHeld(i)}
+            toggleHeld={toggleHeld}
           />
         ))}
       </Cards>

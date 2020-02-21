@@ -18,7 +18,7 @@ const Bet = styled.div`
   transition: opacity 250ms;
 `;
 
-export default function Stacks({ bet, bank, inPLay }) {
+const Stacks = ({ bet, bank, inPLay }) => {
   return (
     <Styles>
       <Bet inPlay={inPLay}>
@@ -29,4 +29,6 @@ export default function Stacks({ bet, bank, inPLay }) {
       </Bank>
     </Styles>
   );
-}
+};
+
+export default React.memo(Stacks);
