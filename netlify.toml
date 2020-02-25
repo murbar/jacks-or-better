@@ -7,7 +7,7 @@
   	# base = ""
 	publish = "build/"
 	command = "yarn build"
-	functions = "functions/"
+	# functions = "functions/"
 
 [[headers]]
 	for = "static/*"
