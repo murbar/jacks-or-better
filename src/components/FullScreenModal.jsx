@@ -66,7 +66,7 @@ export default function FullScreenModal({
   closeControl = true
 }) {
   const DOM_ID = 'modal';
-  const overlayTransition = useTransition(isShowing, null, {
+  const overlayTransition = useTransition(isShowing, {
     from: {
       opacity: 0,
       transform: 'scale(1.15)'
@@ -81,27 +81,26 @@ export default function FullScreenModal({
     }
   });
 
-  return overlayTransition.map(
-    ({ item, key, props }) =>
-      item &&
-      ReactDOM.createPortal(
-        <Styles
-          key={key}
-          onClick={e => {
-            if (e.target.parentNode.id === DOM_ID) onClickOff(e);
-          }}
-          style={{ ...props, pointerEvents: isShowing ? 'auto' : 'none' }}
-        >
-          <OverlayBox key={key}>
-            {closeControl && (
-              <CloseControl role="button" onClick={() => onClickOff()} title="Close">
-                <XIcon />
-              </CloseControl>
-            )}
-            {children}
-          </OverlayBox>
-        </Styles>,
-        document.querySelector(`#${DOM_ID}`)
-      )
+  return overlayTransition(
+    (styleProps, item) =>  item &&
+        ReactDOM.createPortal(
+          <Styles
+            onClick={e => {
+              if (e.target.parentNode.id === DOM_ID) onClickOff(e);
+            }}
+            style={{ ...styleProps, pointerEvents: isShowing ? 'auto' : 'none' }}
+          >
+            <OverlayBox>
+              {closeControl && (
+                <CloseControl role="button" onClick={() => onClickOff()} title="Close">
+                  <XIcon />
+                </CloseControl>
+              )}
+              {children}
+            </OverlayBox>
+          </Styles>,
+          document.querySelector(`#${DOM_ID}`)
+        )
+    
   );
 }
